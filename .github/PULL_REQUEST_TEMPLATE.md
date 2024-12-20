@@ -1,6 +1,6 @@
 <!---☝️ PR title should follow conventional commits (https://conventionalcommits.org) -->
 
-### 🔗 Linked issue
+<!-- ### 🔗 Linked issue -->
 
 <!-- Please ensure there is an open issue and mention its number as #123 -->
 
