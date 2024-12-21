@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Camera } from 'lucide-react';
+import { User2Icon } from 'lucide-react';
 
 import { toast } from "@/hooks/use-toast"
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,8 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const FormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6).max(8)
+  password: z.string().min(6).max(8),
+  confirmPassword: z.string().min(6).max(8),
 })
 
 export default function InputForm() {
@@ -30,6 +31,7 @@ export default function InputForm() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   })
 
@@ -51,18 +53,18 @@ export default function InputForm() {
         <AvatarFallback className="bg-transparent ring-1 ring-inset ring-neutral-100">
           <Avatar className="w-10 h-10 bg-transparent">
             <AvatarFallback className="bg-transparent ring-2 ring-inset ring-neutral-200">
-              <Camera />
+              <User2Icon />
             </AvatarFallback>
           </Avatar>
         </AvatarFallback>
       </Avatar>
-      <CardTitle>Login</CardTitle>
-      <CardDescription>Enter your credentials to log in</CardDescription>
+      <CardTitle>Create new account</CardTitle>
+      <CardDescription>Enter your email to create new account</CardDescription>
     </CardHeader>
     <CardContent className="pb-6">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col justify-start items-stretch space-y-6">
-          <FormField
+        <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -88,10 +90,23 @@ export default function InputForm() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm password</FormLabel>
+                <FormControl>
+                  <Input placeholder="********" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="flex flex-col space-y-2">
-            <Button type="submit">Login with username</Button>
-            <Button type="submit" variant={'secondary'}>Login with Google</Button>
-            <Button type="submit" variant={'secondary'}>Login with Github</Button>
+            <Button type="submit">Signup with email</Button>
+            <Button type="submit" variant={'secondary'}>Signup with Google</Button>
+            <Button type="submit" variant={'secondary'}>Signup with Github</Button>
           </div>
         </form>
       </Form>
