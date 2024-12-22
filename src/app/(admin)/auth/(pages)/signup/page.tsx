@@ -1,12 +1,7 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { User2Icon } from 'lucide-react';
-
-import { toast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   Form,
   FormControl,
@@ -15,17 +10,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { User2Icon } from 'lucide-react'
+import { useForm } from "react-hook-form"
+import { toast } from "@/hooks/use-toast"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const FormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6).max(8),
-  confirmPassword: z.string().min(6).max(8),
+  password: z.string().min(8),
+  confirmPassword: z.string().min(8),
 })
 
-export default function InputForm() {
+export default function PageSignup() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -48,11 +48,11 @@ export default function InputForm() {
   }
 
   return <Card className="page-login shadow-none border-0">
-    <CardHeader className="flex flex-col justify-start items-center">
+    <CardHeader className="flex flex-col justify-start items-center text-center">
       <Avatar className="w-14 h-14 bg-transparent">
-        <AvatarFallback className="bg-transparent ring-1 ring-inset ring-neutral-100">
+        <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/10">
           <Avatar className="w-10 h-10 bg-transparent">
-            <AvatarFallback className="bg-transparent ring-2 ring-inset ring-neutral-200">
+            <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/80">
               <User2Icon />
             </AvatarFallback>
           </Avatar>
@@ -107,6 +107,7 @@ export default function InputForm() {
             <Button type="submit">Signup with email</Button>
             <Button type="submit" variant={'secondary'}>Signup with Google</Button>
             <Button type="submit" variant={'secondary'}>Signup with Github</Button>
+            <Button type="button" variant={'link'}><Link href={'/auth/login'}>Found an account? Back to login</Link></Button>
           </div>
         </form>
       </Form>

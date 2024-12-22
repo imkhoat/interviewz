@@ -1,12 +1,7 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Camera } from 'lucide-react';
-
-import { toast } from "@/hooks/use-toast"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   Form,
   FormControl,
@@ -15,16 +10,22 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+import { LogIn } from 'lucide-react'
+import { toast } from "@/hooks/use-toast"
+import { useForm } from "react-hook-form"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
 
 const FormSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(6).max(8)
+  password: z.string().min(8)
 })
 
-export default function InputForm() {
+export default function PageLogin() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -46,12 +47,12 @@ export default function InputForm() {
   }
 
   return <Card className="page-login shadow-none border-0">
-    <CardHeader className="flex flex-col justify-start items-center">
+    <CardHeader className="flex flex-col justify-start items-center text-center">
       <Avatar className="w-14 h-14 bg-transparent">
-        <AvatarFallback className="bg-transparent ring-1 ring-inset ring-neutral-100">
+        <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/10">
           <Avatar className="w-10 h-10 bg-transparent">
-            <AvatarFallback className="bg-transparent ring-2 ring-inset ring-neutral-200">
-              <Camera />
+            <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/80">
+              <LogIn />
             </AvatarFallback>
           </Avatar>
         </AvatarFallback>
@@ -80,7 +81,10 @@ export default function InputForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <div className="flex flex-row justify-between items-baseline">
+                  <FormLabel>Password</FormLabel>
+                  <Link href={'/auth/forgot-password'} className="underline text-xs text-right">Forgot password?</Link>
+                </div>
                 <FormControl>
                   <Input placeholder="********" {...field} />
                 </FormControl>
@@ -92,6 +96,7 @@ export default function InputForm() {
             <Button type="submit">Login with username</Button>
             <Button type="submit" variant={'secondary'}>Login with Google</Button>
             <Button type="submit" variant={'secondary'}>Login with Github</Button>
+            <Button type="button" variant={'link'}><Link href={'/auth/signup'}>Dont have account? Signup</Link></Button>
           </div>
         </form>
       </Form>

@@ -17,7 +17,7 @@ type ToasterToast = ToastProps & {
   description?: React.ReactNode
   action?: ToastActionElement
 }
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
@@ -32,7 +32,6 @@ function genId() {
   return count.toString()
 }
 
-// @typescript-eslint/no-unused-vars
 type ActionType = typeof actionTypes
 
 type Action =
