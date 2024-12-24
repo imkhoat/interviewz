@@ -26,7 +26,7 @@ export default function FormChangePassword() {
         <Avatar className="w-14 h-14 bg-transparent">
           <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/10">
             <Avatar className="w-10 h-10 bg-transparent">
-              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/80">
+              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/50">
                 <User2Icon />
               </AvatarFallback>
             </Avatar>
