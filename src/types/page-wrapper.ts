@@ -68,7 +68,7 @@ export interface ApplicationSidebarConfig {
 }
 
 export interface PageWrapperModal {
-  state: boolean
+  state?: boolean
   type?: any
   title?: string
   description?: string

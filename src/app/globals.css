@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-roboto-mono);
+  font-family: var(--font-geist-mono);
 }
 
 @layer base {
