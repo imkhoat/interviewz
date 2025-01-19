@@ -23,11 +23,15 @@ export default function FormResetPassword() {
   return (
     <Card className="page-login shadow-none border-0">
       <CardHeader className="flex flex-col justify-start items-center text-center">
-        <Avatar className="w-14 h-14 bg-transparent">
-          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/10">
-            <Avatar className="w-10 h-10 bg-transparent">
-              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/50">
-                <ShieldQuestion />
+        <Avatar className="w-20 h-20 bg-transparent">
+          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+            <Avatar className="w-16 h-16 bg-primary/0">
+              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+                <Avatar className="w-12 h-12 bg-primary/0">
+                  <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
+                    <ShieldQuestion />
+                  </AvatarFallback>
+                </Avatar>
               </AvatarFallback>
             </Avatar>
           </AvatarFallback>
