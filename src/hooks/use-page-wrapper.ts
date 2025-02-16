@@ -1,48 +1,63 @@
 "use client"
 
 import * as React from "react"
+import { PageWrapperConfig, PageWrapperState } from "@/types/page-wrapper"
+import { PageWrapperStateContext, PageWrapperStateDispatchContext } from "@/contexts/page-wrapper-state-context"
+import { PageWrapperConfigContext, PageWrapperConfigDispatchContext } from "@/contexts/page-wrapper-config-context"
 
-interface PageWrapperState {
-
-}
-
-interface PageWrapperConfig {
-  header: boolean;
-  sidebar: boolean;
-  footer: boolean;
-  title: boolean;
-  description: boolean;
-}
-
-const PageWrapperStateContext = React.createContext<PageWrapperState | undefined>(undefined);
-const PageWrapperConfigContext = React.createContext<PageWrapperConfig>({
-  header: true,
-  sidebar: true,
-  footer: true,
-  title: true,
-  description: true,
-});
 
 export function usePageWrapper() {
 
-  function setPageWrapperState() {
+  const state = React.useContext(PageWrapperConfigContext);
+  const stateDispatch = React.useContext(PageWrapperStateDispatchContext);
 
+  const config = React.useContext(PageWrapperConfigContext);
+  const configDispatch = React.useContext(PageWrapperConfigDispatchContext);
+
+
+  function initPageWrapperState() {
+    if(stateDispatch)
+    stateDispatch({type: 'INIT_PAGE_WRAPPER_STATE'})
+  }
+
+  function setupPageWrapperState(state: PageWrapperState) {
+    if(stateDispatch)
+    stateDispatch({type: 'SETUP_PAGE_WRAPPER_STATE', state})
+  }
+
+  function updatePageWrapperState(key: keyof PageWrapperState, value: any) {
+    if(configDispatch)
+    configDispatch({type: 'UPDATE_PAGE_WRAPPER_STATE', key, value})
+  }
+
+  function initPageWrapperConfig() {
+    if(configDispatch)
+    configDispatch({type: 'INIT_PAGE_WRAPPER_CONFIG'})
   }
 
   function setupPageWrapperConfig(config: PageWrapperConfig) {
-    return {
-      header: config.header,
-      sidebar: config.sidebar,
-      footer: config.footer,
-      title: config.title,
-      description: config.description,
-    }
-
+    if(configDispatch)
+    configDispatch({type: 'SETUP_PAGE_WRAPPER_CONFIG', config})
   }
-  
+
+  function updatePageWrapperConfig(key: keyof PageWrapperConfig, value: any) {
+    if(configDispatch)
+    configDispatch({type: 'UPDATE_PAGE_WRAPPER_CONFIG', key, value})
+  }
+
+
   return {
+    state,
+    config,
+    stateDispatch,
+    configDispatch,
     PageWrapperStateContext,
     PageWrapperConfigContext,
-    setPageWrapperState,
+    initPageWrapperState,
+    setupPageWrapperState,
+    updatePageWrapperState,
+    initPageWrapperConfig,
+    setupPageWrapperConfig,
+    updatePageWrapperConfig,
   }
 }
