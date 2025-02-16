@@ -40,8 +40,11 @@ export interface PageWrapperState {
 }
 
 export interface PageWrapperConfig {
+  header?: boolean
   title?: boolean
   description?: boolean
+  sidebar?: boolean
+  footer?: boolean
   actions?: boolean
   dropdownActions?: boolean
   primaryAction?: boolean
@@ -72,4 +75,35 @@ export interface PageWrapperModal {
   type?: any
   title?: string
   description?: string
+}
+
+export const dispatchActionType = {
+  INIT_PAGE_WRAPPER_STATE: "INIT_PAGE_WRAPPER_STATE",
+  SETUP_PAGE_WRAPPER_STATE: "SETUP_PAGE_WRAPPER_STATE",
+  UPDATE_PAGE_WRAPPER_STATE: "UPDATE_PAGE_WRAPPER_STATE",
+  INIT_PAGE_WRAPPER_CONFIG: "INIT_PAGE_WRAPPER_CONFIG",
+  SETUP_PAGE_WRAPPER_CONFIG: "SETUP_PAGE_WRAPPER_CONFIG",
+  UPDATE_PAGE_WRAPPER_CONFIG: "UPDATE_PAGE_WRAPPER_CONFIG",
+} as const
+
+export type DispatchActionType = typeof dispatchActionType
+
+export type DispatchAction = {
+  type: DispatchActionType["INIT_PAGE_WRAPPER_CONFIG"]
+} | {
+  type: DispatchActionType["SETUP_PAGE_WRAPPER_CONFIG"]
+  config: PageWrapperConfig
+} | {
+  type: DispatchActionType["UPDATE_PAGE_WRAPPER_CONFIG"]
+  key: keyof PageWrapperConfig,
+  value: any
+} | {
+  type: DispatchActionType["INIT_PAGE_WRAPPER_STATE"]
+} | {
+  type: DispatchActionType["SETUP_PAGE_WRAPPER_STATE"]
+  state: PageWrapperState
+} | {
+  type: DispatchActionType["UPDATE_PAGE_WRAPPER_STATE"]
+  key: keyof PageWrapperState,
+  value: any
 }

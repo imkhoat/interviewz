@@ -1,3 +1,4 @@
+import PageWrapper from '@/components/extends/page-wrapper';
 export default function LayoutAdmin({
   children,
 }: {
@@ -5,7 +6,9 @@ export default function LayoutAdmin({
 }) {
   return (
     <div className="layout-admin">
+      <PageWrapper>
         {children}
+      </PageWrapper>
     </div>
   )
 }
