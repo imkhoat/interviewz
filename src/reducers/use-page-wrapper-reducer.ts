@@ -23,7 +23,10 @@ export function usePageWrapperReducer(){
       }
     }
   }
-  const initState = {}
+  const initState: PageWrapperState = {
+    title: "",
+    description: "",
+  }
 
   const [state, stateDispatch] = React.useReducer(stateReducer, initState)
 
