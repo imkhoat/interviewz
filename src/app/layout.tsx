@@ -1,9 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster"
 
-const geistMono = Geist_Mono({
+const font = Noto_Sans({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} antialiased`}
+        className={`${font.variable} antialiased`}
       >
         {children}
         <Toaster />

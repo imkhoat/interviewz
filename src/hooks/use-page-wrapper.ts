@@ -8,7 +8,7 @@ import { PageWrapperConfigContext, PageWrapperConfigDispatchContext } from "@/co
 
 export function usePageWrapper() {
 
-  const state = React.useContext(PageWrapperConfigContext);
+  const state = React.useContext(PageWrapperStateContext);
   const stateDispatch = React.useContext(PageWrapperStateDispatchContext);
 
   const config = React.useContext(PageWrapperConfigContext);
@@ -51,8 +51,6 @@ export function usePageWrapper() {
     config,
     stateDispatch,
     configDispatch,
-    PageWrapperStateContext,
-    PageWrapperConfigContext,
     initPageWrapperState,
     setupPageWrapperState,
     updatePageWrapperState,
