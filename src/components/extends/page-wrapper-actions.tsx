@@ -1,7 +1,28 @@
-export default function PageWrapperActions(){
+import { usePageWrapper } from "@/hooks/use-page-wrapper";
+import { Button } from "@/components/ui/button"
+import { DropdownMenuWrapper } from "@/components/extends/dropdown-menu-wrapper"
+
+export default function PageWrapperActions() {
+  const { state, config } = usePageWrapper();
+
   return (
-    <>
-      Actions
-    </>
-  )
+    config?.actions ?? (
+      <>
+        <div className="flex-grow flex flex-row justify-end items-center gap-x-2">
+          {state?.actions?.map((action, index) => (
+            Array.isArray(action) ? 
+            <DropdownMenuWrapper key={index} label="More" items={action} /> :
+            <Button
+              key={index}
+              className="btn btn-primary"
+              variant={action.variant}
+              onClick={action.onClick}
+            >
+              {action.label}
+            </Button>
+          ))}
+        </div>
+      </>
+    )
+  );
 }

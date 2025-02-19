@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogIn } from "lucide-react"
+import { LogIn, KeyRound, SigmaIcon } from "lucide-react";
 import { usePageWrapper } from "@/hooks/use-page-wrapper";
+import { useRouter } from "next/navigation";
 
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const { setupPageWrapperConfig, setupPageWrapperState } = usePageWrapper();
 
   useEffect(() => {
@@ -16,6 +18,41 @@ export default function AuthLayout({
       title: "Sign in to your account",
       description: "Enter your credentials to access your account",
       icon: LogIn,
+      actions: [
+        [
+          {
+            label: "Forgot password?",
+            icon: KeyRound,
+            shortcut: "⌘B",
+            onClick: () => router.push('/auth/forgot-password'),
+            items: [
+              {
+                label: "Reset password",
+                icon: KeyRound,
+                shortcut: "⌘R",
+                onClick: () => router.push('/auth/reset-password'),
+              },
+              {
+                label: "Change password",
+                icon: KeyRound,
+                shortcut: "⌘C",
+                onClick: () => router.push('/auth/change-password'),
+              },
+            ]
+          },
+          {
+            label: "Resend verification email",
+            icon: SigmaIcon,
+            shortcut: "⌘R",
+            onClick: () => router.push('/auth/resend-verification-email'),
+          },
+        ],
+        {
+          label: "Sign up",
+          variant: "default",
+          onClick: () => router.push('/auth/signup'),
+        },
+      ],
     });
     setupPageWrapperConfig({
       header: true,
@@ -23,7 +60,7 @@ export default function AuthLayout({
       footer: false,
       title: true,
       description: true,
-      icon: true
+      icon: true,
     });
   }, []);
   return (

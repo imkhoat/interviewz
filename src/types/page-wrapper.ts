@@ -1,11 +1,12 @@
-export interface Action {
+import { MenuItem } from "@/components/extends/dropdown-menu-wrapper"
+import { ButtonProps } from "@/components/ui/button"
+
+export interface Action extends ButtonProps, MenuItem {
   key?: string
   action?: () => void
   icon?: string | any
-  variant?: 'default' | 'secondary' | 'outline' | 'ghost' | 'icon'
-  size?: 'icon' | 'sm' | 'md' | 'lg'
   disabled?: boolean
-  label?: string
+  label: string
   loading?: boolean
 }
 
