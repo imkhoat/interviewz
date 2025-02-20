@@ -1,10 +1,11 @@
+import { ReactNode } from 'react'
 import { MenuItem } from "@/components/extends/dropdown-menu-wrapper"
 import { ButtonProps } from "@/components/ui/button"
 
 export interface Action extends ButtonProps, MenuItem {
   key?: string
   action?: () => void
-  icon?: string | any
+  icon?: string | ReactNode
   disabled?: boolean
   label: string
   loading?: boolean
@@ -12,15 +13,15 @@ export interface Action extends ButtonProps, MenuItem {
 
 export interface Menu extends Action {
   items?: Menu[]
-  to?: any
+  to?: Record<string, string>
 }
 export interface Tab extends Action {
   items?: Tab[]
-  to?: any
+  to?: Record<string, string>
 }
 
 export interface Breadcrumb {
-  to?: any
+  to?: Record<string, string>
   name: string
 }
 
@@ -32,7 +33,7 @@ export interface PageWrapperState {
   primaryAction?: Action
   secondaryAction?: Action
   subDescription?: string
-  icon?: string | any
+  icon?: string | ReactNode
   breadcrumbs?: Map<string | undefined, Breadcrumb>
   menus?: Menu[]
   tabs?: Tab[]
@@ -71,9 +72,9 @@ export interface ApplicationSidebarConfig {
   secondaryMenus: boolean
 }
 
-export interface PageWrapperModal {
+export interface PageWrapperModal<T> {
   state?: boolean
-  type?: any
+  type?: T
   title?: string
   description?: string
 }
@@ -97,7 +98,7 @@ export type DispatchAction = {
 } | {
   type: DispatchActionType["UPDATE_PAGE_WRAPPER_CONFIG"]
   key: keyof PageWrapperConfig,
-  value: any
+  value: PageWrapperConfig[keyof PageWrapperConfig]
 } | {
   type: DispatchActionType["INIT_PAGE_WRAPPER_STATE"]
 } | {
@@ -106,5 +107,5 @@ export type DispatchAction = {
 } | {
   type: DispatchActionType["UPDATE_PAGE_WRAPPER_STATE"]
   key: keyof PageWrapperState,
-  value: any
+  value: PageWrapperState[keyof PageWrapperState]
 }
