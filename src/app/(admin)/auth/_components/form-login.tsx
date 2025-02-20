@@ -8,17 +8,20 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import Link from "next/link"
-import { LogIn } from "lucide-react"
+import { LogIn, Eye, EyeClosed } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useFormLogin } from "@auth/_hooks/form-login"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import React from "react"
 
 
 export default function FormChangePassword() {
 
   const { form, onSubmit } = useFormLogin()
+
+  const [isShowPassword, setIsShowPassword] = React.useState(false)
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -65,7 +68,12 @@ export default function FormChangePassword() {
                     <Link href={'/auth/reset-password'} className="underline text-xs text-right">Forgot password?</Link>
                   </div>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <div className="relative">
+                    <Input placeholder="********" {...field} type={isShowPassword ? "text": "password"} />
+                    <Button size="icon" variant="link" type="button" className="absolute top-1/2 right-1 -translate-y-1/2" onClick={() => setIsShowPassword(!isShowPassword)}>
+                      {isShowPassword ? <Eye /> : <EyeClosed />}
+                    </Button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

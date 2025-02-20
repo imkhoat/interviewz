@@ -25,7 +25,7 @@ export function usePageWrapper() {
     stateDispatch({type: 'SETUP_PAGE_WRAPPER_STATE', state})
   }
 
-  function updatePageWrapperState(key: keyof PageWrapperState, value: any) {
+  function updatePageWrapperState(key: keyof PageWrapperState, value: PageWrapperState[keyof PageWrapperState]) {
     if(configDispatch)
     configDispatch({type: 'UPDATE_PAGE_WRAPPER_STATE', key, value})
   }
@@ -40,7 +40,7 @@ export function usePageWrapper() {
     configDispatch({type: 'SETUP_PAGE_WRAPPER_CONFIG', config})
   }
 
-  function updatePageWrapperConfig(key: keyof PageWrapperConfig, value: any) {
+  function updatePageWrapperConfig(key: keyof PageWrapperConfig, value: PageWrapperConfig[keyof PageWrapperConfig]) {
     if(configDispatch)
     configDispatch({type: 'UPDATE_PAGE_WRAPPER_CONFIG', key, value})
   }
