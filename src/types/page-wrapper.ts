@@ -33,7 +33,7 @@ export interface PageWrapperState {
   primaryAction?: Action
   secondaryAction?: Action
   subDescription?: string
-  icon?: string | ReactNode
+  icon?: ReactNode
   breadcrumbs?: Map<string | undefined, Breadcrumb>
   menus?: Menu[]
   tabs?: Tab[]

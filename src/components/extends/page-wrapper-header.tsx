@@ -7,14 +7,22 @@ export default function PageWrapperHeader() {
   const { state, config } = usePageWrapper();
 
   return config?.header ? (
-    <header className="page-wrapper-header bg-slate-50 container mx-auto py-4 flex flex-row flex-wrap gap-4 justify-between items-stretch">
+    <header className="page-wrapper-header bg-white container mx-auto py-4 flex flex-row flex-wrap gap-4 justify-between items-stretch">
       <div className="flex flex-row justify-start items-center gap-2">
         {config?.icon ? (
-          <Avatar className="w-12 h-12 bg-primary/0">
-            <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
-              <Avatar className="w-8 h-8 bg-primary/0">
-                <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
-                  {React.createElement(state?.icon, { className: "w-5 h-5 text-primary" })}
+          <Avatar className="w-16 h-16 bg-white">
+            <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/5">
+              <Avatar className="w-12 h-12 bg-white">
+                <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/10">
+                  <Avatar className="w-8 h-8 bg-white">
+                    <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/15">
+                      {state?.icon
+                        ? React.createElement(state?.icon, {
+                            className: "w-5 h-5 text-primary",
+                          })
+                        : null}
+                    </AvatarFallback>
+                  </Avatar>
                 </AvatarFallback>
               </Avatar>
             </AvatarFallback>
