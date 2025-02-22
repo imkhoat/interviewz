@@ -57,6 +57,7 @@ export interface PageWrapperConfig {
   menus?: boolean
   tabs?: boolean
   menuMini?: boolean
+  logo?: boolean
 }
 
 export interface ApplicationSidebarState {
