@@ -2,47 +2,44 @@
 
 import * as React from "react"
 import { PageWrapperConfig, PageWrapperState } from "@/types/page-wrapper"
-import { PageWrapperStateContext, PageWrapperStateDispatchContext } from "@/contexts/page-wrapper-state-context"
-import { PageWrapperConfigContext, PageWrapperConfigDispatchContext } from "@/contexts/page-wrapper-config-context"
+import { PageWrapperContext } from "@/contexts/page-wrapper-context"
 
 
 export function usePageWrapper() {
 
-  const state = React.useContext(PageWrapperStateContext);
-  const stateDispatch = React.useContext(PageWrapperStateDispatchContext);
-
-  const config = React.useContext(PageWrapperConfigContext);
-  const configDispatch = React.useContext(PageWrapperConfigDispatchContext);
+  const { state, stateDispatch, config, configDispatch } = React.useContext(PageWrapperContext);
 
 
   function initPageWrapperState() {
-    if(stateDispatch)
-    stateDispatch({type: 'INIT_PAGE_WRAPPER_STATE'})
+    if (stateDispatch)
+      stateDispatch({ type: 'INIT_PAGE_WRAPPER_STATE' })
   }
 
   function setupPageWrapperState(state: PageWrapperState) {
-    if(stateDispatch)
-    stateDispatch({type: 'SETUP_PAGE_WRAPPER_STATE', state})
+    if (stateDispatch)
+      stateDispatch({ type: 'SETUP_PAGE_WRAPPER_STATE', state })
   }
 
   function updatePageWrapperState(key: keyof PageWrapperState, value: PageWrapperState[keyof PageWrapperState]) {
-    if(configDispatch)
-    configDispatch({type: 'UPDATE_PAGE_WRAPPER_STATE', key, value})
+    if (configDispatch)
+      configDispatch({ type: 'UPDATE_PAGE_WRAPPER_STATE', key, value })
   }
 
   function initPageWrapperConfig() {
-    if(configDispatch)
-    configDispatch({type: 'INIT_PAGE_WRAPPER_CONFIG'})
+    if (configDispatch)
+      configDispatch({ type: 'INIT_PAGE_WRAPPER_CONFIG' })
   }
 
   function setupPageWrapperConfig(config: PageWrapperConfig) {
-    if(configDispatch)
-    configDispatch({type: 'SETUP_PAGE_WRAPPER_CONFIG', config})
+    if (configDispatch) {
+      configDispatch({ type: 'SETUP_PAGE_WRAPPER_CONFIG', config })
+    }
+
   }
 
   function updatePageWrapperConfig(key: keyof PageWrapperConfig, value: PageWrapperConfig[keyof PageWrapperConfig]) {
-    if(configDispatch)
-    configDispatch({type: 'UPDATE_PAGE_WRAPPER_CONFIG', key, value})
+    if (configDispatch)
+      configDispatch({ type: 'UPDATE_PAGE_WRAPPER_CONFIG', key, value })
   }
 
 
