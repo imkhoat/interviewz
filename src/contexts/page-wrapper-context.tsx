@@ -26,7 +26,7 @@ export function PageWrapperContextProvider(payload: {
     usePageWrapperReducer();
 
   return (
-    <div className="page-wrapper w-full h-full grid grid-cols-12 gap-4">
+    <div className="w-full h-full grid grid-cols-12 gap-4">
       <PageWrapperContext.Provider
         value={{ state, stateDispatch, config, configDispatch }}
       >
@@ -43,7 +43,7 @@ export function PageWrapperContextProvider(payload: {
           <div className={config?.header ? " border-b" : "hidden"}>
             {config?.header ? <PageWrapperHeader /> : null}
           </div>
-          <div className="__body bg-slate-50"> {payload.children}</div>
+          <div className="bg-slate-50"> {payload.children}</div>
         </div>
       </PageWrapperContext.Provider>
     </div>
