@@ -10,10 +10,10 @@ export default function PageWrapperHeader() {
   return config?.header ? (
     <header className=" bg-white container mx-auto py-4 flex flex-row flex-wrap gap-4 justify-between items-stretch">
       <div className="flex-grow flex flex-row justify-start items-center gap-2">
-        {config?.logo ?? (
+        {config?.logo && (
           <CupSoda className="w-14 h-14 text-primary" />
         )}
-        {config?.icon ?? (
+        {config?.icon && (
           <Avatar className="w-16 h-16 bg-white">
             <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/5">
               <Avatar className="w-12 h-12 bg-white">
@@ -33,12 +33,12 @@ export default function PageWrapperHeader() {
           </Avatar>
         )}
         <div className="flex flex-col justify-start items-stretch gap-1">
-          {config?.title ?? (
+          {config?.title && (
             <h2 className="text-xl font-semibold leading-none whitespace-nowrap truncate">
               {state?.title}
             </h2>
           )}
-          {config?.description ?? (
+          {config?.description && (
             <p className="text-sm opacity-50 leading-none whitespace-nowrap truncate">
               {state?.description}
             </p>
