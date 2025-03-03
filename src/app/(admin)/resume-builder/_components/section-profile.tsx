@@ -5,9 +5,9 @@ import OpenAIPrompt from "@/components/extends/openai-prompt";
 import SectionWrapper from "@/app/(admin)/resume-builder/_components/section-wrapper";
 import { Label } from "@/components/ui/label";
 
-export default function ProfilesSection() {
+export default function ProfilesSection({ open }: { open?: boolean }) {
   return (
-    <SectionWrapper header="Profiles" icon={<User />}>
+    <SectionWrapper open={open} header="Profiles" icon={<User />}>
       <div className="flex flex-col justify-start items-stretch gap-4">
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="fullName">Fullname</Label>

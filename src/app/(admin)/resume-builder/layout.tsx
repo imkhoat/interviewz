@@ -1,5 +1,5 @@
 "use client";
-import { Plus, Folder } from "lucide-react";
+import { Save, Download } from "lucide-react";
 import { useEffect } from "react";
 import { usePageWrapper } from "@/hooks/use-page-wrapper";
 
@@ -26,16 +26,16 @@ export default function LayoutAdmin({
       description: "Create your resume in minutes",
       actions: [
         {
-          icon: Folder,
-          label: "View my resumes",
+          icon: <Download />,
+          label: "Download resume",
           variant: "outline",
           onClick: () => {
             console.log("Settings");
           },
         },
         {
-          icon: Plus,
-          label: "Create",
+          icon: <Save />,
+          label: "Save",
           onClick: () => {
             console.log("Download");
           },
@@ -46,7 +46,7 @@ export default function LayoutAdmin({
   // #endregion
 
   return (
-    <div className="min-h-screen min-w-screen h-screen w-screen container mx-auto">
+    <div className="min-w-screen h-viewport max-h-viewport py-8 w-screen container mx-auto">
       {children}
     </div>
   );

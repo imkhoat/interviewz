@@ -18,6 +18,7 @@ export default function PageWrapperActions() {
               variant={action.variant}
               onClick={action.onClick}
             >
+              {action?.icon && action.icon}
               {action.label}
             </Button>
           ))}

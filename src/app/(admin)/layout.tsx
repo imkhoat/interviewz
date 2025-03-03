@@ -6,7 +6,7 @@ export default function LayoutAdmin({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen min-w-screen h-screen w-screen">
+    <div className="min-w-screen w-screen">
         {children}
     </div>
   )
