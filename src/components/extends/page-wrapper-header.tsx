@@ -8,10 +8,10 @@ export default function PageWrapperHeader() {
   const { state, config } = usePageWrapper();
 
   return config?.header ? (
-    <header className=" bg-white container mx-auto py-4 flex flex-row flex-wrap gap-4 justify-between items-stretch">
+    <header className=" bg-white container mx-auto flex flex-row flex-wrap gap-4 justify-between items-stretch h-header">
       <div className="flex-grow flex flex-row justify-start items-center gap-2">
         {config?.logo && (
-          <CupSoda className="w-14 h-14 text-primary" />
+          <CupSoda className="w-10 h-10 text-primary" />
         )}
         {config?.icon && (
           <Avatar className="w-16 h-16 bg-white">
@@ -20,11 +20,7 @@ export default function PageWrapperHeader() {
                 <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/10">
                   <Avatar className="w-8 h-8 bg-white">
                     <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/15">
-                      {state?.icon
-                        ? React.createElement(state?.icon, {
-                            className: "w-5 h-5 text-primary",
-                          })
-                        : null}
+                      {state?.icon && state.icon}
                     </AvatarFallback>
                   </Avatar>
                 </AvatarFallback>

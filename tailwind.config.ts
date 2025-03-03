@@ -87,7 +87,11 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  		},
+			spacing: {
+				'viewport': 'calc(100vh - var(--header-height))',
+				'header': 'var(--header-height)',
+			}
   	}
   },
   plugins: [require("tailwindcss-animate")],
