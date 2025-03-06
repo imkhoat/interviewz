@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import PageWrapper from "@/components/extends/page-wrapper";
+import QueryProvider from "@/contexts/query-provider";
 
 const font = Noto_Sans({
   variable: "--font-geist-mono",
@@ -22,8 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.variable} antialiased`}>
-        <PageWrapper>{children}</PageWrapper>
-        <Toaster />
+        <QueryProvider>
+          <PageWrapper>{children}</PageWrapper>
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   );

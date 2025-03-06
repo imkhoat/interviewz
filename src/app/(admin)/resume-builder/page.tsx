@@ -1,12 +1,19 @@
-"use strict";
+"use client";
 
 import { Image } from "lucide-react";
+import { useResumes } from '@/queries/resume';
 import SectionProfile from "@/app/(admin)/resume-builder/_components/section-profile";
 import SectionExperience from "@/app/(admin)/resume-builder/_components/section-experience";
 import SectionEducation from "@/app/(admin)/resume-builder/_components/section-education";
 import SectionProject from "@/app/(admin)/resume-builder/_components/section-project";
 
+
 export default function ResumeBuilderPage() {
+  const {isLoading, error} = useResumes();
+
+  if(isLoading) return <div>Loading...</div>
+  if(error) return <div>Error: {error.message}</div>
+
   return (
     <div className="h-full grid grid-cols-12 gap-8">
       <div className="h-full col-span-6 flex flex-col justify-start items-stretch gap-4 overflow-y-scroll pr-4 -mr-4 rounded-md">
