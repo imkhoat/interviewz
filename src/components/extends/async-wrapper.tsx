@@ -14,7 +14,7 @@ export default function AsyncWrapper({ children, error, loading }: Props) {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-10">
-        <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
+        <Loader2 className="w-6 h-6 animate-spin text-primary" />
         <span className="ml-2 text-sm text-gray-600">Đang tải...</span>
       </div>
     );
@@ -36,7 +36,7 @@ export default function AsyncWrapper({ children, error, loading }: Props) {
 function LoadingFallback() {
   return (
     <div className="flex items-center justify-center py-10">
-      <Loader2 className="w-6 h-6 animate-spin text-blue-500" />
+      <Loader2 className="w-6 h-6 animate-spin text-primary" />
       <span className="ml-2 text-sm text-gray-600">Đang tải...</span>
     </div>
   );
