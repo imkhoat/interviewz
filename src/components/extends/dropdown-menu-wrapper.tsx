@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export interface MenuItem {
-  icon?: React.ReactNode;
+  icon?: React.ReactNode | React.ElementType;
   label: string;
   shortcut?: string;
   disabled?: boolean;

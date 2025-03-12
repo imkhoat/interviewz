@@ -45,6 +45,7 @@ export interface FeaturedSkill {
 }
 
 export interface Resume {
+  id?: number;
   profile: Profile;
   experiences: Experience[];
   educations: Education[];
