@@ -1,6 +1,7 @@
 import { usePageWrapper } from "@/hooks/use-page-wrapper";
 import { Button } from "@/components/ui/button"
 import { DropdownMenuWrapper } from "@/components/extends/dropdown-menu-wrapper"
+import React from "react";
 
 export default function PageWrapperActions() {
   const { state, config } = usePageWrapper();
@@ -18,7 +19,7 @@ export default function PageWrapperActions() {
               variant={action.variant}
               onClick={action.onClick}
             >
-              {action?.icon && action.icon}
+              {action?.icon && React.createElement(action.icon)}
               {action.label}
             </Button>
           ))}

@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
+import { ElementType, ReactElement, ReactNode } from 'react'
 import { MenuItem } from "@/components/extends/dropdown-menu-wrapper"
 import { ButtonProps } from "@/components/ui/button"
 
 export interface Action extends ButtonProps, MenuItem {
   key?: string
   action?: () => void
-  icon?: string | ReactNode
+  icon?: string | ReactNode | React.ElementType
   disabled?: boolean
   label: string
   loading?: boolean
@@ -33,7 +33,7 @@ export interface PageWrapperState {
   primaryAction?: Action
   secondaryAction?: Action
   subDescription?: string
-  icon?: ReactNode
+  icon?: ReactNode | ReactElement | ElementType
   breadcrumbs?: Map<string | undefined, Breadcrumb>
   menus?: Menu[]
   tabs?: Tab[]

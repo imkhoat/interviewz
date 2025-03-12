@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
     const response = await openAIService.getGeneratedText(prompt);
     return NextResponse.json({ response });
-  } catch (error: any) {
+  } catch (error: Error) {
     return NextResponse.json({ error: error?.message }, { status: 500 });
   }
 } ``

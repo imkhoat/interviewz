@@ -26,7 +26,7 @@ export default function LayoutAdmin({
       description: "Create your resume in minutes",
       actions: [
         {
-          icon: <Download />,
+          icon: Download,
           label: "Download resume",
           variant: "outline",
           onClick: () => {
@@ -34,7 +34,7 @@ export default function LayoutAdmin({
           },
         },
         {
-          icon: <Save />,
+          icon: Save,
           label: "Save",
           onClick: () => {
             console.log("Download");

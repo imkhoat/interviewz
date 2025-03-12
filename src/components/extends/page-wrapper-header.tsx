@@ -20,7 +20,7 @@ export default function PageWrapperHeader() {
                 <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/10">
                   <Avatar className="w-8 h-8 bg-white">
                     <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/15">
-                      {state?.icon && state.icon}
+                      {state?.icon && React.createElement(state.icon)}
                     </AvatarFallback>
                   </Avatar>
                 </AvatarFallback>
