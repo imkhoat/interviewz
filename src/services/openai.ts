@@ -1,8 +1,9 @@
+import { Prompt } from "@/types/prompt";
 import { openAIRepository } from "@/repositories/openai";
 
 export const openAIService = {
-  getGeneratedText: async (prompt: string) => {
+  generateAnswer: async (prompt: Prompt[]) => {
     if (!prompt) throw new Error("Prompt is required");
-    return await openAIRepository.generateResponse(prompt);
+    return await openAIRepository.generateAnswer(prompt);
   }
 }
