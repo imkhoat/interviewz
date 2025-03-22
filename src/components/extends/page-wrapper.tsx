@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { PageWrapperContextProvider } from "@/contexts/page-wrapper-context";
+import { PageWrapperContextProvider } from "@/components/contexts/page-wrapper-context";
 
 export default function PageWrapper({
   children,

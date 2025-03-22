@@ -19,34 +19,6 @@ export default function AuthLayout({
       description: "Enter your credentials to access your account",
       icon: LogIn,
       actions: [
-        [
-          {
-            label: "Forgot password?",
-            icon: KeyRound,
-            shortcut: "⌘B",
-            onClick: () => router.push('/auth/forgot-password'),
-            items: [
-              {
-                label: "Reset password",
-                icon: KeyRound,
-                shortcut: "⌘R",
-                onClick: () => router.push('/auth/reset-password'),
-              },
-              {
-                label: "Change password",
-                icon: KeyRound,
-                shortcut: "⌘C",
-                onClick: () => router.push('/auth/change-password'),
-              },
-            ]
-          },
-          {
-            label: "Resend verification email",
-            icon: SigmaIcon,
-            shortcut: "⌘R",
-            onClick: () => router.push('/auth/resend-verification-email'),
-          },
-        ],
         {
           label: "Sign up",
           variant: "default",
