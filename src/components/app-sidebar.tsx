@@ -14,10 +14,10 @@ import {
   SquareTerminal,
 } from "lucide-react"
 
-import { NavMain } from "@/components/extends/page-wrapper-nav-main"
-import { NavProjects } from "@/components/extends/page-wrapper-nav-secondary"
-import { NavUser } from "@/components/extends/page-wrapper-nav-user"
-import { TeamSwitcher } from "@/components/extends/page-wrapper-nav-team-switch"
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -156,7 +156,7 @@ const data = {
   ],
 }
 
-export default function PageWrapperSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

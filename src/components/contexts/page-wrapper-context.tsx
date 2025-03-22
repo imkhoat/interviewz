@@ -7,7 +7,7 @@ import {
 import PageWrapperHeader from "@/components/extends/page-wrapper-header";
 import PageWrapperSidebar from "@/components/extends/page-wrapper-sidebar";
 import { usePageWrapperReducer } from "@/reducers/use-page-wrapper-reducer";
-
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 interface PageWrapperContextType {
   state?: PageWrapperState;
@@ -16,8 +16,9 @@ interface PageWrapperContextType {
   configDispatch?: React.ActionDispatch<[action: DispatchAction]>;
 }
 
-export const PageWrapperContext =
-  React.createContext<PageWrapperContextType>({});
+export const PageWrapperContext = React.createContext<PageWrapperContextType>(
+  {}
+);
 
 export function PageWrapperContextProvider(payload: {
   children: React.ReactNode;
@@ -26,25 +27,26 @@ export function PageWrapperContextProvider(payload: {
     usePageWrapperReducer();
 
   return (
-    <div className="w-full h-full min-h-screen min-w-screen grid grid-cols-12 gap-4">
+    <div className="w-full h-full min-h-screen min-w-screen">
       <PageWrapperContext.Provider
         value={{ state, stateDispatch, config, configDispatch }}
       >
-        <div className={config?.sidebar ? " col-span-3 bg-slate-50" : "hidden"}>
+        <SidebarProvider>
           {config?.sidebar ? <PageWrapperSidebar /> : null}
-        </div>
-        <div
-          className={
-            config?.sidebar
-              ? " col-span-9 flex flex-col justify-start items-stretch gap-y-4"
-              : "col-span-12 flex flex-col justify-start items-stretch"
-          }
-        >
-          <div className={config?.header ? " border-b" : "hidden"}>
-            {config?.header ? <PageWrapperHeader /> : null}
-          </div>
-          <div className="bg-slate-50 h-full w-full"> {payload.children}</div>
-        </div>
+          <SidebarInset>
+            <div
+              className="flex flex-col justify-start items-stretch"
+            >
+              <div className={config?.header ? " border-b" : "hidden"}>
+                {config?.header ? <PageWrapperHeader /> : null}
+              </div>
+              <div className="bg-slate-50 flex-grow">
+                {" "}
+                {payload.children}
+              </div>
+            </div>
+          </SidebarInset>
+        </SidebarProvider>
       </PageWrapperContext.Provider>
     </div>
   );

@@ -33,6 +33,7 @@ export default function AuthLayout({
       title: true,
       description: true,
       icon: true,
+      breadcrumbs: false
     });
   }, []);
   return (
