@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { PageWrapperConfig, PageWrapperState } from "@/types/page-wrapper"
-import { PageWrapperContext } from "@/contexts/page-wrapper-context"
+import { PageWrapperContext } from "@/components/contexts/page-wrapper-context"
 
 
 export function usePageWrapper() {

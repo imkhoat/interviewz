@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import PageWrapper from "@/components/extends/page-wrapper";
-import QueryProvider from "@/contexts/query-provider";
+import QueryProvider from "@/components/contexts/query-provider";
 
 const font = Noto_Sans({
   variable: "--font-geist-mono",
