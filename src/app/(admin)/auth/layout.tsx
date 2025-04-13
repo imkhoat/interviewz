@@ -30,10 +30,11 @@ export default function AuthLayout({
       header: true,
       sidebar: false,
       footer: false,
-      title: true,
-      description: true,
-      icon: true,
-      breadcrumbs: false
+      title: false,
+      description: false,
+      icon: false,
+      breadcrumbs: false,
+      logo: true
     });
   }, []);
   return (

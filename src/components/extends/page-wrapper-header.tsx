@@ -1,5 +1,5 @@
 import React from "react";
-import { CupSoda } from "lucide-react";
+import { Hop } from "lucide-react";
 import { usePageWrapper } from "@/hooks/use-page-wrapper";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import PageWrapperActions from "@/components/extends/page-wrapper-actions";
@@ -14,7 +14,7 @@ export default function PageWrapperHeader() {
       {config.sidebar && <SidebarTrigger />}
       {config.breadcrumbs && <PageWrapperBreadcrumb />}
       <div className="flex-grow flex flex-row justify-start items-center gap-2">
-        {config?.logo && <CupSoda className="w-10 h-10 text-primary" />}
+        {config?.logo && <Hop className="w-10 h-10 text-primary" />}
         {config?.icon && (
           <Avatar className="w-16 h-16 bg-white">
             <AvatarFallback className="bg-white ring-1 ring-inset ring-primary/5">
