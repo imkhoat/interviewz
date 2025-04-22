@@ -1,4 +1,4 @@
-import { Resume } from "@/types/resume";
+import { Resume } from "@shared/types/resume";
 
 let resumes: Resume[] = [
   {
