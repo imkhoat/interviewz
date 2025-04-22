@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { LogIn, KeyRound, SigmaIcon } from "lucide-react";
-import { usePageWrapper } from "@/hooks/use-page-wrapper";
+import { LogIn } from "lucide-react";
+import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
 import { useRouter } from "next/navigation";
 
 export default function AuthLayout({

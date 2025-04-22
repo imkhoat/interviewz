@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import Tiptap from '@/components/extends/tiptap-editor'
+import { Button } from "@shared/components/ui/button"
+import Tiptap from '@shared/components/extends/tiptap-editor'
 
 export default function Home() {
   return (

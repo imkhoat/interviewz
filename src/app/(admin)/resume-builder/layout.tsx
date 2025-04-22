@@ -1,7 +1,7 @@
 "use client";
 import { Save, Download } from "lucide-react";
 import { useEffect } from "react";
-import { usePageWrapper } from "@/hooks/use-page-wrapper";
+import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
 
 export default function LayoutAdmin({
   children,

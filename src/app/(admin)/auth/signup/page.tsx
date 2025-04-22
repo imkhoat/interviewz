@@ -1,6 +1,6 @@
 "use client"
 
-import FormSignup from "@auth/_components/form-signup"
+import FormSignup from "@auth/components/form-signup"
 
 export default function PageSignup() {
   return <FormSignup />

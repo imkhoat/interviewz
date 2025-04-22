@@ -20,7 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@auth/*": ["./src/app/(admin)/auth/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@resume-builder/*": ["./src/modules/resume-builder/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

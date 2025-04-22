@@ -1,5 +1,5 @@
 
-import { Prompt } from "@/types/prompt";
+import { Prompt } from "@shared/types/prompt";
 import { OpenAI } from "openai";
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
