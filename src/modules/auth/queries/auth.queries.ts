@@ -1,0 +1,66 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { authService } from "@auth/services/auth.service";
+import { useAuthStore } from "@auth/store/authStore";
+import { useRouter } from "next/navigation";
+import { toast } from "@shared/hooks/use-toast";
+
+export const useLogin = () => {
+  const router = useRouter();
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: authService.login,
+    onSuccess: (data) => {
+      setAuth(data);
+      queryClient.setQueryData(["auth", "user"], data.user);
+      toast({
+        title: "Success",
+        description: "You have been logged in successfully",
+      });
+      router.push("/dashboard");
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "Failed to login",
+      });
+    },
+  });
+};
+
+export const useLogout = () => {
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: authService.logout,
+    onSuccess: () => {
+      clearAuth();
+      queryClient.clear();
+      router.push("/auth/login");
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "Failed to logout",
+      });
+    },
+  });
+};
+
+export const useRefreshToken = () => {
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: authService.refreshToken,
+    onSuccess: (data) => {
+      setAuth(data);
+      queryClient.setQueryData(["auth", "user"], data.user);
+    },
+  });
+}; 
