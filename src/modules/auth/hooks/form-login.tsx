@@ -1,10 +1,9 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
-import { toast } from "@shared/hooks/use-toast"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useLogin } from "@auth/queries/auth.queries"
 
 export function useFormLogin() {
-
   const FormSchema = z.object({
     email: z.string().email(),
     password: z.string().min(8),
@@ -18,20 +17,15 @@ export function useFormLogin() {
     },
   })
 
+  const { mutate: login, isPending } = useLogin()
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data)
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-primary p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      )
-    })
+    login(data)
   }
 
   return {
     form,
-    onSubmit
+    onSubmit,
+    isPending,
   }
 }
