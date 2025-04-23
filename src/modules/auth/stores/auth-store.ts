@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AuthResponse } from "../types";
+import { setCookie, removeCookie } from 'typescript-cookie';
 
 interface AuthState {
   user: AuthResponse["user"] | null;
@@ -18,20 +19,25 @@ export const useAuthStore = create<AuthState>()(
       accessToken: null,
       refreshToken: null,
       isAuthenticated: false,
-      setAuth: (auth) =>
-        set({
+      setAuth: (auth) => {
+        const payload = {
           user: auth.user,
           accessToken: auth.accessToken,
           refreshToken: auth.refreshToken,
           isAuthenticated: true,
-        }),
-      clearAuth: () =>
+        }
+        set(payload)
+        setCookie("auth-storage", JSON.stringify({ state: payload }));
+      },
+      clearAuth: () => {
         set({
           user: null,
           accessToken: null,
           refreshToken: null,
           isAuthenticated: false,
-        }),
+        })
+        removeCookie("auth-storage");
+      },
     }),
     {
       name: "auth-storage",
