@@ -7,7 +7,7 @@ import {
   FormMessage,
 } from "@shared/components/ui/form";
 import Link from "next/link";
-import { User2Icon } from "lucide-react";
+import { User2Icon, Eye, EyeClosed } from "lucide-react";
 import { Input } from "@shared/components/ui/input";
 import { Button } from "@shared/components/ui/button";
 import { useFormSignup } from "@auth/hooks/form-signup";
@@ -19,9 +19,12 @@ import {
   CardTitle,
   CardDescription,
 } from "@shared/components/ui/card";
+import React from "react";
 
 export default function FormChangePassword() {
   const { form, onSubmit } = useFormSignup();
+  const [isShowPassword, setIsShowPassword] = React.useState(false);
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = React.useState(false);
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -111,7 +114,18 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <div className="relative">
+                      <Input placeholder="********" {...field} type={isShowPassword ? "text" : "password"} />
+                      <Button
+                        size="icon"
+                        variant="link"
+                        type="button"
+                        className="absolute top-1/2 right-1 -translate-y-1/2"
+                        onClick={() => setIsShowPassword(!isShowPassword)}
+                      >
+                        {isShowPassword ? <Eye /> : <EyeClosed />}
+                      </Button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -124,7 +138,18 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Confirm password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <div className="relative">
+                      <Input placeholder="********" {...field} type={isShowConfirmPassword ? "text" : "password"} />
+                      <Button
+                        size="icon"
+                        variant="link"
+                        type="button"
+                        className="absolute top-1/2 right-1 -translate-y-1/2"
+                        onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}
+                      >
+                        {isShowConfirmPassword ? <Eye /> : <EyeClosed />}
+                      </Button>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
