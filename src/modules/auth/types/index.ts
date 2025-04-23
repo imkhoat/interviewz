@@ -3,13 +3,23 @@ export interface LoginCredentials {
   password: string;
 }
 
+export interface SignupCredentials {
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  email: string;
+  password: string;
+}
+
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
   user: {
     id: string;
     email: string;
-    name: string;
+    firstName: string;
+    lastName: string;
+    fullName: string;
     avatar?: string;
   };
 }

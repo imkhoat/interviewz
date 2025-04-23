@@ -30,6 +30,32 @@ export const useLogin = () => {
   });
 };
 
+export const useSignup = () => {
+  const router = useRouter();
+  const setAuth = useAuthStore((state) => state.setAuth);
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: authService.signup,
+    onSuccess: (data) => {
+      setAuth(data);
+      queryClient.setQueryData(["auth", "user"], data.user);
+      toast({
+        title: "Success",
+        description: "Your account has been created successfully",
+      });
+      router.push("/dashboard");
+    },
+    onError: (error: Error) => {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message || "Failed to signup",
+      });
+    },
+  });
+};
+
 export const useLogout = () => {
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const queryClient = useQueryClient();

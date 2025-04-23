@@ -1,4 +1,4 @@
-import { LoginCredentials, AuthResponse } from "@auth/types";
+import { LoginCredentials, SignupCredentials, AuthResponse } from "@auth/types";
 import { authRepository } from "@auth/repositories/auth.repository";
 
 export const authService = {
@@ -7,6 +7,14 @@ export const authService = {
       return await authRepository.login(credentials);
     } catch (error) {
       throw new Error(error instanceof Error ? error.message : "Failed to login");
+    }
+  },
+
+  signup: async (credentials: SignupCredentials): Promise<AuthResponse> => {
+    try {
+      return await authRepository.signup(credentials);
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : "Failed to signup");
     }
   },
 

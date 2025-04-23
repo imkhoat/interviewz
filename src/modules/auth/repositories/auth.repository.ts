@@ -1,9 +1,16 @@
 import { httpClient } from "@shared/lib/http-client";
-import { LoginCredentials } from "@auth/types";
+import { LoginCredentials, SignupCredentials } from "@auth/types";
 
 export const authRepository = {
   login: (credentials: LoginCredentials) => {
     return httpClient("/auth/login", {
+      method: "POST",
+      body: JSON.stringify(credentials),
+    });
+  },
+
+  signup: (credentials: SignupCredentials) => {
+    return httpClient("/auth/signup", {
       method: "POST",
       body: JSON.stringify(credentials),
     });
