@@ -1,6 +1,7 @@
 import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
 import { Button } from "@shared/components/ui/button"
 import { DropdownMenuWrapper } from "@shared/components/extends/dropdown-menu-wrapper"
+import PageWrapperAuthActions from "@shared/components/extends/page-wrapper-auth-actions"
 import React from "react";
 
 export default function PageWrapperActions() {
@@ -23,6 +24,7 @@ export default function PageWrapperActions() {
               {action.label}
             </Button>
           ))}
+          <PageWrapperAuthActions />
         </div>
       </>
     )
