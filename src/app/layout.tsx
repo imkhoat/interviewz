@@ -4,7 +4,7 @@ import { Noto_Sans } from "next/font/google";
 import QueryProvider from "@shared/components/contexts/query-provider";
 import PageWrapper from "@shared/components/extends/page-wrapper";
 import { Toaster } from "@shared/components/ui/toaster";
-import { AuthActivityProvider } from "@shared/components/auth-activity-provider";
+import { AuthActivityProvider } from "@shared/components/contexts/auth-activity-provider";
 
 import type { Metadata } from "next";
 
