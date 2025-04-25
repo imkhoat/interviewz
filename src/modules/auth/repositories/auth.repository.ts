@@ -1,6 +1,6 @@
 import { LoginCredentials, SignupCredentials } from "@auth/types";
 import { httpClient } from "@shared/lib/http-client";
-import { useAuthStore } from "../stores/auth-store";
+import { useAuthStore } from "@auth/stores/auth-store";
 
 export const authRepository = {
   login: (credentials: LoginCredentials) => {

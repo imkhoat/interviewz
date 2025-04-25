@@ -2,7 +2,7 @@ import { setCookie, removeCookie } from 'typescript-cookie';
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { AuthResponse } from "../types";
+import { AuthResponse } from "@auth/types";
 
 interface AuthState {
   user: AuthResponse["user"] | null;

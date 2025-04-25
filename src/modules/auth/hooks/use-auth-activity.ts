@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect } from "react";
-import { useAuthStore } from "../stores/auth-store";
-import { useRefreshToken } from "../queries/auth.queries";
+import { useAuthStore } from "@auth/stores/auth-store";
+import { useRefreshToken } from "@auth/queries/auth.queries";
 
 const REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 minutes before token expires
 const ACTIVITY_TIMEOUT = 30 * 60 * 1000; // 30 minutes of inactivity
