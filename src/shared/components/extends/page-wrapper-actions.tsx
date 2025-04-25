@@ -1,11 +1,13 @@
-import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
-import { Button } from "@shared/components/ui/button"
-import { DropdownMenuWrapper } from "@shared/components/extends/dropdown-menu-wrapper"
-import PageWrapperAuthActions from "@shared/components/extends/page-wrapper-auth-actions"
 import React from "react";
 
+import { DropdownMenuWrapper } from "@shared/components/extends/dropdown-menu-wrapper"
+import PageWrapperAuthActions from "@shared/components/extends/page-wrapper-auth-actions"
+import { Button } from "@shared/components/ui/button"
+import { usePageWrapperStore } from "@shared/stores/page-wrapper.store";
+
 export default function PageWrapperActions() {
-  const { state, config } = usePageWrapper();
+  const config = usePageWrapperStore((state) => state.config);
+  const state = usePageWrapperStore((state) => state.state);
 
   return (
     config?.actions ?? (

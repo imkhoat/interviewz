@@ -1,5 +1,5 @@
-import { httpClient } from "@shared/lib/http-client";
 import { LoginCredentials, SignupCredentials } from "@auth/types";
+import { httpClient } from "@shared/lib/http-client";
 
 export const authRepository = {
   login: (credentials: LoginCredentials) => {

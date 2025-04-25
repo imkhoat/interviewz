@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import {
   AudioWaveform,
   BookOpen,
@@ -13,11 +12,12 @@ import {
   Settings2,
   SquareTerminal,
 } from "lucide-react"
+import * as React from "react"
 
 import { NavMain } from "@shared/components/extends/page-wrapper-nav-main"
 import { NavProjects } from "@shared/components/extends/page-wrapper-nav-secondary"
-import { NavUser } from "@shared/components/extends/page-wrapper-nav-user"
 import { TeamSwitcher } from "@shared/components/extends/page-wrapper-nav-team-switch"
+import { NavUser } from "@shared/components/extends/page-wrapper-nav-user"
 import {
   Sidebar,
   SidebarContent,

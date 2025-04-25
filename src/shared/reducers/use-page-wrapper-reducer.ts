@@ -1,5 +1,6 @@
-import { DispatchAction, PageWrapperConfig, PageWrapperState } from "@shared/types/page-wrapper";
 import React from "react";
+
+import { DispatchAction, PageWrapperConfig, PageWrapperState } from "@shared/types/page-wrapper";
 
 export function usePageWrapperReducer(){
 

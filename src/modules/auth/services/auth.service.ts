@@ -1,5 +1,5 @@
-import { LoginCredentials, SignupCredentials, AuthResponse } from "@auth/types";
 import { authRepository } from "@auth/repositories/auth.repository";
+import { LoginCredentials, SignupCredentials, AuthResponse } from "@auth/types";
 
 export const authService = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {

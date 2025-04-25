@@ -1,3 +1,17 @@
+import { User2Icon, Eye, EyeClosed } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+
+import { useFormSignup } from "@auth/hooks/form-signup";
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
+import { Button } from "@shared/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@shared/components/ui/card";
 import {
   Form,
   FormControl,
@@ -6,20 +20,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form";
-import Link from "next/link";
-import { User2Icon, Eye, EyeClosed } from "lucide-react";
 import { Input } from "@shared/components/ui/input";
-import { Button } from "@shared/components/ui/button";
-import { useFormSignup } from "@auth/hooks/form-signup";
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@shared/components/ui/card";
-import React from "react";
+
 
 export default function FormChangePassword() {
   const { form, onSubmit } = useFormSignup();

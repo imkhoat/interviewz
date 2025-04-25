@@ -1,4 +1,11 @@
 
+import { ShieldCheck } from "lucide-react"
+import Link from "next/link"
+
+import { useFormChangePassword } from "@auth/hooks/form-change-password"
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
+import { Button } from "@shared/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -7,13 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form"
-import Link from "next/link"
-import { ShieldCheck } from "lucide-react"
 import { Input } from "@shared/components/ui/input"
-import { Button } from "@shared/components/ui/button"
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
-import { useFormChangePassword } from "@auth/hooks/form-change-password"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 
 
 export default function FormChangePassword() {

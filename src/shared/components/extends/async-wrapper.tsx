@@ -1,8 +1,9 @@
 "use client";
 
-import { ReactNode, Suspense } from "react";
-import { Alert, AlertTitle, AlertDescription } from "@shared/components/ui/alert";
 import { Loader2, AlertCircle } from "lucide-react";
+import { ReactNode, Suspense } from "react";
+
+import { Alert, AlertTitle, AlertDescription } from "@shared/components/ui/alert";
 
 interface Props {
   children: ReactNode;

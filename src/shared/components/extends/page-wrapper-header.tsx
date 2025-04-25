@@ -1,13 +1,15 @@
-import React from "react";
 import { Hop } from "lucide-react";
-import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
+import React from "react";
+
 import PageWrapperActions from "@shared/components/extends/page-wrapper-actions";
-import { SidebarTrigger } from "@shared/components/ui/sidebar";
 import PageWrapperBreadcrumb from "@shared/components/extends/page-wrapper-breadcrumb";
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
+import { SidebarTrigger } from "@shared/components/ui/sidebar";
+import { usePageWrapperStore } from "@shared/stores/page-wrapper.store";
 
 export default function PageWrapperHeader() {
-  const { state, config } = usePageWrapper();
+  const config = usePageWrapperStore((state) => state.config);
+  const state = usePageWrapperStore((state) => state.state);
 
   return config?.header ? (
     <header className=" bg-white px-4 w-full flex flex-row gap-4 justify-between items-center h-header">
