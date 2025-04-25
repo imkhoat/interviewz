@@ -36,4 +36,11 @@ export const authRepository = {
       credentials: "include",
     });
   },
+
+  resetPassword: (email: string) => {
+    return httpClient("/auth/forgot-password", {
+      method: "POST",
+      body: JSON.stringify({ email }),
+    });
+  },
 }; 
