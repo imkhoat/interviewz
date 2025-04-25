@@ -4,6 +4,7 @@ import { Noto_Sans } from "next/font/google";
 import QueryProvider from "@shared/components/contexts/query-provider";
 import PageWrapper from "@shared/components/extends/page-wrapper";
 import { Toaster } from "@shared/components/ui/toaster";
+import { AuthActivityProvider } from "@shared/components/auth-activity-provider";
 
 import type { Metadata } from "next";
 
@@ -26,8 +27,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${font.variable} antialiased`}>
         <QueryProvider>
-          <PageWrapper>{children}</PageWrapper>
-          <Toaster />
+          <AuthActivityProvider>
+            <PageWrapper>{children}</PageWrapper>
+            <Toaster />
+          </AuthActivityProvider>
         </QueryProvider>
       </body>
     </html>
