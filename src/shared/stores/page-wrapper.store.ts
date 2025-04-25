@@ -30,11 +30,11 @@ export const usePageWrapperStore = create<PageWrapperStore>((set) => ({
   state: initialState,
   config: initialConfig,
   initPageWrapperState: () => set((store) => ({ state: { ...store.state } })),
-  setupPageWrapperState: (state) => set((store) => ({ state: { ...store.state, ...state } })),
+  setupPageWrapperState: (state) => set({ state: state }),
   updatePageWrapperState: (key, value) =>
     set((store) => ({ state: { ...store.state, [key]: value } })),
   initPageWrapperConfig: () => set((store) => ({ config: { ...store.config } })),
-  setupPageWrapperConfig: (config) => set((store) => ({ config: { ...store.config, ...config } })),
+  setupPageWrapperConfig: (config) => set({ config: config }),
   updatePageWrapperConfig: (key, value) =>
     set((store) => ({ config: { ...store.config, [key]: value } })),
 })); 
