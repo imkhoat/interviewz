@@ -1,4 +1,3 @@
-
 import { LogIn, Eye, EyeClosed } from "lucide-react"
 import Link from "next/link"
 import React from "react"
@@ -21,7 +20,7 @@ import { Input } from "@shared/components/ui/input"
 
 export default function FormChangePassword() {
 
-  const { form, onSubmit } = useFormLogin()
+  const { form, onSubmit, isPending } = useFormLogin()
 
   const [isShowPassword, setIsShowPassword] = React.useState(false)
 
@@ -82,9 +81,11 @@ export default function FormChangePassword() {
               )}
             />
             <div className="flex flex-col space-y-2">
-              <Button type="submit">Login with username</Button>
-              <Button type="submit" variant={'secondary'}>Login with Google</Button>
-              <Button type="submit" variant={'secondary'}>Login with Github</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Logging in..." : "Login with username"}
+              </Button>
+              <Button type="submit" variant={'secondary'} disabled={isPending}>Login with Google</Button>
+              <Button type="submit" variant={'secondary'} disabled={isPending}>Login with Github</Button>
               <Button type="button" variant={'link'}><Link href={'/auth/signup'}>Dont have account? Signup</Link></Button>
             </div>
           </form>
