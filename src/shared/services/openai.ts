@@ -1,5 +1,5 @@
-import { Prompt } from "@shared/types/prompt";
 import { openAIRepository } from "@shared/repositories/openai";
+import { Prompt } from "@shared/types/prompt";
 
 export const openAIService = {
   generateAnswer: async (prompt: Prompt[]) => {

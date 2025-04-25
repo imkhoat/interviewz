@@ -1,4 +1,11 @@
 
+import { ShieldQuestion } from "lucide-react"
+import Link from "next/link"
+
+import { useFormResetPassword } from "@auth/hooks/form-reset-password"
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
+import { Button } from "@shared/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -7,13 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form"
-import Link from "next/link"
-import { ShieldQuestion } from "lucide-react"
 import { Input } from "@shared/components/ui/input"
-import { Button } from "@shared/components/ui/button"
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
-import { useFormResetPassword } from "@auth/hooks/form-reset-password"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 
 
 export default function FormResetPassword() {

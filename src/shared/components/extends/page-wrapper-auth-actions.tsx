@@ -1,7 +1,9 @@
-import { useAuthStore } from "@auth/stores/auth-store";
-import { Button } from "@shared/components/ui/button";
 import { Bell, LogIn, UserPlus, User, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+import { useAuthStore } from "@auth/stores/auth-store";
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
+import { Button } from "@shared/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@shared/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
 
 export default function PageWrapperAuthActions() {
   const router = useRouter();

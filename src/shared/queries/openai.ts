@@ -1,5 +1,6 @@
-import { openAIService } from '@shared/services/openai';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { openAIService } from '@shared/services/openai';
 
 export const useOpenAI = () => {
   const queryClient = useQueryClient();

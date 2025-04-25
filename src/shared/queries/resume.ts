@@ -1,5 +1,6 @@
-import { resumeService } from '@shared/services/resume';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { resumeService } from '@shared/services/resume';
 
 export const useResumes = () => {
   return useQuery(

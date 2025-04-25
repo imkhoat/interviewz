@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { aiService } from "./service";
 
 export async function POST(req: Request) {

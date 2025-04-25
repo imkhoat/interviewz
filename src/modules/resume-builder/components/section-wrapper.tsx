@@ -1,11 +1,12 @@
+import { ArrowUp, Eye, Trash2 } from "lucide-react";
+import { ReactElement } from "react";
+
 import { Button } from "@shared/components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@shared/components/ui/collapsible";
-import { ArrowUp, Eye, Trash2 } from "lucide-react";
-import { ReactElement } from "react";
 
 export default function SectionWrapper({
   open,

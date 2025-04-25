@@ -1,10 +1,12 @@
 "use client";
 
-import { Input } from "@shared/components/ui/input";
-import { Button } from "@shared/components/ui/button";
 import { Sparkles, PlusCircle, WandSparkles } from "lucide-react";
-import { ToggleGroup, ToggleGroupItem } from "@shared/components/ui/toggle-group";
 import { useState } from "react";
+
+import { Button } from "@shared/components/ui/button";
+import { Input } from "@shared/components/ui/input";
+import { ToggleGroup, ToggleGroupItem } from "@shared/components/ui/toggle-group";
+
 
 export default function OpenAIPrompt({
   children,

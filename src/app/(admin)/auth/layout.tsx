@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect } from "react";
 import { LogIn } from "lucide-react";
+import { useEffect } from "react";
+
 import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
-import { useRouter } from "next/navigation";
 
 export default function AuthLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
   const { setupPageWrapperConfig, setupPageWrapperState } = usePageWrapper();
 
   useEffect(() => {
@@ -18,13 +17,6 @@ export default function AuthLayout({
       title: "Sign in to your account",
       description: "Enter your credentials to access your account",
       icon: LogIn,
-      actions: [
-        {
-          label: "Sign up",
-          variant: "default",
-          onClick: () => router.push('/auth/signup'),
-        },
-      ],
     });
     setupPageWrapperConfig({
       header: true,

@@ -1,5 +1,5 @@
-import { Resume } from "@shared/types/resume";
 import { resumeRepository } from "@shared/repositories/resume";
+import { Resume } from "@shared/types/resume";
 
 export const resumeService = {
   fetchResumes:  async () => {
