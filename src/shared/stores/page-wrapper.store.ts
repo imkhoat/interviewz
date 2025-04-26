@@ -29,11 +29,11 @@ const initialConfig: PageWrapperConfig = {
 export const usePageWrapperStore = create<PageWrapperStore>((set) => ({
   state: initialState,
   config: initialConfig,
-  initPageWrapperState: () => set((store) => ({ state: { ...store.state } })),
+  initPageWrapperState: () => set({ state: initialState }),
   setupPageWrapperState: (state) => set({ state: state }),
   updatePageWrapperState: (key, value) =>
     set((store) => ({ state: { ...store.state, [key]: value } })),
-  initPageWrapperConfig: () => set((store) => ({ config: { ...store.config } })),
+  initPageWrapperConfig: () => set({ config: initialConfig }),
   setupPageWrapperConfig: (config) => set({ config: config }),
   updatePageWrapperConfig: (key, value) =>
     set((store) => ({ config: { ...store.config, [key]: value } })),
