@@ -1,4 +1,3 @@
-
 import { ShieldQuestion } from "lucide-react"
 import Link from "next/link"
 
@@ -19,7 +18,7 @@ import { Input } from "@shared/components/ui/input"
 
 export default function FormResetPassword() {
 
-  const { form, onSubmit } = useFormResetPassword()
+  const { form, onSubmit, isPending } = useFormResetPassword()
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -57,7 +56,9 @@ export default function FormResetPassword() {
               )}
             />
             <div className="flex flex-col space-y-2">
-              <Button type="submit">Request</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Sending..." : "Request"}
+              </Button>
               <Button type="button" variant={'secondary'}><Link href={'/auth/login'}>Back to login</Link></Button>
             </div>
           </form>

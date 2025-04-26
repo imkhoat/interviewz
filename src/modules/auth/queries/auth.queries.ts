@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { authService } from "@auth/services/auth.service";
 import { useAuthStore } from "@auth/stores/auth-store";
 import { toast } from "@shared/hooks/use-toast";
+import { authRepository } from "@auth/repositories/auth.repository";
 
 export const useLogin = () => {
   const router = useRouter();
@@ -89,5 +90,11 @@ export const useRefreshToken = () => {
       setAuth(data);
       queryClient.setQueryData(["auth", "user"], data.user);
     },
+  });
+};
+
+export const useResetPassword = () => {
+  return useMutation({
+    mutationFn: (email: string) => authRepository.resetPassword(email),
   });
 }; 
