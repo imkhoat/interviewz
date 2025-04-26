@@ -1,69 +1,75 @@
-import { ShieldQuestion } from "lucide-react"
-import Link from "next/link"
-
-import { useFormResetPassword } from "@auth/hooks/form-reset-password"
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
 import { Button } from "@shared/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@shared/components/ui/form"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form"
 import { Input } from "@shared/components/ui/input"
+import { useFormResetPassword } from "@auth/hooks/form-reset-password"
 
+interface FormResetPasswordProps {
+  token: string
+}
 
-export default function FormResetPassword() {
-
-  const { form, onSubmit, isPending } = useFormResetPassword()
+export function FormResetPassword({ token }: FormResetPasswordProps) {
+  const { form, onSubmit, isPending } = useFormResetPassword(token)
 
   return (
-    <Card className="page-login shadow-none border-0">
-      <CardHeader className="flex flex-col justify-start items-center text-center">
-        <Avatar className="w-20 h-20 bg-transparent">
-          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
-            <Avatar className="w-16 h-16 bg-primary/0">
-              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
-                <Avatar className="w-12 h-12 bg-primary/0">
-                  <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
-                    <ShieldQuestion />
-                  </AvatarFallback>
-                </Avatar>
-              </AvatarFallback>
-            </Avatar>
-          </AvatarFallback>
-        </Avatar>
-        <CardTitle>Forgot password</CardTitle>
-        <CardDescription>A reset password email will send to your mailbox</CardDescription>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Reset password</CardTitle>
+        <CardDescription>Enter your new password</CardDescription>
       </CardHeader>
-      <CardContent className="pb-6">
+      <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col justify-start items-stretch space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
-              name="email"
+              name="token"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Reset Token</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn@email.com" {...field} />
+                    <Input disabled {...field} value={token} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="flex flex-col space-y-2">
-              <Button type="submit" disabled={isPending}>
-                {isPending ? "Sending..." : "Request"}
-              </Button>
-              <Button type="button" variant={'secondary'}><Link href={'/auth/login'}>Back to login</Link></Button>
-            </div>
+            <FormField
+              control={form.control}
+              name="newPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>New Password</FormLabel>
+                  <FormControl>
+                    <Input type="password" placeholder="Enter your new password" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input type="password" placeholder="Confirm your new password" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full" disabled={isPending}>
+              {isPending ? "Resetting..." : "Reset Password"}
+            </Button>
           </form>
         </Form>
       </CardContent>
+      <CardFooter className="flex justify-center">
+        <Button variant="link" onClick={() => window.history.back()}>
+          Back to login
+        </Button>
+      </CardFooter>
     </Card>
   )
 }

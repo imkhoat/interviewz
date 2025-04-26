@@ -37,7 +37,17 @@ export const authRepository = {
     });
   },
 
-  resetPassword: (email: string) => {
+  resetPassword: (data: { token: string; newPassword: string }) => {
+    return httpClient("/auth/reset-password", {
+      method: "POST",
+      body: JSON.stringify({
+        token: data.token,
+        newPassword: data.newPassword,
+      }),
+    });
+  },
+
+  forgotPassword: (email: string) => {
     return httpClient("/auth/forgot-password", {
       method: "POST",
       body: JSON.stringify({ email }),
