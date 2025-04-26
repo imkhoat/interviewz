@@ -33,4 +33,8 @@ export const authService = {
       throw new Error(error instanceof Error ? error.message : "Failed to refresh token");
     }
   },
+
+  changePassword: async (data: { password: string; newPassword: string }) => {
+    return authRepository.changePassword(data);
+  },
 }; 

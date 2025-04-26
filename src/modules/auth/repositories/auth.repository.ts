@@ -43,4 +43,12 @@ export const authRepository = {
       body: JSON.stringify({ email }),
     });
   },
+
+  changePassword: (data: { password: string; newPassword: string }) => {
+    return httpClient("/auth/change-password", {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "include",
+    });
+  },
 }; 
