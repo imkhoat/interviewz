@@ -24,7 +24,7 @@ import { Input } from "@shared/components/ui/input";
 
 
 export default function FormChangePassword() {
-  const { form, onSubmit } = useFormSignup();
+  const { form, onSubmit, isPending } = useFormSignup();
   const [isShowPassword, setIsShowPassword] = React.useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = React.useState(false);
 
@@ -158,7 +158,9 @@ export default function FormChangePassword() {
               )}
             />
             <div className="flex flex-col space-y-2">
-              <Button type="submit">Signup with email</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Creating account..." : "Create account"}
+              </Button>
               <Button type="submit" variant={"secondary"}>
                 Signup with Google
               </Button>
