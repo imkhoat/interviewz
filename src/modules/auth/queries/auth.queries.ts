@@ -59,15 +59,19 @@ export const useSignup = () => {
 };
 
 export const useLogout = () => {
+  const router = useRouter();
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   return useMutation({
     mutationFn: authService.logout,
     onSuccess: () => {
       clearAuth();
       queryClient.clear();
+      toast({
+        title: "Success",
+        description: "You have been logged out successfully",
+      });
       router.push("/auth/login");
     },
     onError: (error: Error) => {
@@ -93,8 +97,14 @@ export const useRefreshToken = () => {
   });
 };
 
+export const useForgotPassword = () => {
+  return useMutation({
+    mutationFn: (email: string) => authRepository.forgotPassword(email),
+  });
+};
+
 export const useResetPassword = () => {
   return useMutation({
-    mutationFn: (email: string) => authRepository.resetPassword(email),
+    mutationFn: (data: { token: string; newPassword: string }) => authRepository.resetPassword(data),
   });
 }; 

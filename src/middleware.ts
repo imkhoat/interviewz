@@ -6,10 +6,11 @@ const publicRoutes = [
   "/",
   "/auth/login",
   "/auth/signup",
+  "/auth/forgot-password",
   "/auth/reset-password",
 ]
 
-const authRoutes = ["/auth/login", "/auth/signup", "/auth/reset-password"]
+const authRoutes = ["/auth/login", "/auth/signup", "/auth/forgot-password"]
 
 
 // This function can be marked `async` if using `await` inside
@@ -28,11 +29,14 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Check if the path is a reset password page with token
+  const isResetPasswordWithToken = pathname === "/auth/reset-password" && request.nextUrl.searchParams.has("token")
+
   if (isAuthenticated && authRoutes.includes(pathname)) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 
-  if (!isAuthenticated && !publicRoutes.includes(pathname)) {
+  if (!isAuthenticated && !publicRoutes.includes(pathname) && !isResetPasswordWithToken) {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
