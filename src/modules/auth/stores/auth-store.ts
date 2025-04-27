@@ -37,8 +37,8 @@ export const useAuthStore = create<AuthState>()(
         const deviceId = generateDeviceId();
         const payload = {
           user: auth.user,
-          accessToken: auth.accessToken,
-          refreshToken: auth.refreshToken,
+          accessToken: auth?.tokens?.accessToken,
+          refreshToken: auth?.tokens?.refreshToken,
           deviceId,
           lastActivity: Date.now(),
           isAuthenticated: true,

@@ -12,8 +12,10 @@ export interface SignupCredentials {
 }
 
 export interface AuthResponse {
-  accessToken: string;
-  refreshToken: string;
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  };
   user: {
     id: string;
     email: string;
