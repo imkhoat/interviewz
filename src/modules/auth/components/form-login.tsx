@@ -67,7 +67,7 @@ export default function FormChangePassword() {
                 <FormItem>
                   <div className="flex flex-row justify-between items-baseline">
                     <FormLabel>Password</FormLabel>
-                    <Link href={'/auth/reset-password'} className="underline text-xs text-right">Forgot password?</Link>
+                    <Link href={'/auth/forgot-password'} className="underline text-xs text-right">Forgot password?</Link>
                   </div>
                   <FormControl>
                     <PasswordInput placeholder="********" {...field} />
