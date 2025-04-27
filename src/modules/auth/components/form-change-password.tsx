@@ -1,4 +1,3 @@
-
 import { ShieldCheck } from "lucide-react"
 import Link from "next/link"
 
@@ -18,8 +17,7 @@ import { Input } from "@shared/components/ui/input"
 
 
 export default function FormChangePassword() {
-
-  const { form, onSubmit } = useFormChangePassword()
+  const { form, onSubmit, isPending } = useFormChangePassword()
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -50,7 +48,7 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <Input type="password" placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -63,7 +61,7 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>New password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <Input type="password" placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -76,14 +74,16 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Confirm password</FormLabel>
                   <FormControl>
-                    <Input placeholder="********" {...field} />
+                    <Input type="password" placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className="flex flex-col space-y-2">
-              <Button type="submit">Change password</Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Changing password..." : "Change password"}
+              </Button>
               <Button type="button" variant={'secondary'}><Link href={'/'}>Back to homepage</Link></Button>
             </div>
           </form>
