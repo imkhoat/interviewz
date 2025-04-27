@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { settingRepository } from "@/modules/setting/repositories/setting.repository";
-import { useAuthStore } from "@/modules/auth/stores/auth-store";
+import { settingRepository } from "@setting/repositories/setting.repository";
+import { useAuthStore } from "@auth/stores/auth-store";
 
 export const settingKeys = {
   all: ["settings"] as const,

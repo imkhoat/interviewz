@@ -1,6 +1,6 @@
 'use client';
 
-import { Tabs, TabsList, TabsTrigger } from "@/shared/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@shared/components/ui/tabs";
 import { usePathname, useRouter } from "next/navigation";
 
 const tabs = [

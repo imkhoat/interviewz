@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/shared/components/ui/button";
+import { Button } from "@shared/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,11 +11,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/shared/components/ui/form";
-import { Input } from "@/shared/components/ui/input";
-import { useUpdateUserProfile } from "@/modules/setting/queries/setting.queries";
-import { UserProfile } from "@/modules/setting/repositories/setting.repository";
-import { useToast } from "@/shared/hooks/use-toast";
+} from "@shared/components/ui/form";
+import { Input } from "@shared/components/ui/input";
+import { useUpdateUserProfile } from "../queries/setting.queries";
+import { UserProfile } from "@setting/repositories/setting.repository";
+import { useToast } from "@shared/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email(),

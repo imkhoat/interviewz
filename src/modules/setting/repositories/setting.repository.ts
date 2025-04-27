@@ -1,4 +1,4 @@
-import { httpClient } from "@/shared/lib/http-client";
+import { httpClient } from "@shared/lib/http-client";
 
 export interface UserProfile {
   id: string;

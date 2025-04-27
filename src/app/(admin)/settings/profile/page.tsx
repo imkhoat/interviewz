@@ -1,9 +1,9 @@
 'use client';
 
-import { FormProfile } from "@/modules/setting/components/form-profile";
-import { useGetUserProfile } from "@/modules/setting/queries/setting.queries";
-import { useAuthStore } from "@/modules/auth/stores/auth.store";
-import { Skeleton } from "@/shared/components/ui/skeleton";
+import { FormProfile } from "@setting/components/form-profile";
+import { useGetUserProfile } from "@setting/queries/setting.queries";
+import { useAuthStore } from "@auth/stores/auth-store";
+import { Skeleton } from "@shared/components/ui/skeleton";
 
 export default function ProfilePage() {
   const { user } = useAuthStore();
