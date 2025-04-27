@@ -13,8 +13,8 @@ import {
   FormMessage,
 } from "@/shared/components/ui/form";
 import { Input } from "@/shared/components/ui/input";
-import { useUpdateUserProfile } from "../queries/setting.queries";
-import { UserProfile } from "../repositories/setting.repository";
+import { useUpdateUserProfile } from "@/modules/setting/queries/setting.queries";
+import { UserProfile } from "@/modules/setting/repositories/setting.repository";
 import { useToast } from "@/shared/hooks/use-toast";
 
 const formSchema = z.object({

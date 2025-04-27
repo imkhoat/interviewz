@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { settingRepository } from "../repositories/setting.repository";
+import { settingRepository } from "@/modules/setting/repositories/setting.repository";
 import { useAuthStore } from "@/modules/auth/stores/auth-store";
 
 export const settingKeys = {
