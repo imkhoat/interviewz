@@ -1,10 +1,9 @@
 import { ShieldCheck } from "lucide-react"
 import Link from "next/link"
-
-import { useFormChangePassword } from "@auth/hooks/form-change-password"
-import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 import { Button } from "@shared/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 import {
   Form,
   FormControl,
@@ -13,42 +12,87 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form"
-import { Input } from "@shared/components/ui/input"
+import { useChangePassword } from "../queries/auth.queries"
+import { useToast } from "@shared/hooks/use-toast"
+import { PasswordInput } from "@shared/components/extends/password-input"
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
 
+const formSchema = z.object({
+  currentPassword: z.string().min(6, "Password must be at least 6 characters"),
+  newPassword: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+})
+
+type FormValues = z.infer<typeof formSchema>
 
 export default function FormChangePassword() {
-  const { form, onSubmit, isPending } = useFormChangePassword()
+  const { toast } = useToast()
+  const { mutate: changePassword, isPending } = useChangePassword()
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
+  })
+
+  function onSubmit(data: FormValues) {
+    changePassword(
+      {
+        password: data.currentPassword,
+        newPassword: data.newPassword,
+      },
+      {
+        onSuccess: () => {
+          toast({
+            title: "Success",
+            description: "Your password has been changed successfully",
+          })
+          form.reset()
+        },
+        onError: (error: Error) => {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive",
+          })
+        },
+      }
+    )
+  }
 
   return (
-    <Card className="page-login shadow-none border-0">
-      <CardHeader className="flex flex-col justify-start items-center text-center">
-        <Avatar className="w-20 h-20 bg-transparent">
-          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
-            <Avatar className="w-16 h-16 bg-primary/0">
-              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
-                <Avatar className="w-12 h-12 bg-primary/0">
-                  <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
-                    <ShieldCheck />
-                  </AvatarFallback>
-                </Avatar>
-              </AvatarFallback>
-            </Avatar>
-          </AvatarFallback>
-        </Avatar>
-        <CardTitle>Change password</CardTitle>
-        <CardDescription>Please confirm current password and enter new password</CardDescription>
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <div className="flex items-center space-x-4">
+          <Avatar>
+            <AvatarFallback>
+              <ShieldCheck className="h-6 w-6" />
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <CardTitle>Change Password</CardTitle>
+            <CardDescription>Update your password</CardDescription>
+          </div>
+        </div>
       </CardHeader>
-      <CardContent className="pb-6">
+      <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col justify-start items-stretch space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
-              name="password"
+              name="currentPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Current Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="********" {...field} />
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -59,9 +103,9 @@ export default function FormChangePassword() {
               name="newPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New password</FormLabel>
+                  <FormLabel>New Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="********" {...field} />
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -72,17 +116,17 @@ export default function FormChangePassword() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm password</FormLabel>
+                  <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="********" {...field} />
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <div className="flex flex-col space-y-2">
-              <Button type="submit" disabled={isPending}>
-                {isPending ? "Changing password..." : "Change password"}
+              <Button type="submit" className="w-full" disabled={isPending}>
+                {isPending ? "Changing..." : "Change Password"}
               </Button>
               <Button type="button" variant={'secondary'}><Link href={'/'}>Back to homepage</Link></Button>
             </div>

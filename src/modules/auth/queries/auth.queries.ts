@@ -107,4 +107,10 @@ export const useResetPassword = () => {
   return useMutation({
     mutationFn: (data: { token: string; newPassword: string }) => authRepository.resetPassword(data),
   });
+};
+
+export const useChangePassword = () => {
+  return useMutation({
+    mutationFn: (data: { password: string; newPassword: string }) => authService.changePassword(data),
+  });
 }; 

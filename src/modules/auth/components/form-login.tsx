@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@shared/components/ui/form"
 import { Input } from "@shared/components/ui/input"
+import { PasswordInput } from "@shared/components/extends/password-input"
 
 
 
@@ -69,12 +70,7 @@ export default function FormChangePassword() {
                     <Link href={'/auth/reset-password'} className="underline text-xs text-right">Forgot password?</Link>
                   </div>
                   <FormControl>
-                    <div className="relative">
-                    <Input placeholder="********" {...field} type={isShowPassword ? "text": "password"} />
-                    <Button size="icon" variant="link" type="button" className="absolute top-1/2 right-1 -translate-y-1/2" onClick={() => setIsShowPassword(!isShowPassword)}>
-                      {isShowPassword ? <Eye /> : <EyeClosed />}
-                    </Button>
-                    </div>
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
