@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
+import { PasswordInput } from "@shared/components/extends/password-input";
 
 
 export default function FormChangePassword() {
@@ -116,18 +117,7 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input placeholder="********" {...field} type={isShowPassword ? "text" : "password"} />
-                      <Button
-                        size="icon"
-                        variant="link"
-                        type="button"
-                        className="absolute top-1/2 right-1 -translate-y-1/2"
-                        onClick={() => setIsShowPassword(!isShowPassword)}
-                      >
-                        {isShowPassword ? <Eye /> : <EyeClosed />}
-                      </Button>
-                    </div>
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -140,18 +130,7 @@ export default function FormChangePassword() {
                 <FormItem>
                   <FormLabel>Confirm password</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input placeholder="********" {...field} type={isShowConfirmPassword ? "text" : "password"} />
-                      <Button
-                        size="icon"
-                        variant="link"
-                        type="button"
-                        className="absolute top-1/2 right-1 -translate-y-1/2"
-                        onClick={() => setIsShowConfirmPassword(!isShowConfirmPassword)}
-                      >
-                        {isShowConfirmPassword ? <Eye /> : <EyeClosed />}
-                      </Button>
-                    </div>
+                    <PasswordInput placeholder="********" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

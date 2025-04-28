@@ -1,11 +1,48 @@
-import { Button } from "@shared/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form"
-import { Input } from "@shared/components/ui/input"
-import { useFormForgotPassword } from "@auth/hooks/form-forgot-password"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@shared/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
+import { Input } from "@shared/components/ui/input";
+import { useForgotPassword } from "../queries/auth.queries";
+import { useToast } from "@shared/hooks/use-toast";
+import { PasswordInput } from "@shared/components/extends/password-input";
+
+const formSchema = z.object({
+  email: z.string().email("Invalid email address"),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export function FormForgotPassword() {
-  const { form, onSubmit, isPending } = useFormForgotPassword()
+  const { toast } = useToast();
+  const { mutate: forgotPassword, isPending } = useForgotPassword();
+
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  function onSubmit(data: FormValues) {
+    forgotPassword(data.email, {
+      onSuccess: () => {
+        toast({
+          title: "Success",
+          description: "Password reset link has been sent to your email",
+        });
+      },
+      onError: (error) => {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      },
+    });
+  }
 
   return (
     <Card className="w-full max-w-md">
@@ -43,5 +80,5 @@ export function FormForgotPassword() {
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 } 
