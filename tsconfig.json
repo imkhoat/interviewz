@@ -23,6 +23,7 @@
       "@shared/*": ["./src/shared/*"],
       "@auth/*": ["./src/modules/auth/*"],
       "@resume-builder/*": ["./src/modules/resume-builder/*"],
+      "@setting/*": ["./src/modules/setting/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
