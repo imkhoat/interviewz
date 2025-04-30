@@ -14,9 +14,8 @@ import {
 } from "lucide-react"
 import * as React from "react"
 
-import { NavMain } from "@shared/components/nav-main"
-import { NavProjects } from "@shared/components/nav-projects"
-import { NavUser } from "@shared/components/nav-user"
+import { NavMain } from "@shared/components/extends/page-wrapper-nav-main"
+import { NavUser } from "@shared/components/extends/page-wrapper-nav-user"
 import { TeamSwitcher } from "@shared/components/team-switcher"
 import {
   Sidebar,
@@ -164,7 +163,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

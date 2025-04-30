@@ -7,9 +7,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shar
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@shared/components/ui/tabs";
 import { usePageWrapper } from "@shared/hooks/use-page-wrapper";
 
-import { GeneralSettingsForm } from "./general-settings-form";
-import { SecuritySettingsForm } from "./security-settings-form";
-import { NotificationSettingsForm } from "./notification-settings-form";
+import { GeneralSettingsForm } from "@setting/components/general-settings-form";
+import { SecuritySettingsForm } from "@setting/components/security-settings-form";
+import { NotificationSettingsForm } from "@setting/components/notification-settings-form";
 
 export function SettingsPage() {
   const { setupPageWrapperConfig, setupPageWrapperState } = usePageWrapper();
