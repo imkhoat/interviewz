@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form";
-import { useResetPassword } from "../queries/auth.queries";
+import { useResetPassword } from "@auth/queries/auth.queries";
 import { useToast } from "@shared/hooks/use-toast";
 import { PasswordInput } from "@shared/components/extends/password-input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@shared/components/ui/card";

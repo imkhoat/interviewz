@@ -12,7 +12,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@shared/components/ui/form"
-import { useChangePassword } from "../queries/auth.queries"
+import { useChangePassword } from "@auth/queries/auth.queries"
 import { useToast } from "@shared/hooks/use-toast"
 import { PasswordInput } from "@shared/components/extends/password-input"
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"

@@ -5,7 +5,7 @@ import { Button } from "@shared/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
-import { useForgotPassword } from "../queries/auth.queries";
+import { useForgotPassword } from "@auth/queries/auth.queries";
 import { useToast } from "@shared/hooks/use-toast";
 import { PasswordInput } from "@shared/components/extends/password-input";
 

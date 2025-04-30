@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "@shared/components/ui/input";
+import { Button } from "@shared/components/ui/button";
 import { Eye, EyeClosed } from "lucide-react";
 import { cn } from "@shared/lib/utils";
 

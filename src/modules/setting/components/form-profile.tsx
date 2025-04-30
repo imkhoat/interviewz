@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
-import { useUpdateUserProfile } from "../queries/setting.queries";
+import { useUpdateUserProfile } from "@setting/queries/setting.queries";
 import { UserProfile } from "@setting/repositories/setting.repository";
 import { useToast } from "@shared/hooks/use-toast";
 
