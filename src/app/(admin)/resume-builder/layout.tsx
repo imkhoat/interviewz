@@ -15,39 +15,22 @@ export default function LayoutAdmin({
   useEffect(() => {
     setupPageWrapperConfig({
       header: true,
-      sidebar: false,
+      sidebar: true,
       footer: false,
       title: true,
       description: true,
       icon: false,
-      logo: true,
+      logo: false,
     });
     setupPageWrapperState({
       title: "Resume Builder",
       description: "Create your resume in minutes",
-      actions: [
-        {
-          icon: Download,
-          label: "Download resume",
-          variant: "outline",
-          onClick: () => {
-            console.log("Settings");
-          },
-        },
-        {
-          icon: Save,
-          label: "Save",
-          onClick: () => {
-            console.log("Download");
-          },
-        },
-      ],
     });
   }, []);
   // #endregion
 
   return (
-    <div className="min-w-screen h-viewport max-h-viewport py-8 w-screen container mx-auto">
+    <div className="h-viewport max-h-viewport py-8">
       {children}
     </div>
   );
