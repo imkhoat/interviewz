@@ -1,4 +1,6 @@
-import { Bell, LogIn, UserPlus, User, Settings } from "lucide-react";
+"use client";
+
+import { Bell, LogIn, UserPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { useAuthStore } from "@auth/stores/auth-store";
@@ -12,15 +14,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@shared/components/ui/dropdown-menu";
+import { useUserMenuItems } from "@shared/hooks/use-user-menu-items";
 
 export default function PageWrapperAuthActions() {
   const router = useRouter();
-  const { user, isAuthenticated, clearAuth } = useAuthStore();
-
-  const handleLogout = () => {
-    clearAuth();
-    router.push("/auth/login");
-  };
+  const { user, isAuthenticated } = useAuthStore();
+  const menuItems = useUserMenuItems();
 
   if (!isAuthenticated) {
     return (
@@ -71,14 +70,12 @@ export default function PageWrapperAuthActions() {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => router.push("/settings/profile")}>
-            <Settings className="mr-2 h-4 w-4" />
-            <span>Profile Settings</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={handleLogout}>
-            <User className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
+          {menuItems.map((item, index) => (
+            <DropdownMenuItem key={index} onClick={item.onClick}>
+              {item.icon && <item.icon className="mr-2 h-4 w-4" />}
+              <span>{item.label}</span>
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
