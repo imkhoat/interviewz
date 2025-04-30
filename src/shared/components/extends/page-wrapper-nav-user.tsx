@@ -1,13 +1,6 @@
 "use client"
 
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Sparkles,
-} from "lucide-react"
+import { ChevronsUpDown } from "lucide-react"
 
 import {
   Avatar,
@@ -29,6 +22,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@shared/components/ui/sidebar"
+import { useUserMenuItems } from "@shared/hooks/use-user-menu-items";
 
 export function NavUser({
   user,
@@ -40,6 +34,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const menuItems = useUserMenuItems();
 
   return (
     <SidebarMenu>
@@ -81,31 +76,13 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
-              </DropdownMenuItem>
+              {menuItems.map((item, index) => (
+                <DropdownMenuItem key={index} onClick={item.onClick}>
+                  {item.icon && <item.icon className="mr-2 h-4 w-4" />}
+                  <span>{item.label}</span>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
-              Log out
-            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
