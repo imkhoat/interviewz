@@ -4,19 +4,22 @@ import { z } from "zod"
 import { useRouter } from "next/navigation"
 import { useResetPassword } from "@auth/queries/auth.queries"
 import { toast } from "@shared/hooks/use-toast"
-
-const FormSchema = z.object({
-  token: z.string(),
-  newPassword: z.string().min(8, "Password must be at least 8 characters"),
-  confirmPassword: z.string().min(8, "Password must be at least 8 characters"),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-})
+import { useTranslations } from "next-intl"
 
 export function useFormResetPassword(token: string) {
   const router = useRouter()
   const { mutate: resetPassword, isPending } = useResetPassword()
+  const t = useTranslations("auth.reset-password")
+  const tValidation = useTranslations("common.validation")
+
+  const FormSchema = z.object({
+    token: z.string(),
+    newPassword: z.string().min(8, tValidation("min-length", { min: 8 })),
+    confirmPassword: z.string().min(8, tValidation("min-length", { min: 8 })),
+  }).refine((data) => data.newPassword === data.confirmPassword, {
+    message: tValidation("password-mismatch"),
+    path: ["confirmPassword"],
+  })
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -34,15 +37,15 @@ export function useFormResetPassword(token: string) {
     }, {
       onSuccess: () => {
         toast({
-          title: "Success",
-          description: "Your password has been reset successfully",
+          title: t("success.title"),
+          description: t("success.description"),
         })
         router.push("/auth/login")
       },
       onError: (error) => {
         toast({
-          title: "Error",
-          description: error.message || "Failed to reset password",
+          title: t("error.title"),
+          description: error.message || t("error.description"),
           variant: "destructive",
         })
       },

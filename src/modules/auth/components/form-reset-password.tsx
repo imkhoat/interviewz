@@ -18,6 +18,7 @@ import { ShieldCheck, AlertCircle } from "lucide-react";
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
 import { Input } from "@shared/components/ui/input";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   token: z.string(),
@@ -37,6 +38,7 @@ interface FormResetPasswordProps {
 export function FormResetPassword({ token }: FormResetPasswordProps) {
   const { toast } = useToast();
   const { mutate: resetPassword, isPending } = useResetPassword();
+  const t = useTranslations("auth.reset-password");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -51,13 +53,13 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
     resetPassword({ token: data.token, newPassword: data.password }, {
       onSuccess: () => {
         toast({
-          title: "Success",
-          description: "Your password has been reset successfully",
+          title: t("success.title"),
+          description: t("success.description"),
         });
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: t("error.title"),
           description: error.message,
           variant: "destructive",
         });
@@ -81,10 +83,8 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
             </Avatar>
           </AvatarFallback>
         </Avatar>
-        <CardTitle>Reset Password</CardTitle>
-        <CardDescription>
-          Enter your new password below
-        </CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-6">
         <Form {...form}>
@@ -94,7 +94,7 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
               name="token"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Reset Token</FormLabel>
+                  <FormLabel>{t("reset-token")}</FormLabel>
                   <FormControl>
                     <Input {...field} disabled />
                   </FormControl>
@@ -107,9 +107,9 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New Password</FormLabel>
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="Enter your new password" {...field} />
+                    <PasswordInput placeholder={t("password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -120,16 +120,16 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel>{t("confirm-password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="Confirm your new password" {...field} />
+                    <PasswordInput placeholder={t("confirm-password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? "Resetting..." : "Reset Password"}
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t("loading") : t("submit")}
             </Button>
           </form>
         </Form>

@@ -1,9 +1,13 @@
-import { auth } from "./auth";
-import {common} from "./common";
+import { common } from './common';
+import { auth } from './auth';
+import { resume } from './resume';
+import { settings } from './settings';
 
-const messages = {
-  auth,
+const message = {
   common,
-};
+  auth,
+  resume,
+  settings,
+}; 
 
-export default messages; 
+export default message;

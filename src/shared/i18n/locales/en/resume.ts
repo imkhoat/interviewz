@@ -1,0 +1,39 @@
+export const resume = {
+  profile: {
+    title: "Profile",
+    "full-name": "Full Name",
+    location: "Location",
+    phone: "Phone",
+    email: "Email",
+    website: "Website",
+    objective: "Objective",
+  },
+  experience: {
+    title: "Experience",
+    company: "Company",
+    position: "Position",
+    "start-date": "Start Date",
+    "end-date": "End Date",
+    description: "Description",
+  },
+  education: {
+    title: "Education",
+    school: "School",
+    degree: "Degree",
+    "start-date": "Start Date",
+    "end-date": "End Date",
+    description: "Description",
+  },
+  skills: {
+    title: "Skills",
+    name: "Skill Name",
+    level: "Level",
+  },
+  projects: {
+    title: "Projects",
+    name: "Project Name",
+    "start-date": "Start Date",
+    "end-date": "End Date",
+    description: "Description",
+  },
+}; 

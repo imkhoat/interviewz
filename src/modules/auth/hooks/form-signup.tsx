@@ -26,7 +26,7 @@ export function useFormSignup() {
       required_error: "Please select your role",
     }),
   }).refine((data) => data.password === data.confirmPassword, {
-    message: t("passwordMismatch"),
+    message: t("password-mismatch"),
     path: ["confirmPassword"],
   })
 
