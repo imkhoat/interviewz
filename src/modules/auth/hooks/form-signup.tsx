@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useTranslations } from "next-intl"
 
 import { useSignup } from "@auth/queries/auth.queries"
 
@@ -12,19 +13,20 @@ export const UserRole = {
 export type UserRoleType = typeof UserRole[keyof typeof UserRole]
 
 export function useFormSignup() {
+  const t = useTranslations("common.validation")
 
   const FormSchema = z.object({
-    firstName: z.string().min(2, "First name must be at least 2 characters"),
-    lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    fullName: z.string().min(2, "Full name must be at least 2 characters"),
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z.string().min(8, "Password must be at least 8 characters"),
+    firstName: z.string().min(2, t("minLength", { min: 2 })),
+    lastName: z.string().min(2, t("minLength", { min: 2 })),
+    fullName: z.string().min(2, t("minLength", { min: 2 })),
+    email: z.string().email(t("email")),
+    password: z.string().min(8, t("minLength", { min: 8 })),
+    confirmPassword: z.string().min(8, t("minLength", { min: 8 })),
     role: z.enum([UserRole.INTERVIEWER, UserRole.CANDIDATE], {
       required_error: "Please select your role",
     }),
   }).refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: t("passwordMismatch"),
     path: ["confirmPassword"],
   })
 

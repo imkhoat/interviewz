@@ -1,6 +1,7 @@
-import { LogIn, Eye, EyeClosed } from "lucide-react"
+import { LogIn } from "lucide-react"
 import Link from "next/link"
 import React from "react"
+import { useTranslations } from "next-intl"
 
 import { useFormLogin } from "@auth/hooks/form-login"
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
@@ -17,13 +18,9 @@ import {
 import { Input } from "@shared/components/ui/input"
 import { PasswordInput } from "@shared/components/extends/password-input"
 
-
-
-export default function FormChangePassword() {
-
+export default function FormLogin() {
+  const t = useTranslations("auth.signin")
   const { form, onSubmit, isPending } = useFormLogin()
-
-  const [isShowPassword, setIsShowPassword] = React.useState(false)
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -41,8 +38,8 @@ export default function FormChangePassword() {
             </Avatar>
           </AvatarFallback>
         </Avatar>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>Enter your credentials to log in</CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-6">
         <Form {...form}>
@@ -52,9 +49,9 @@ export default function FormChangePassword() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn@email.com" {...field} />
+                    <Input placeholder={t("email-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -66,11 +63,11 @@ export default function FormChangePassword() {
               render={({ field }) => (
                 <FormItem>
                   <div className="flex flex-row justify-between items-baseline">
-                    <FormLabel>Password</FormLabel>
-                    <Link href={'/auth/forgot-password'} className="underline text-xs text-right">Forgot password?</Link>
+                    <FormLabel>{t("password")}</FormLabel>
+                    <Link href={'/auth/forgot-password'} className="underline text-xs text-right">{t("forgot-password")}</Link>
                   </div>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -78,11 +75,11 @@ export default function FormChangePassword() {
             />
             <div className="flex flex-col space-y-2">
               <Button type="submit" disabled={isPending}>
-                {isPending ? "Logging in..." : "Login with username"}
+                {isPending ? t("loading") : t("submit")}
               </Button>
-              <Button type="submit" variant={'secondary'} disabled={isPending}>Login with Google</Button>
-              <Button type="submit" variant={'secondary'} disabled={isPending}>Login with Github</Button>
-              <Button type="button" variant={'link'}><Link href={'/auth/signup'}>Dont have account? Signup</Link></Button>
+              <Button type="submit" variant={'secondary'} disabled={isPending}>{t("google")}</Button>
+              <Button type="submit" variant={'secondary'} disabled={isPending}>{t("github")}</Button>
+              <Button type="button" variant={'link'}><Link href={'/auth/signup'}>{t("no-account")}</Link></Button>
             </div>
           </form>
         </Form>
