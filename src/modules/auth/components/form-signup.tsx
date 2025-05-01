@@ -62,7 +62,7 @@ export default function FormSignup() {
                   <FormItem>
                     <FormLabel>{t("first-name")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Dean" {...field} />
+                      <Input placeholder={t("first-name-placeholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -75,7 +75,7 @@ export default function FormSignup() {
                   <FormItem>
                     <FormLabel>{t("last-name")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Smith" {...field} />
+                      <Input placeholder={t("last-name-placeholder")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -89,7 +89,7 @@ export default function FormSignup() {
                 <FormItem>
                   <FormLabel>{t("full-name")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Dean Smith" {...field} />
+                    <Input placeholder={t("full-name-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -7,7 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@shared/components/ui/input";
 import { useForgotPassword } from "@auth/queries/auth.queries";
 import { useToast } from "@shared/hooks/use-toast";
-import { PasswordInput } from "@shared/components/extends/password-input";
+import { useTranslations } from "next-intl";
 
 const formSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -18,6 +18,7 @@ type FormValues = z.infer<typeof formSchema>;
 export function FormForgotPassword() {
   const { toast } = useToast();
   const { mutate: forgotPassword, isPending } = useForgotPassword();
+  const t = useTranslations("auth.forgot-password");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -30,13 +31,13 @@ export function FormForgotPassword() {
     forgotPassword(data.email, {
       onSuccess: () => {
         toast({
-          title: "Success",
-          description: "Password reset link has been sent to your email",
+          title: t("success.title"),
+          description: t("success.description"),
         });
       },
       onError: (error) => {
         toast({
-          title: "Error",
+          title: t("error.title"),
           description: error.message,
           variant: "destructive",
         });
@@ -47,10 +48,8 @@ export function FormForgotPassword() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
-        <CardTitle>Forgot password</CardTitle>
-        <CardDescription>
-          Enter your email address and we'll send you a link to reset your password
-        </CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -60,23 +59,23 @@ export function FormForgotPassword() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input placeholder={t("email-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <Button type="submit" className="w-full" disabled={isPending}>
-              {isPending ? "Sending..." : "Send Reset Link"}
+              {isPending ? t("loading") : t("submit")}
             </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter className="flex justify-center">
         <Button variant="link" onClick={() => window.history.back()}>
-          Back to login
+          {t("back-to-login")}
         </Button>
       </CardFooter>
     </Card>

@@ -4,14 +4,17 @@ import { z } from "zod"
 import { useRouter } from "next/navigation"
 import { useForgotPassword } from "@auth/queries/auth.queries"
 import { toast } from "@shared/hooks/use-toast"
-
-const FormSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-})
+import { useTranslations } from "next-intl"
 
 export function useFormForgotPassword() {
   const router = useRouter()
   const { mutate: forgotPassword, isPending } = useForgotPassword()
+  const t = useTranslations("auth.forgot-password")
+  const tValidation = useTranslations("common.validation")
+
+  const FormSchema = z.object({
+    email: z.string().email(tValidation("email")),
+  })
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -24,15 +27,15 @@ export function useFormForgotPassword() {
     forgotPassword(data.email, {
       onSuccess: () => {
         toast({
-          title: "Success",
-          description: "Please check your email for password reset instructions",
+          title: t("success.title"),
+          description: t("success.description"),
         })
         router.push("/auth/login")
       },
       onError: (error) => {
         toast({
-          title: "Error",
-          description: error.message || "Failed to send reset password email",
+          title: t("error.title"),
+          description: error.message || t("error.description"),
           variant: "destructive",
         })
       },

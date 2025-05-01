@@ -1,18 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { useTranslations } from "next-intl"
 
 import { useChangePassword } from "@auth/queries/use-change-password"
 
 export function useFormChangePassword() {
   const { mutate: changePassword, isPending } = useChangePassword()
+  const t = useTranslations("common.validation")
 
   const FormSchema = z.object({
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    newPassword: z.string().min(8, "New password must be at least 8 characters"),
-    confirmPassword: z.string().min(8, "Confirm password must be at least 8 characters"),
+    password: z.string().min(8, t("min-length", { min: 8 })),
+    newPassword: z.string().min(8, t("min-length", { min: 8 })),
+    confirmPassword: z.string().min(8, t("min-length", { min: 8 })),
   }).refine((data) => data.newPassword === data.confirmPassword, {
-    message: "Passwords do not match",
+    message: t("password-mismatch"),
     path: ["confirmPassword"],
   })
 
