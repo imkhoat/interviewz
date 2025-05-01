@@ -1,8 +1,8 @@
-import { User2Icon, Eye, EyeClosed } from "lucide-react";
+import { User2Icon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-import { useFormSignup } from "@auth/hooks/form-signup";
+import { useFormSignup, UserRole } from "@auth/hooks/form-signup";
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
 import { Button } from "@shared/components/ui/button";
 import {
@@ -22,12 +22,10 @@ import {
 } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
 import { PasswordInput } from "@shared/components/extends/password-input";
+import { RadioGroupField } from "@shared/components/extends/radio-group-field";
 
-
-export default function FormChangePassword() {
+export default function FormSignup() {
   const { form, onSubmit, isPending } = useFormSignup();
-  const [isShowPassword, setIsShowPassword] = React.useState(false);
-  const [isShowConfirmPassword, setIsShowConfirmPassword] = React.useState(false);
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -105,6 +103,34 @@ export default function FormChangePassword() {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input placeholder="shadcn@email.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Role</FormLabel>
+                  <FormControl>
+                    <RadioGroupField
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      options={[
+                        {
+                          value: UserRole.INTERVIEWER,
+                          label: "Interviewer",
+                          description: "I want to conduct interviews and evaluate candidates",
+                        },
+                        {
+                          value: UserRole.CANDIDATE,
+                          label: "Candidate",
+                          description: "I want to be interviewed and showcase my skills",
+                        },
+                      ]}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
