@@ -1,6 +1,7 @@
 import { User2Icon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { useFormSignup, UserRole } from "@auth/hooks/form-signup";
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
@@ -26,6 +27,7 @@ import { RadioGroupField } from "@shared/components/extends/radio-group-field";
 
 export default function FormSignup() {
   const { form, onSubmit, isPending } = useFormSignup();
+  const t = useTranslations("auth.sign-up");
 
   return (
     <Card className="page-login shadow-none border-0">
@@ -43,10 +45,8 @@ export default function FormSignup() {
             </Avatar>
           </AvatarFallback>
         </Avatar>
-        <CardTitle>Create new account</CardTitle>
-        <CardDescription>
-          Enter your email to create new account
-        </CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-6">
         <Form {...form}>
@@ -60,7 +60,7 @@ export default function FormSignup() {
                 name="firstName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>First name</FormLabel>
+                    <FormLabel>{t("first-name")}</FormLabel>
                     <FormControl>
                       <Input placeholder="Dean" {...field} />
                     </FormControl>
@@ -73,7 +73,7 @@ export default function FormSignup() {
                 name="lastName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Last name</FormLabel>
+                    <FormLabel>{t("last-name")}</FormLabel>
                     <FormControl>
                       <Input placeholder="Smith" {...field} />
                     </FormControl>
@@ -87,7 +87,7 @@ export default function FormSignup() {
               name="fullName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full name</FormLabel>
+                  <FormLabel>{t("full-name")}</FormLabel>
                   <FormControl>
                     <Input placeholder="Dean Smith" {...field} />
                   </FormControl>
@@ -100,9 +100,9 @@ export default function FormSignup() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn@email.com" {...field} />
+                    <Input placeholder={t("email-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +141,7 @@ export default function FormSignup() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
                     <PasswordInput placeholder="********" {...field} />
                   </FormControl>
@@ -154,7 +154,7 @@ export default function FormSignup() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm password</FormLabel>
+                  <FormLabel>{t("confirm-password")}</FormLabel>
                   <FormControl>
                     <PasswordInput placeholder="********" {...field} />
                   </FormControl>
@@ -164,18 +164,16 @@ export default function FormSignup() {
             />
             <div className="flex flex-col space-y-2">
               <Button type="submit" disabled={isPending}>
-                {isPending ? "Creating account..." : "Create account"}
+                {isPending ? t("submit-loading") : t("submit")}
               </Button>
               <Button type="submit" variant={"secondary"}>
-                Signup with Google
+                {t("google")}
               </Button>
               <Button type="submit" variant={"secondary"}>
-                Signup with Github
+                {t("github")}
               </Button>
               <Button type="button" variant={"link"}>
-                <Link href={"/auth/login"}>
-                  Found an account? Back to login
-                </Link>
+                <Link href={"/auth/login"}>{t("login")}</Link>
               </Button>
             </div>
           </form>
