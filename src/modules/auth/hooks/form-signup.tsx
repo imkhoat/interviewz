@@ -16,12 +16,12 @@ export function useFormSignup() {
   const t = useTranslations("common.validation")
 
   const FormSchema = z.object({
-    firstName: z.string().min(2, t("minLength", { min: 2 })),
-    lastName: z.string().min(2, t("minLength", { min: 2 })),
-    fullName: z.string().min(2, t("minLength", { min: 2 })),
+    firstName: z.string().min(2, t("min-length", { min: 2 })),
+    lastName: z.string().min(2, t("min-length", { min: 2 })),
+    fullName: z.string().min(2, t("min-length", { min: 2 })),
     email: z.string().email(t("email")),
-    password: z.string().min(8, t("minLength", { min: 8 })),
-    confirmPassword: z.string().min(8, t("minLength", { min: 8 })),
+    password: z.string().min(8, t("min-length", { min: 8 })),
+    confirmPassword: z.string().min(8, t("min-length", { min: 8 })),
     role: z.enum([UserRole.INTERVIEWER, UserRole.CANDIDATE], {
       required_error: "Please select your role",
     }),

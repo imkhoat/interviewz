@@ -19,7 +19,7 @@ import { Input } from "@shared/components/ui/input"
 import { PasswordInput } from "@shared/components/extends/password-input"
 
 export default function FormLogin() {
-  const t = useTranslations("auth.signin")
+  const t = useTranslations("auth.sign-in")
   const { form, onSubmit, isPending } = useFormLogin()
 
   return (

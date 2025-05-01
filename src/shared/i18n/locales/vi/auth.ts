@@ -1,5 +1,5 @@
 export const auth = {
-  "signin": {
+  "sign-in": {
     "title": "Chào mừng trở lại",
     "description": "Nhập thông tin đăng nhập của bạn",
     "email": "Email",
@@ -13,7 +13,7 @@ export const auth = {
     "github": "Đăng nhập với Github",
     "no-account": "Chưa có tài khoản? Đăng ký",
   },
-  "signup": {
+  "sign-up": {
     "title": "Tạo tài khoản mới",
     "description": "Nhập thông tin để tạo tài khoản mới",
     "first-name": "Tên",
@@ -96,6 +96,6 @@ export const auth = {
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block": "Quá nhiều lần đăng nhập thất bại liên tiếp, tài khoản đã bị khóa, vui lòng liên hệ quản trị viên để đặt lại mật khẩu hoặc xóa tài khoản hoặc chặn IP",
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report": "Quá nhiều lần đăng nhập thất bại liên tiếp, tài khoản đã bị khóa, vui lòng liên hệ quản trị viên để đặt lại mật khẩu hoặc xóa tài khoản hoặc chặn IP hoặc báo cáo",
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban": "Quá nhiều lần đăng nhập thất bại liên tiếp, tài khoản đã bị khóa, vui lòng liên hệ quản trị viên để đặt lại mật khẩu hoặc xóa tài khoản hoặc chặn IP hoặc báo cáo hoặc cấm",
-    "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban-and-blacklist": "Quá nhiều lần đăng nhập thất bại liên tiếp, tài khoản đã bị khóa, vui lòng liên hệ quản trị viên để đặt lại mật khẩu hoặc xóa tài khoản hoặc chặn IP hoặc báo cáo hoặc cấm hoặc đưa vào danh sách đen",
-  },
+    "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban-and-blacklist": "Quá nhiều lần đăng nhập thất bại liên tiếp, tài khoản đã bị khóa, vui lòng liên hệ quản trị viên để đặt lại mật khẩu hoặc xóa tài khoản hoặc chặn IP hoặc báo cáo hoặc cấm hoặc đưa vào danh sách đen"
+  }
 }; 

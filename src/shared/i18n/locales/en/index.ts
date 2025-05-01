@@ -1,5 +1,5 @@
 import { auth } from "./auth";
-import common from "./common";
+import {common} from "./common";
 
 const messages = {
   auth,

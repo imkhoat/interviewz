@@ -1,5 +1,5 @@
 export const auth = {
-  "signin": {
+  "sign-in": {
     "title": "Welcome back",
     "description": "Enter your credentials to sign in",
     "email": "Email",
@@ -13,7 +13,7 @@ export const auth = {
     "github": "Sign in with Github",
     "no-account": "Don't have an account? Sign up",
   },
-  "signup": {
+  "sign-up": {
     "title": "Create new account",
     "description": "Enter your information to create a new account",
     "first-name": "First name",
@@ -96,6 +96,6 @@ export const auth = {
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block": "Too many failed login attempts in a row, account is locked, please contact administrator to reset password or delete account or block IP",
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report": "Too many failed login attempts in a row, account is locked, please contact administrator to reset password or delete account or block IP or report",
     "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban": "Too many failed login attempts in a row, account is locked, please contact administrator to reset password or delete account or block IP or report or ban",
-    "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban-and-blacklist": "Too many failed login attempts in a row, account is locked, please contact administrator to reset password or delete account or block IP or report or ban or blacklist",
-  },
+    "password-too-many-failed-attempts-in-a-row-with-delay-and-lockout-and-unlock-and-reset-and-delete-and-block-and-report-and-ban-and-blacklist": "Too many failed login attempts in a row, account is locked, please contact administrator to reset password or delete account or block IP or report or ban or blacklist"
+  }
 }; 

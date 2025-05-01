@@ -27,7 +27,7 @@ import { RadioGroupField } from "@shared/components/extends/radio-group-field";
 
 export default function FormSignup() {
   const { form, onSubmit, isPending } = useFormSignup();
-  const t = useTranslations("auth.signup");
+  const t = useTranslations("auth.sign-up");
 
   return (
     <Card className="page-login shadow-none border-0">
