@@ -1,9 +1,6 @@
 import { NextResponse } from 'next/server'
-
 import type { NextRequest } from 'next/server'
-
-import createMiddleware from "next-intl/middleware";
-import { locales } from "@shared/i18n/config";
+import { defaultLocale } from "@shared/i18n/config";
 
 const publicRoutes = [
   "/",
@@ -13,13 +10,16 @@ const publicRoutes = [
   "/auth/reset-password",
 ]
 
-const authRoutes = ["/auth/login", "/auth/signup", "/auth/forgot-password"]
+const authRoutes = [
+  "/auth/login",
+  "/auth/signup",
+  "/auth/forgot-password"
+]
 
-
-// This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const authCookie = request.cookies.get('auth-storage')
+  const localeCookie = request.cookies.get('NEXT_LOCALE')
 
   let isAuthenticated = false
 
@@ -35,20 +35,24 @@ export function middleware(request: NextRequest) {
   // Check if the path is a reset password page with token
   const isResetPasswordWithToken = pathname === "/auth/reset-password" && request.nextUrl.searchParams.has("token")
 
+  // Set default locale if not exists
+  if (!localeCookie) {
+    const response = NextResponse.next()
+    response.cookies.set('NEXT_LOCALE', defaultLocale)
+    return response
+  }
+
+  // Handle authentication
   if (isAuthenticated && authRoutes.includes(pathname)) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL("/dashboard", request.url))
   }
 
   if (!isAuthenticated && !publicRoutes.includes(pathname) && !isResetPasswordWithToken) {
-    return NextResponse.redirect(new URL('/auth/login', request.url))
+    return NextResponse.redirect(new URL("/auth/login", request.url))
   }
 
+  return NextResponse.next()
 }
-
-export default createMiddleware({
-  locales,
-  defaultLocale: "en",
-});
 
 // See "Matching Paths" below to learn more
 export const config = {
