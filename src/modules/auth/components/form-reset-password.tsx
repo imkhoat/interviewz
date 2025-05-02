@@ -20,17 +20,6 @@ import { Input } from "@shared/components/ui/input";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-const formSchema = z.object({
-  token: z.string(),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
 interface FormResetPasswordProps {
   token: string;
 }
@@ -39,8 +28,18 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
   const { toast } = useToast();
   const { mutate: resetPassword, isPending } = useResetPassword();
   const t = useTranslations("auth.reset-password");
+  const tValidation = useTranslations("common.validation");
 
-  const form = useForm<FormValues>({
+  const formSchema = z.object({
+    token: z.string(),
+    password: z.string().min(6, tValidation("min-length", { min: 6 })),
+    confirmPassword: z.string().min(6, tValidation("min-length", { min: 6 })),
+  }).refine((data) => data.password === data.confirmPassword, {
+    message: tValidation("password-mismatch"),
+    path: ["confirmPassword"],
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       token,
@@ -49,7 +48,7 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
     },
   });
 
-  function onSubmit(data: FormValues) {
+  function onSubmit(data: z.infer<typeof formSchema>) {
     resetPassword({ token: data.token, newPassword: data.password }, {
       onSuccess: () => {
         toast({
@@ -139,6 +138,8 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
 }
 
 export function FormInvalidToken() {
+  const t = useTranslations("auth.reset-password.invalid-token");
+  
   return (
     <Card className="page-login shadow-none border-0">
       <CardHeader className="flex flex-col justify-start items-center text-center">
@@ -155,19 +156,17 @@ export function FormInvalidToken() {
             </Avatar>
           </AvatarFallback>
         </Avatar>
-        <CardTitle>Invalid Token</CardTitle>
-        <CardDescription>
-          The password reset token is invalid or has expired
-        </CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-6">
         <p className="text-center text-muted-foreground">
-          Please request a new password reset link to continue.
+          {t("message")}
         </p>
       </CardContent>
       <CardFooter className="flex justify-center">
         <Button variant="link" asChild>
-          <Link href="/auth/login">Back to login</Link>
+          <Link href="/auth/login">{t("back-to-login")}</Link>
         </Button>
       </CardFooter>
     </Card>

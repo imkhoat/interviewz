@@ -17,23 +17,24 @@ import { useToast } from "@shared/hooks/use-toast"
 import { PasswordInput } from "@shared/components/extends/password-input"
 import { Avatar, AvatarFallback } from "@shared/components/ui/avatar"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@shared/components/ui/card'
-
-const formSchema = z.object({
-  currentPassword: z.string().min(6, "Password must be at least 6 characters"),
-  newPassword: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
-}).refine((data) => data.newPassword === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-})
-
-type FormValues = z.infer<typeof formSchema>
+import { useTranslations } from "next-intl"
 
 export default function FormChangePassword() {
   const { toast } = useToast()
   const { mutate: changePassword, isPending } = useChangePassword()
+  const t = useTranslations("auth.change-password")
+  const tValidation = useTranslations("common.validation")
 
-  const form = useForm<FormValues>({
+  const formSchema = z.object({
+    currentPassword: z.string().min(6, tValidation("min-length", { min: 6 })),
+    newPassword: z.string().min(6, tValidation("min-length", { min: 6 })),
+    confirmPassword: z.string().min(6, tValidation("min-length", { min: 6 })),
+  }).refine((data) => data.newPassword === data.confirmPassword, {
+    message: tValidation("password-mismatch"),
+    path: ["confirmPassword"],
+  })
+
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       currentPassword: "",
@@ -42,7 +43,7 @@ export default function FormChangePassword() {
     },
   })
 
-  function onSubmit(data: FormValues) {
+  function onSubmit(data: z.infer<typeof formSchema>) {
     changePassword(
       {
         password: data.currentPassword,
@@ -51,14 +52,14 @@ export default function FormChangePassword() {
       {
         onSuccess: () => {
           toast({
-            title: "Success",
-            description: "Your password has been changed successfully",
+            title: t("success.title"),
+            description: t("success.description"),
           })
           form.reset()
         },
         onError: (error: Error) => {
           toast({
-            title: "Error",
+            title: t("error.title"),
             description: error.message,
             variant: "destructive",
           })
@@ -77,8 +78,8 @@ export default function FormChangePassword() {
             </AvatarFallback>
           </Avatar>
           <div>
-            <CardTitle>Change Password</CardTitle>
-            <CardDescription>Update your password</CardDescription>
+            <CardTitle>{t("title")}</CardTitle>
+            <CardDescription>{t("description")}</CardDescription>
           </div>
         </div>
       </CardHeader>
@@ -90,9 +91,9 @@ export default function FormChangePassword() {
               name="currentPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Password</FormLabel>
+                  <FormLabel>{t("current-password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("current-password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,9 +104,9 @@ export default function FormChangePassword() {
               name="newPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New Password</FormLabel>
+                  <FormLabel>{t("new-password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("new-password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,9 +117,9 @@ export default function FormChangePassword() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel>{t("confirm-password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("confirm-password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,9 +127,9 @@ export default function FormChangePassword() {
             />
             <div className="flex flex-col space-y-2">
               <Button type="submit" className="w-full" disabled={isPending}>
-                {isPending ? "Changing..." : "Change Password"}
+                {isPending ? t("loading") : t("submit")}
               </Button>
-              <Button type="button" variant={'secondary'}><Link href={'/'}>Back to homepage</Link></Button>
+              <Button type="button" variant={'secondary'}><Link href={'/'}>{t("back-to-homepage")}</Link></Button>
             </div>
           </form>
         </Form>

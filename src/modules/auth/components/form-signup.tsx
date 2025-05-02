@@ -113,7 +113,7 @@ export default function FormSignup() {
               name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Role</FormLabel>
+                  <FormLabel>{t("role")}</FormLabel>
                   <FormControl>
                     <RadioGroupField
                       onValueChange={field.onChange}
@@ -121,13 +121,13 @@ export default function FormSignup() {
                       options={[
                         {
                           value: UserRole.INTERVIEWER,
-                          label: "Interviewer",
-                          description: "I want to conduct interviews and evaluate candidates",
+                          label: t("interviewer.label"),
+                          description: t("interviewer.description"),
                         },
                         {
                           value: UserRole.CANDIDATE,
-                          label: "Candidate",
-                          description: "I want to be interviewed and showcase my skills",
+                          label: t("candidate.label"),
+                          description: t("candidate.description"),
                         },
                       ]}
                     />
@@ -143,7 +143,7 @@ export default function FormSignup() {
                 <FormItem>
                   <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -156,7 +156,7 @@ export default function FormSignup() {
                 <FormItem>
                   <FormLabel>{t("confirm-password")}</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="********" {...field} />
+                    <PasswordInput placeholder={t("confirm-password-placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
