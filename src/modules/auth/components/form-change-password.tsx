@@ -69,23 +69,27 @@ export default function FormChangePassword() {
   }
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
-        <div className="flex items-center space-x-4">
-          <Avatar>
-            <AvatarFallback>
-              <ShieldCheck className="h-6 w-6" />
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <CardTitle>{t("title")}</CardTitle>
-            <CardDescription>{t("description")}</CardDescription>
-          </div>
-        </div>
+    <Card className="page-login shadow-none border-0">
+      <CardHeader className="flex flex-col justify-start items-center text-center">
+        <Avatar className="w-20 h-20 bg-transparent">
+          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+            <Avatar className="w-16 h-16 bg-primary/0">
+              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+                <Avatar className="w-12 h-12 bg-primary/0">
+                  <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
+                    <ShieldCheck />
+                  </AvatarFallback>
+                </Avatar>
+              </AvatarFallback>
+            </Avatar>
+          </AvatarFallback>
+        </Avatar>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col justify-start items-stretch space-y-6">
             <FormField
               control={form.control}
               name="currentPassword"
