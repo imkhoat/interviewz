@@ -52,6 +52,7 @@ export const auth = {
     "submit": "Gửi liên kết đặt lại",
     "loading": "Đang gửi...",
     "back-to-login": "Quay lại đăng nhập",
+    "remember-password": "Nhớ mật khẩu?",
     success: {
       title: "Thành công",
       description: "Liên kết đặt lại mật khẩu đã được gửi đến email của bạn",
