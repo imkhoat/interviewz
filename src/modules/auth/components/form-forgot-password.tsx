@@ -9,25 +9,24 @@ import { useForgotPassword } from "@auth/queries/auth.queries";
 import { useToast } from "@shared/hooks/use-toast";
 import { useTranslations } from "next-intl";
 
-const formSchema = z.object({
-  email: z.string().email("Invalid email address"),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
 export function FormForgotPassword() {
   const { toast } = useToast();
   const { mutate: forgotPassword, isPending } = useForgotPassword();
   const t = useTranslations("auth.forgot-password");
+  const tValidation = useTranslations("common.validation");
 
-  const form = useForm<FormValues>({
+  const formSchema = z.object({
+    email: z.string().email(tValidation("email")),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  function onSubmit(data: FormValues) {
+  function onSubmit(data: z.infer<typeof formSchema>) {
     forgotPassword(data.email, {
       onSuccess: () => {
         toast({
