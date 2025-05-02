@@ -8,6 +8,8 @@ import { Input } from "@shared/components/ui/input";
 import { useForgotPassword } from "@auth/queries/auth.queries";
 import { useToast } from "@shared/hooks/use-toast";
 import { useTranslations } from "next-intl";
+import { KeyRound } from 'lucide-react';
+import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
 
 export function FormForgotPassword() {
   const { toast } = useToast();
@@ -45,14 +47,27 @@ export function FormForgotPassword() {
   }
 
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
+    <Card className="page-login shadow-none border-0">
+      <CardHeader className="flex flex-col justify-start items-center text-center">
+        <Avatar className="w-20 h-20 bg-transparent">
+          <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+            <Avatar className="w-16 h-16 bg-primary/0">
+              <AvatarFallback className="bg-transparent ring-1 ring-inset ring-primary/5">
+                <Avatar className="w-12 h-12 bg-primary/0">
+                  <AvatarFallback className="bg-primary/0 ring-1 ring-inset ring-primary/10">
+                    <KeyRound />
+                  </AvatarFallback>
+                </Avatar>
+              </AvatarFallback>
+            </Avatar>
+          </AvatarFallback>
+        </Avatar>
         <CardTitle>{t("title")}</CardTitle>
         <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full flex flex-col justify-start items-stretch space-y-6">
             <FormField
               control={form.control}
               name="email"
@@ -60,7 +75,11 @@ export function FormForgotPassword() {
                 <FormItem>
                   <FormLabel>{t("email")}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t("email-placeholder")} {...field} />
+                    <Input
+                      type="email"
+                      placeholder={t("email-placeholder")}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -72,10 +91,13 @@ export function FormForgotPassword() {
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex justify-center">
-        <Button variant="link" onClick={() => window.history.back()}>
-          {t("back-to-login")}
-        </Button>
+      <CardFooter className="flex flex-col space-y-4">
+        <div className="text-sm text-center">
+          <span className="text-muted-foreground">{t("remember-password")}</span>{' '}
+          <a href="/auth/login" className="text-primary hover:underline">
+            {t("back-to-login")}
+          </a>
+        </div>
       </CardFooter>
     </Card>
   );

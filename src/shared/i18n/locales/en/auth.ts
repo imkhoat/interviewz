@@ -52,6 +52,7 @@ export const auth = {
     "submit": "Send Reset Link",
     "loading": "Sending...",
     "back-to-login": "Back to login",
+    "remember-password": "Remember password?",
     success: {
       title: "Success",
       description: "Password reset link has been sent to your email",
@@ -78,6 +79,12 @@ export const auth = {
     error: {
       title: "Error",
       description: "Failed to reset password",
+    },
+    "invalid-token": {
+      title: "Invalid Reset Token",
+      description: "Your password reset token is invalid or has expired",
+      message: "Please request a new password reset link",
+      "back-to-login": "Back to login",
     },
   },
   "change-password": {

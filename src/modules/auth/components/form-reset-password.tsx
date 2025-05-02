@@ -19,6 +19,7 @@ import { Avatar, AvatarFallback } from "@shared/components/ui/avatar";
 import { Input } from "@shared/components/ui/input";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { Alert } from "@/shared/components/ui/alert";
 
 interface FormResetPasswordProps {
   token: string;
@@ -160,9 +161,9 @@ export function FormInvalidToken() {
         <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-6">
-        <p className="text-center text-muted-foreground">
+        <Alert variant="destructive" className="text-center">
           {t("message")}
-        </p>
+        </Alert>
       </CardContent>
       <CardFooter className="flex justify-center">
         <Button variant="link" asChild>
