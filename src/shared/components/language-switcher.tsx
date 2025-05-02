@@ -1,5 +1,5 @@
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
 
 import { Button } from '@shared/components/ui/button';
@@ -11,33 +11,18 @@ import {
 } from '@shared/components/ui/dropdown-menu';
 import { Globe } from 'lucide-react';
 
-// Mapping between English and Vietnamese paths
-const pathMapping: Record<string, Record<string, string>> = {
-  '/dashboard': {
-    vi: '/trang-chu',
-  },
-  '/trang-chu': {
-    en: '/dashboard',
-  },
-  // Add more mappings as needed
-};
-
 export function LanguageSwitcher() {
   const [, startTransition] = useTransition();
   const currentLocale = useLocale();
   const router = useRouter();
-  const pathname = usePathname();
 
   const onSelectChange = (nextLocale: string) => {
     startTransition(() => {
-      // Remove current locale from pathname if it exists
-      const pathWithoutLocale = pathname.replace(`/${currentLocale}`, '');
+      // Set the locale cookie
+      document.cookie = `NEXT_LOCALE=${nextLocale}; path=/`;
       
-      // Get the mapped path for the new locale if it exists
-      const mappedPath = pathMapping[pathWithoutLocale]?.[nextLocale] || pathWithoutLocale;
-      
-      // Add new locale to pathname
-      router.replace(`/${nextLocale}${mappedPath}`);
+      // Refresh the page to apply the new locale
+      router.refresh();
     });
   };
 
