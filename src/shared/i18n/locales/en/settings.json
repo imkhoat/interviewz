@@ -1,0 +1,30 @@
+{
+  "general": {
+    "title": "General Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "notifications": "Notifications",
+    "privacy": "Privacy"
+  },
+  "security": {
+    "title": "Security Settings",
+    "password": "Password",
+    "two-factor": "Two-Factor Authentication",
+    "sessions": "Active Sessions",
+    "devices": "Trusted Devices"
+  },
+  "notifications": {
+    "title": "Notification Settings",
+    "email": "Email Notifications",
+    "push": "Push Notifications",
+    "sms": "SMS Notifications",
+    "frequency": "Notification Frequency"
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "personal": "Personal Information",
+    "contact": "Contact Information",
+    "social": "Social Media",
+    "preferences": "Preferences"
+  }
+} 

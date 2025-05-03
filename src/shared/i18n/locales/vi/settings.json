@@ -1,0 +1,30 @@
+{
+  "general": {
+    "title": "Cài đặt chung",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "notifications": "Thông báo",
+    "privacy": "Quyền riêng tư"
+  },
+  "security": {
+    "title": "Cài đặt bảo mật",
+    "password": "Mật khẩu",
+    "two-factor": "Xác thực hai yếu tố",
+    "sessions": "Phiên đăng nhập",
+    "devices": "Thiết bị tin cậy"
+  },
+  "notifications": {
+    "title": "Cài đặt thông báo",
+    "email": "Thông báo qua email",
+    "push": "Thông báo đẩy",
+    "sms": "Thông báo SMS",
+    "frequency": "Tần suất thông báo"
+  },
+  "profile": {
+    "title": "Cài đặt hồ sơ",
+    "personal": "Thông tin cá nhân",
+    "contact": "Thông tin liên hệ",
+    "social": "Mạng xã hội",
+    "preferences": "Tùy chọn"
+  }
+} 
