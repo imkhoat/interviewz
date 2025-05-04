@@ -1,6 +1,6 @@
 import { Projector } from "lucide-react";
 
-import SectionWrapper from "@resume-builder/components/section-wrapper";
+import SectionWrapper from "@resume/components/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { Input } from "@shared/components/ui/input";
 import { Label } from "@shared/components/ui/label";

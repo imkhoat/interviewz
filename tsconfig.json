@@ -22,7 +22,7 @@
       "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
       "@auth/*": ["./src/modules/auth/*"],
-      "@resume-builder/*": ["./src/modules/resume-builder/*"],
+      "@resume/*": ["./src/modules/resume/*"],
       "@setting/*": ["./src/modules/setting/*"]
     }
   },

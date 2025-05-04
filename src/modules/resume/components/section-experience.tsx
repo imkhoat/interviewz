@@ -1,45 +1,35 @@
-import { User } from "lucide-react";
+import { TowerControl } from "lucide-react";
 
-import SectionWrapper from "@resume-builder/components/section-wrapper";
+import SectionWrapper from "@resume/components/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { Input } from "@shared/components/ui/input";
 import { Label } from "@shared/components/ui/label";
 import { Textarea } from "@shared/components/ui/textarea";
 
-export default function ProfilesSection({ open }: { open?: boolean }) {
+export default function SectionExperience() {
   return (
-    <SectionWrapper open={open} header="Profiles" icon={<User />}>
+    <SectionWrapper header="Work experience" icon={<TowerControl />}>
       <div className="flex flex-col justify-start items-stretch gap-4">
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="fullName">Fullname</Label>
-          <Input></Input>
-        </div>
-
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="fullName">Location</Label>
+          <Label htmlFor="fullName">Company</Label>
           <Input></Input>
         </div>
 
         <div className="flex flex-row justify-between items-start gap-4">
           <div className="grid w-1/2 items-center gap-1.5">
-            <Label htmlFor="fullName">Phone</Label>
+            <Label htmlFor="fullName">Job title</Label>
             <Input></Input>
           </div>
           <div className="grid w-1/2 items-center gap-1.5">
-            <Label htmlFor="fullName">Email</Label>
+            <Label htmlFor="fullName">Date</Label>
             <Input></Input>
           </div>
-        </div>
-
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="fullName">Website</Label>
-          <Input></Input>
         </div>
 
         <OpenAIPrompt>
           <div className="relative grid w-full items-center gap-1.5">
             <Label htmlFor="fullName" className="absolute -top-5">
-              Objective
+              Description
             </Label>
             <Textarea />
           </div>
