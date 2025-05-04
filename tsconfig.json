@@ -22,8 +22,7 @@
       "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
       "@auth/*": ["./src/modules/auth/*"],
-      "@resume/*": ["./src/modules/resume/*"],
-      "@setting/*": ["./src/modules/setting/*"]
+      "@resume/*": ["./src/modules/resume/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
