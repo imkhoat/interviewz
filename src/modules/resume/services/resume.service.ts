@@ -1,25 +1,29 @@
-import { resumeRepository } from "@shared/repositories/resume";
-import { Resume } from "@shared/types/resume";
+import { resumeRepository } from "@resume/repositories/resume.repository";
+import { Resume } from "@resume/types/resume.types";
 
 export const resumeService = {
-  fetchResumes:  async () => {
+  fetchResumes: async () => {
     const resumes = resumeRepository.getAll();
     return resumes;
   },
+
   fetchResumeDetail: async (id: string) => {
     const resume = resumeRepository.getById(id);
     return resume;
   },
+
   createResume: async (data: Resume) => {
     const resume = resumeRepository.create(data);
     return resume;
   },
+
   updateResume: async (id: string, data: Resume) => {
     const resume = resumeRepository.update(id, data);
     return resume;
   },
+
   deleteResume: async (id: string) => {
     const resume = resumeRepository.delete(id);
     return resume;
-  }
-};
+  },
+}; 
