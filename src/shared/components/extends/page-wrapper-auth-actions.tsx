@@ -43,7 +43,7 @@ export default function PageWrapperAuthActions() {
     );
   }
 
-  const userInitials = `${user?.firstName?.[0] || ''}${user?.lastName?.[0] || ''}`;
+  const userInitials = `${user?.firstName[0] || ''}${user?.lastName[0] || ''}`;
 
   return (
     <div className="flex items-center gap-2">

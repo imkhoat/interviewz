@@ -17,11 +17,11 @@ export default function PageWrapper({
   return (
     <div className="w-full h-full min-h-screen min-w-screen">
       <SidebarProvider>
-        {config?.sidebar ? <PageWrapperSidebar /> : null}
+        {config.sidebar ? <PageWrapperSidebar /> : null}
         <SidebarInset>
           <div className="flex flex-col justify-start items-stretch">
-            <div className={config?.header ? " border-b" : "hidden"}>
-              {config?.header ? <PageWrapperHeader /> : null}
+            <div className={config.header ? " border-b" : "hidden"}>
+              {config.header ? <PageWrapperHeader /> : null}
             </div>
             <div className="bg-slate-50 flex-grow"> {children}</div>
           </div>
