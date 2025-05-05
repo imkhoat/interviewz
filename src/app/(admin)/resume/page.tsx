@@ -1,8 +1,8 @@
 "use client";
 
-import ResumeBuilderCard from "@resume-builder/components/resume-builder";
+import ResumeBuilderCard from "@resume/components/resume-builder";
 import AsyncWrapper from "@shared/components/extends/async-wrapper";
-import { useResumes } from "@shared/queries/resume";
+import { useResumes } from "@resume/queries/resume.queries";
 
 export default function ResumeBuilderPage() {
   const { isLoading, error } = useResumes();

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -22,8 +22,7 @@
       "@/*": ["./src/*"],
       "@shared/*": ["./src/shared/*"],
       "@auth/*": ["./src/modules/auth/*"],
-      "@resume-builder/*": ["./src/modules/resume-builder/*"],
-      "@setting/*": ["./src/modules/setting/*"]
+      "@resume/*": ["./src/modules/resume/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

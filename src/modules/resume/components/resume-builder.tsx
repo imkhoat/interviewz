@@ -1,9 +1,9 @@
 import { Image } from "lucide-react";
 
-import SectionEducation from "@resume-builder/components/section-education";
-import SectionExperience from "@resume-builder/components/section-experience";
-import SectionProfile from "@resume-builder/components/section-profile";
-import SectionProject from "@resume-builder/components/section-project";
+import SectionEducation from "@resume/components/section-education";
+import SectionExperience from "@resume/components/section-experience";
+import SectionProfile from "@resume/components/section-profile";
+import SectionProject from "@resume/components/section-project";
 
 export default function ResumeBuilderCard() {
   return (

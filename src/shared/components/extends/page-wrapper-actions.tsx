@@ -11,9 +11,9 @@ export default function PageWrapperActions() {
   const state = usePageWrapperStore((state) => state.state);
 
   return (
-    config?.actions ?? (
+    config.actions ?? (
       <div className="flex-grow flex flex-row justify-end items-center gap-x-2">
-        {state?.actions?.map((action, index) => (
+        {state.actions?.map((action, index) => (
           Array.isArray(action) ? 
           <DropdownMenuWrapper key={index} label="More" items={action} /> :
           <Button
@@ -22,7 +22,7 @@ export default function PageWrapperActions() {
             variant={action.variant}
             onClick={action.onClick}
           >
-            {action?.icon && React.createElement(action.icon)}
+            {action.icon && React.createElement(action.icon)}
             {action.label}
           </Button>
         ))}

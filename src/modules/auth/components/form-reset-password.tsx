@@ -20,6 +20,7 @@ import { Input } from "@shared/components/ui/input";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Alert } from "@/shared/components/ui/alert";
+import { useRouter } from "next/navigation";
 
 interface FormResetPasswordProps {
   token: string;
@@ -30,6 +31,7 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
   const { mutate: resetPassword, isPending } = useResetPassword();
   const t = useTranslations("auth.reset-password");
   const tValidation = useTranslations("common.validation");
+  const router = useRouter();
 
   const formSchema = z.object({
     token: z.string(),
@@ -56,6 +58,7 @@ export function FormResetPassword({ token }: FormResetPasswordProps) {
           title: t("success.title"),
           description: t("success.description"),
         });
+        router.push("/auth/login");
       },
       onError: (error) => {
         toast({

@@ -63,20 +63,20 @@ export const useSidebarItems = () => {
       items: [
         {
           title: "Resume Builder",
-          url: "/resume-builder",
+          url: "/resume",
           icon: FileText,
           items: [
             {
               title: "My Resumes",
-              url: "/resume-builder",
+              url: "/resume",
             },
             {
               title: "Create New",
-              url: "/resume-builder/create",
+              url: "/resume/create",
             },
             {
               title: "Templates",
-              url: "/resume-builder/templates",
+              url: "/resume/templates",
             },
           ],
         },
