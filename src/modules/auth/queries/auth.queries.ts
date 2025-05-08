@@ -5,6 +5,7 @@ import { authService } from "@auth/services/auth.service";
 import { useAuthStore } from "@auth/stores/auth-store";
 import { toast } from "@shared/hooks/use-toast";
 import { authRepository } from "@auth/repositories/auth.repository";
+import { httpClient } from "@shared/lib/http-client";
 
 export const useLogin = () => {
   const router = useRouter();
@@ -108,5 +109,16 @@ export const useResetPassword = () => {
 export const useChangePassword = () => {
   return useMutation({
     mutationFn: (data: { password: string; newPassword: string }) => authService.changePassword(data),
+  });
+};
+
+export const useVerifyEmail = () => {
+  return useMutation({
+    mutationFn: (token: string) => {
+      return httpClient("/auth/verify-email", {
+        method: "POST",
+        body: JSON.stringify({ token }),
+      });
+    },
   });
 }; 
