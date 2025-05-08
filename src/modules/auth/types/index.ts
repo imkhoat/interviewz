@@ -12,11 +12,11 @@ export interface SignupCredentials {
 }
 
 export interface AuthResponse {
-  tokens: {
+  tokens?: {
     accessToken: string;
     refreshToken: string;
   };
-  user: {
+  user?: {
     id: string;
     email: string;
     firstName: string;
@@ -24,6 +24,7 @@ export interface AuthResponse {
     fullName: string;
     avatar?: string;
   };
+  message?: string;
 }
 
 export interface AuthError {
