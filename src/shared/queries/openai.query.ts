@@ -1,5 +1,5 @@
-import { openAIRepository } from "../repositories/openai.repository";
-import { useOpenAIReducer } from "../reducers/openai.reducer";
+import { openAIRepository } from "@shared/repositories/openai.repository";
+import { useOpenAIReducer } from "@shared/reducers/openai.reducer";
 
 export const useOpenAIQuery = () => {
   const { setLoading, setError, setResponse, reset } = useOpenAIReducer();

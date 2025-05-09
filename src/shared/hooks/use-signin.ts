@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { signIn as signInApi } from "../api/auth";
+import { signIn as signInApi } from "@shared/api/auth";
 
 interface SignInData {
   email: string;

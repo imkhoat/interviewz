@@ -1,4 +1,4 @@
-import { openAIService } from "../services/openai.service";
+import { openAIService } from "@shared/services/openai.service";
 
 export const openAIRepository = {
   async chatCompletion(messages: any[]) {

@@ -1,4 +1,4 @@
-import { SettingTabs } from "@/modules/setting/components/setting-tabs";
+import { SettingTabs } from "@setting/components/setting-tabs";
 
 export default function SettingsLayout({
   children,
