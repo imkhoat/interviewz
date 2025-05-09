@@ -38,7 +38,7 @@ export default getRequestConfig(async ({ locale }) => {
   return {
     locale: locale as string,
     messages: {
-      common: (await import(`./locales/${locale}/common.json`)).default,
+      common: (await import(`@shared/i18n/locales/${locale}/common.json`)).default,
       ...moduleMessages,
     },
   };

@@ -1,7 +1,7 @@
-import common from './common.json';
-import auth from './auth.json';
-import resume from './resume.json';
-import settings from './settings.json';
+import common from '@shared/i18n/locales/en/common.json';
+import auth from '@shared/i18n/locales/en/auth.json';
+import resume from '@shared/i18n/locales/en/resume.json';
+import settings from '@shared/i18n/locales/en/settings.json';
 
 const message = {
   common,

@@ -4,7 +4,7 @@ import { DropdownMenuWrapper } from "@shared/components/extends/dropdown-menu-wr
 import PageWrapperAuthActions from "@shared/components/extends/page-wrapper-auth-actions"
 import { Button } from "@shared/components/ui/button"
 import { usePageWrapperStore } from "@shared/stores/page-wrapper.store";
-import { LanguageSwitcher } from '../language-switcher';
+import { LanguageSwitcher } from '@shared/components/language-switcher';
 
 export default function PageWrapperActions() {
   const config = usePageWrapperStore((state) => state.config);
