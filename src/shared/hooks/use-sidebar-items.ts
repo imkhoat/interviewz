@@ -68,11 +68,7 @@ export const useSidebarItems = () => {
           items: [
             {
               title: "My Resumes",
-              url: "/resume",
-            },
-            {
-              title: "Create New",
-              url: "/resume/create",
+              url: "/resume/my-resumes",
             },
             {
               title: "Templates",
