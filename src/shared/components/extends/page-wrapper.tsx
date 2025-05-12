@@ -23,7 +23,7 @@ export default function PageWrapper({
             <div className={config.header ? " border-b" : "hidden"}>
               {config.header ? <PageWrapperHeader /> : null}
             </div>
-            <div className="bg-slate-50 flex-grow"> {children}</div>
+            <div className="bg-slate-50 flex-grow p-8"> {children}</div>
           </div>
         </SidebarInset>
       </SidebarProvider>
