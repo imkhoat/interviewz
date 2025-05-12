@@ -30,7 +30,7 @@ export default function LayoutAdmin({
   // #endregion
 
   return (
-    <div className="h-viewport max-h-viewport py-8">
+    <div className="h-viewport max-h-viewport">
       {children}
     </div>
   );
