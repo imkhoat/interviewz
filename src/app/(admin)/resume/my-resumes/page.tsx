@@ -5,6 +5,7 @@ import { useResumes } from "@resume/queries/resume.queries";
 import ResumeActionBar, { ViewMode } from "@resume/components/resume-action-bar";
 import ResumeTable from "@resume/components/resume-table";
 import ResumeCardGrid from "@resume/components/resume-card-grid";
+import { useResume } from "@resume/hooks/use-resume";
 import { useState } from "react";
 
 // Mock data
@@ -50,11 +51,7 @@ const mockResumes = [
 export default function MyResumesPage() {
   const { isLoading, error } = useResumes();
   const [viewMode, setViewMode] = useState<ViewMode>("card");
-
-  const handleDelete = async (id: string) => {
-    // TODO: Implement delete functionality
-    console.log("Delete resume:", id);
-  };
+  const { handleDeleteResume, isDeleting } = useResume();
 
   return (
     <AsyncWrapper loading={isLoading} error={error}>
@@ -66,12 +63,12 @@ export default function MyResumesPage() {
         {viewMode === "card" ? (
           <ResumeCardGrid 
             resumes={mockResumes}
-            onDelete={handleDelete}
+            onDelete={handleDeleteResume}
           />
         ) : (
           <ResumeTable 
             resumes={mockResumes}
-            onDelete={handleDelete}
+            onDelete={handleDeleteResume}
           />
         )}
       </div>
