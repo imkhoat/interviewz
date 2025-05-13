@@ -12,14 +12,26 @@ export const resumeService = {
     return resume;
   },
 
-  createResume: async (data: Resume) => {
-    const resume = resumeRepository.create(data);
-    return resume;
+  createResume: async (data: Omit<Resume, "id" | "userId" | "createdAt" | "updatedAt">) => {
+    const resume: Resume = {
+      ...data,
+      id: crypto.randomUUID(),
+      userId: "current-user", // TODO: Get from auth context
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    return resumeRepository.create(resume);
   },
 
-  updateResume: async (id: string, data: Resume) => {
-    const resume = resumeRepository.update(id, data);
-    return resume;
+  updateResume: async (id: string, data: Omit<Resume, "id" | "userId" | "createdAt" | "updatedAt">) => {
+    const resume: Resume = {
+      ...data,
+      id,
+      userId: "current-user", // TODO: Get from auth context
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    return resumeRepository.update(id, resume);
   },
 
   deleteResume: async (id: string) => {
