@@ -1,36 +1,26 @@
 import { Plus } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
 
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Button } from "@shared/components/ui/button";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
-
-export const customFieldsFormSchema = z.object({
-  fields: z.array(z.object({
-    id: z.string(),
-    name: z.string().min(1, "Field name is required"),
-    value: z.string().min(1, "Field value is required"),
-  })).default([]),
-});
-
-export type CustomFieldsFormValues = z.infer<typeof customFieldsFormSchema>;
+import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 export default function SectionCustomFields() {
-  const form = useFormContext<CustomFieldsFormValues>();
+  const form = useFormContext<ResumeFormValues>();
 
   const addField = () => {
-    const fields = form.getValues("fields") || [];
-    form.setValue("fields", [...fields, { id: crypto.randomUUID(), name: "", value: "" }]);
+    const fields = form.getValues("customFields.fields") || [];
+    form.setValue("customFields.fields", [...fields, { id: crypto.randomUUID(), name: "", value: "" }]);
   };
 
   const removeField = (index: number) => {
-    const fields = form.getValues("fields") || [];
-    form.setValue("fields", fields.filter((_, i) => i !== index));
+    const fields = form.getValues("customFields.fields") || [];
+    form.setValue("customFields.fields", fields.filter((_, i) => i !== index));
   };
 
-  const fields = form.watch("fields") || [];
+  const fields = form.watch("customFields.fields") || [];
 
   return (
     <SectionWrapper header="Custom Fields" icon={<Plus />}>
@@ -39,7 +29,7 @@ export default function SectionCustomFields() {
           <div key={field.id} className="flex flex-row justify-between items-start gap-4">
             <FormField
               control={form.control}
-              name={`fields.${index}.name`}
+              name={`customFields.fields.${index}.name`}
               render={({ field }) => (
                 <FormItem className="w-1/2">
                   <FormLabel>Field name</FormLabel>
@@ -52,7 +42,7 @@ export default function SectionCustomFields() {
             />
             <FormField
               control={form.control}
-              name={`fields.${index}.value`}
+              name={`customFields.fields.${index}.value`}
               render={({ field }) => (
                 <FormItem className="w-1/2">
                   <FormLabel>Field value</FormLabel>

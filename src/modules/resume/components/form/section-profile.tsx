@@ -1,33 +1,22 @@
 import { User } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
 
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
 import { Textarea } from "@shared/components/ui/textarea";
-
-export const profileFormSchema = z.object({
-  fullName: z.string().min(1, "Full name is required"),
-  email: z.string().email("Invalid email").min(1, "Email is required"),
-  phone: z.string().min(1, "Phone is required"),
-  location: z.string().min(1, "Location is required"),
-  objective: z.string().min(1, "Objective is required"),
-  website: z.string().url("Invalid URL").optional().or(z.literal("")),
-});
-
-export type ProfileFormValues = z.infer<typeof profileFormSchema>;
+import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 export default function SectionProfile() {
-  const form = useFormContext<ProfileFormValues>();
+  const form = useFormContext<ResumeFormValues>();
 
   return (
     <SectionWrapper header="Profile" icon={<User />}>
       <div className="flex flex-col justify-start items-stretch gap-4">
         <FormField
           control={form.control}
-          name="fullName"
+          name="profile.fullName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Full name</FormLabel>
@@ -42,7 +31,7 @@ export default function SectionProfile() {
         <div className="flex flex-row justify-between items-start gap-4">
           <FormField
             control={form.control}
-            name="email"
+            name="profile.email"
             render={({ field }) => (
               <FormItem className="w-1/2">
                 <FormLabel>Email</FormLabel>
@@ -55,7 +44,7 @@ export default function SectionProfile() {
           />
           <FormField
             control={form.control}
-            name="phone"
+            name="profile.phone"
             render={({ field }) => (
               <FormItem className="w-1/2">
                 <FormLabel>Phone</FormLabel>
@@ -70,7 +59,7 @@ export default function SectionProfile() {
 
         <FormField
           control={form.control}
-          name="location"
+          name="profile.location"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Location</FormLabel>
@@ -84,7 +73,7 @@ export default function SectionProfile() {
 
         <FormField
           control={form.control}
-          name="website"
+          name="profile.website"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Website</FormLabel>
@@ -99,7 +88,7 @@ export default function SectionProfile() {
         <OpenAIPrompt>
           <FormField
             control={form.control}
-            name="objective"
+            name="profile.objective"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Objective</FormLabel>

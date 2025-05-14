@@ -98,7 +98,8 @@ export default function ResumeBuilder() {
   return (
     <FormProvider {...form}>
       <div className="flex flex-col min-h-screen">
-        <div className="flex-1 grid grid-cols-12 gap-8">
+        {/* Main content */}
+        <div className="flex-1 grid grid-cols-12 gap-8 p-8 pb-0 bg-white rounded-lg">
           <div className="h-full order-2 lg:order-1 col-span-12 lg:col-span-6 flex flex-col justify-start items-stretch gap-4 overflow-y-scroll pr-4 -mr-4 rounded-md">
             <ResumeForm onSubmit={handleFormSubmit} />
           </div>
@@ -111,14 +112,20 @@ export default function ResumeBuilder() {
             </div>
           </div>
         </div>
-        <ResumeActions
-          onSave={handleFormSubmit}
-          onPublish={handlePublish}
-          onDelete={handleDelete}
-          isSaving={isSaving}
-          isPublishing={isPublishing}
-          isDeleting={isDeleting}
-        />
+
+        {/* Sticky actions */}
+        <div className="sticky bottom-0 z-50 bg-background/80 backdrop-blur-sm">
+          <div className="container py-4">
+            <ResumeActions
+              onSave={handleFormSubmit}
+              onPublish={handlePublish}
+              onDelete={handleDelete}
+              isSaving={isSaving}
+              isPublishing={isPublishing}
+              isDeleting={isDeleting}
+            />
+          </div>
+        </div>
       </div>
     </FormProvider>
   );
