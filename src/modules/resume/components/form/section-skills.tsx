@@ -1,11 +1,10 @@
-import { Brain } from "lucide-react";
+import { Wrench } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 
-import SectionWrapper from "@resume/components/section-wrapper";
+import SectionWrapper from "@resume/components/form/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
-import { Input } from "@shared/components/ui/input";
 import { Textarea } from "@shared/components/ui/textarea";
 
 export const skillsFormSchema = z.object({
@@ -21,7 +20,7 @@ export default function SectionSkills() {
   const form = useFormContext<SkillsFormValues>();
 
   return (
-    <SectionWrapper header="Skills" icon={<Brain />}>
+    <SectionWrapper header="Skills" icon={<Wrench />}>
       <div className="flex flex-col justify-start items-stretch gap-4">
         <OpenAIPrompt>
           <FormField
@@ -31,7 +30,7 @@ export default function SectionSkills() {
               <FormItem>
                 <FormLabel>Technical Skills</FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="e.g. JavaScript, React, Node.js, TypeScript" />
+                  <Textarea {...field} placeholder="e.g. JavaScript, React, Node.js, MongoDB" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -62,7 +61,7 @@ export default function SectionSkills() {
             <FormItem>
               <FormLabel>Languages</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="e.g. English (Fluent), Spanish (Intermediate)" />
+                <Textarea {...field} placeholder="e.g. English (Native), Spanish (Fluent)" />
               </FormControl>
               <FormMessage />
             </FormItem>

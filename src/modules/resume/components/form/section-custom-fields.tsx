@@ -12,7 +12,7 @@ export const customFieldsFormSchema = z.object({
     id: z.string(),
     name: z.string().min(1, "Field name is required"),
     value: z.string().min(1, "Field value is required"),
-  })),
+  })).default([]),
 });
 
 export type CustomFieldsFormValues = z.infer<typeof customFieldsFormSchema>;
@@ -21,16 +21,16 @@ export default function SectionCustomFields() {
   const form = useFormContext<CustomFieldsFormValues>();
 
   const addField = () => {
-    const fields = form.getValues("fields");
+    const fields = form.getValues("fields") || [];
     form.setValue("fields", [...fields, { id: crypto.randomUUID(), name: "", value: "" }]);
   };
 
   const removeField = (index: number) => {
-    const fields = form.getValues("fields");
+    const fields = form.getValues("fields") || [];
     form.setValue("fields", fields.filter((_, i) => i !== index));
   };
 
-  const fields = form.watch("fields");
+  const fields = form.watch("fields") || [];
 
   return (
     <SectionWrapper header="Custom Fields" icon={<Plus />}>
