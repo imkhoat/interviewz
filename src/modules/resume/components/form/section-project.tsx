@@ -1,33 +1,22 @@
 import { Code2 } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
 
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
 import { Input } from "@shared/components/ui/input";
 import { Textarea } from "@shared/components/ui/textarea";
-
-export const projectFormSchema = z.object({
-  name: z.string().min(1, "Project name is required"),
-  role: z.string().min(1, "Role is required"),
-  date: z.string().min(1, "Date is required"),
-  description: z.string().min(1, "Description is required"),
-  technologies: z.string().min(1, "Technologies is required"),
-  url: z.string().url("Invalid URL").optional().or(z.literal("")),
-});
-
-export type ProjectFormValues = z.infer<typeof projectFormSchema>;
+import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 export default function SectionProject() {
-  const form = useFormContext<ProjectFormValues>();
+  const form = useFormContext<ResumeFormValues>();
 
   return (
     <SectionWrapper header="Projects" icon={<Code2 />}>
       <div className="flex flex-col justify-start items-stretch gap-4">
         <FormField
           control={form.control}
-          name="name"
+          name="project.name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Project name</FormLabel>
@@ -41,7 +30,7 @@ export default function SectionProject() {
 
         <FormField
           control={form.control}
-          name="role"
+          name="project.role"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Role</FormLabel>
@@ -55,7 +44,7 @@ export default function SectionProject() {
 
         <FormField
           control={form.control}
-          name="date"
+          name="project.date"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Date</FormLabel>
@@ -69,7 +58,7 @@ export default function SectionProject() {
 
         <FormField
           control={form.control}
-          name="technologies"
+          name="project.technologies"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Technologies</FormLabel>
@@ -83,7 +72,7 @@ export default function SectionProject() {
 
         <FormField
           control={form.control}
-          name="url"
+          name="project.url"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Project URL</FormLabel>
@@ -98,7 +87,7 @@ export default function SectionProject() {
         <OpenAIPrompt>
           <FormField
             control={form.control}
-            name="description"
+            name="project.description"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Description</FormLabel>

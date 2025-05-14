@@ -8,7 +8,7 @@ export default function CreateResumePage() {
     <AsyncWrapper>
       <div className="container mx-auto">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div>
             <ResumeBuilderCard />
           </div>
         </div>

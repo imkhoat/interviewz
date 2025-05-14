@@ -1,23 +1,14 @@
 import { Wrench } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
 
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
 import { Textarea } from "@shared/components/ui/textarea";
-
-export const skillsFormSchema = z.object({
-  technical: z.string().min(1, "Technical skills are required"),
-  soft: z.string().min(1, "Soft skills are required"),
-  languages: z.string().min(1, "Languages are required"),
-  certifications: z.string().optional(),
-});
-
-export type SkillsFormValues = z.infer<typeof skillsFormSchema>;
+import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 export default function SectionSkills() {
-  const form = useFormContext<SkillsFormValues>();
+  const form = useFormContext<ResumeFormValues>();
 
   return (
     <SectionWrapper header="Skills" icon={<Wrench />}>
@@ -25,7 +16,7 @@ export default function SectionSkills() {
         <OpenAIPrompt>
           <FormField
             control={form.control}
-            name="technical"
+            name="skills.technical"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Technical Skills</FormLabel>
@@ -41,7 +32,7 @@ export default function SectionSkills() {
         <OpenAIPrompt>
           <FormField
             control={form.control}
-            name="soft"
+            name="skills.soft"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Soft Skills</FormLabel>
@@ -56,7 +47,7 @@ export default function SectionSkills() {
 
         <FormField
           control={form.control}
-          name="languages"
+          name="skills.languages"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Languages</FormLabel>
@@ -70,7 +61,7 @@ export default function SectionSkills() {
 
         <FormField
           control={form.control}
-          name="certifications"
+          name="skills.certifications"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Certifications</FormLabel>

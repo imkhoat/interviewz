@@ -1,17 +1,15 @@
-import { Save, Trash2, Upload } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
-
 import { Button } from "@shared/components/ui/button";
 import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 interface ResumeActionsProps {
-  onSave?: (data: ResumeFormValues) => void;
-  onPublish?: () => void;
-  onDelete?: () => void;
-  isSaving?: boolean;
-  isPublishing?: boolean;
-  isDeleting?: boolean;
+  onSave: (data: ResumeFormValues) => void;
+  onPublish: () => void;
+  onDelete: () => void;
+  isSaving: boolean;
+  isPublishing: boolean;
+  isDeleting: boolean;
 }
 
 export default function ResumeActions({
@@ -31,7 +29,7 @@ export default function ResumeActions({
       return;
     }
     const data = form.getValues();
-    onSave?.(data);
+    onSave(data);
   };
 
   const handlePublish = async () => {
@@ -40,40 +38,37 @@ export default function ResumeActions({
       toast.error("Please fill in all required fields");
       return;
     }
-    onPublish?.();
+    onPublish();
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex justify-center items-center p-4 bg-background/80 backdrop-blur-sm border-t">
-      <div className="flex gap-4">
+    <div className="border-t bg-background">
+      <div className="container py-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Button
+            type="submit"
+            form="resume-form"
+            onClick={handleSave}
+            disabled={isSaving}
+          >
+            {isSaving ? "Saving..." : "Save"}
+          </Button>
+          <Button
+            type="submit"
+            form="resume-form"
+            onClick={handlePublish}
+            disabled={isPublishing}
+            variant="secondary"
+          >
+            {isPublishing ? "Publishing..." : "Publish"}
+          </Button>
+        </div>
         <Button
-          type="button"
-          variant="destructive"
-          size="icon"
           onClick={onDelete}
           disabled={isDeleting}
+          variant="destructive"
         >
-          <Trash2 className="h-4 w-4" />
-        </Button>
-        <Button
-          type="submit"
-          form="resume-form"
-          variant="default"
-          onClick={handleSave}
-          disabled={isSaving}
-        >
-          <Save className="h-4 w-4 mr-2" />
-          Save
-        </Button>
-        <Button
-          type="submit"
-          form="resume-form"
-          variant="default"
-          onClick={handlePublish}
-          disabled={isPublishing}
-        >
-          <Upload className="h-4 w-4 mr-2" />
-          Publish
+          {isDeleting ? "Deleting..." : "Delete"}
         </Button>
       </div>
     </div>
