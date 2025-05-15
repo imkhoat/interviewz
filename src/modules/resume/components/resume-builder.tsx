@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { toast } from "@shared/hooks/use-toast";
 
 import ResumeForm from "@resume/components/form/resume-form";
 import ResumeActions from "@resume/components/form/resume-actions";
@@ -62,24 +62,75 @@ export default function ResumeBuilder() {
     try {
       setIsSaving(true);
       console.log("Saving resume:", data);
-      toast.success("Resume saved successfully");
+      toast({
+        title: "Success",
+        description: "Resume saved successfully",
+      });
     } catch (error) {
       console.error("Error saving resume:", error);
-      toast.error("Failed to save resume");
+      toast({
+        title: "Error",
+        description: "Failed to save resume",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSave = async () => {
+    const isValid = await form.trigger();
+    if (!isValid) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setIsSaving(true);
+      const data = form.getValues();
+      await handleFormSubmit(data);
+    } catch (error) {
+      console.error("Error saving resume:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save resume",
+        variant: "destructive",
+      });
     } finally {
       setIsSaving(false);
     }
   };
 
   const handlePublish = async () => {
+    const isValid = await form.trigger();
+    if (!isValid) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       setIsPublishing(true);
       const data = form.getValues();
       console.log("Publishing resume:", data);
-      toast.success("Resume published successfully");
+      toast({
+        title: "Success",
+        description: "Resume published successfully",
+      });
     } catch (error) {
       console.error("Error publishing resume:", error);
-      toast.error("Failed to publish resume");
+      toast({
+        title: "Error",
+        description: "Failed to publish resume",
+        variant: "destructive",
+      });
     } finally {
       setIsPublishing(false);
     }
@@ -89,10 +140,17 @@ export default function ResumeBuilder() {
     try {
       setIsDeleting(true);
       console.log("Deleting resume");
-      toast.success("Resume deleted successfully");
+      toast({
+        title: "Success",
+        description: "Resume deleted successfully",
+      });
     } catch (error) {
       console.error("Error deleting resume:", error);
-      toast.error("Failed to delete resume");
+      toast({
+        title: "Error",
+        description: "Failed to delete resume",
+        variant: "destructive",
+      });
     } finally {
       setIsDeleting(false);
     }
@@ -102,7 +160,7 @@ export default function ResumeBuilder() {
     <FormProvider {...form}>
       <div className="flex flex-col min-h-screen">
         {/* Main content */}
-        <div className="flex-1 grid grid-cols-12 gap-8 p-8 pb-0 bg-white rounded-lg">
+        <div className="flex-1 grid grid-cols-12 gap-8 p-8 bg-white rounded-lg mb-12">
           <div className="h-full order-2 lg:order-1 col-span-12 lg:col-span-6 flex flex-col justify-start items-stretch gap-4 overflow-y-scroll pr-4 -mr-4 rounded-md">
             <ResumeForm onSubmit={handleFormSubmit} />
           </div>
@@ -119,7 +177,7 @@ export default function ResumeBuilder() {
         {/* Sticky actions */}
         <div className="fixed bottom-4 border left-1/2 -translate-x-1/2 z-50 shadow-lg rounded-2xl p-3 w-fit min-w-64 bg-background">
             <ResumeActions
-              onSave={handleFormSubmit}
+              onSave={handleSave}
               onPublish={handlePublish}
               onDelete={handleDelete}
               isSaving={isSaving}

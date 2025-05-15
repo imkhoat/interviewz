@@ -1,11 +1,19 @@
-import { useFormContext } from "react-hook-form";
-import { toast } from "sonner";
 import { Button } from "@shared/components/ui/button";
-import { Save, Send, Trash2 } from "lucide-react";
-import { ResumeFormValues } from "@resume/schemas/resume.schema";
+import { Save, Trash2, Upload } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@shared/components/ui/alert-dialog";
 
 interface ResumeActionsProps {
-  onSave: (data: ResumeFormValues) => Promise<void>;
+  onSave: () => Promise<void>;
   onPublish: () => Promise<void>;
   onDelete: () => Promise<void>;
   isSaving: boolean;
@@ -21,56 +29,51 @@ export default function ResumeActions({
   isPublishing,
   isDeleting,
 }: ResumeActionsProps) {
-  const form = useFormContext<ResumeFormValues>();
-
-  const handleSave = async () => {
-    const isValid = await form.trigger();
-    if (!isValid) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
-    const data = form.getValues();
-    onSave(data);
-  };
-
-  const handlePublish = async () => {
-    const isValid = await form.trigger();
-    if (!isValid) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
-    onPublish();
-  };
-
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
         variant="outline"
         size="sm"
-        onClick={handleSave}
+        onClick={onSave}
         disabled={isSaving}
       >
         <Save className="w-4 h-4 mr-2" />
-        Save
+        {isSaving ? "Saving..." : "Save"}
       </Button>
       <Button
-        variant="default"
+        variant="outline"
         size="sm"
-        onClick={handlePublish}
+        onClick={onPublish}
         disabled={isPublishing}
       >
-        <Send className="w-4 h-4 mr-2" />
-        Publish
+        <Upload className="w-4 h-4 mr-2" />
+        {isPublishing ? "Publishing..." : "Publish"}
       </Button>
-      <Button
-        variant="destructive"
-        size="sm"
-        onClick={onDelete}
-        disabled={isDeleting}
-      >
-        <Trash2 className="w-4 h-4 mr-2" />
-        Delete
-      </Button>
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={isDeleting}
+          >
+            <Trash2 className="w-4 h-4 mr-2" />
+            {isDeleting ? "Deleting..." : "Delete"}
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your resume.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
