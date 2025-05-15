@@ -49,7 +49,7 @@ const customFieldSchema = z.object({
 });
 
 const customFieldsSchema = z.object({
-  fields: z.array(customFieldSchema),
+  fields: z.array(customFieldSchema).optional().default([]),
 });
 
 export const resumeFormSchema = z.object({
@@ -58,7 +58,7 @@ export const resumeFormSchema = z.object({
   educations: z.array(educationSchema),
   projects: z.array(projectSchema),
   skills: skillsSchema,
-  customFields: customFieldsSchema,
+  customFields: customFieldsSchema.optional().default({ fields: [] }),
 });
 
 export type ResumeFormValues = z.infer<typeof resumeFormSchema>; 

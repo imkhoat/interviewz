@@ -71,9 +71,33 @@ export default function ResumeBuilder() {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      setIsSaving(true);
+      const isValid = await form.trigger();
+      if (!isValid) {
+        toast.error("Please fill in all required fields");
+        return;
+      }
+      const data = form.getValues();
+      console.log("Saving resume:", data);
+      await handleFormSubmit(data);
+    } catch (error) {
+      console.error("Error saving resume:", error);
+      toast.error("Failed to save resume");
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   const handlePublish = async () => {
     try {
       setIsPublishing(true);
+      const isValid = await form.trigger();
+      if (!isValid) {
+        toast.error("Please fill in all required fields");
+        return;
+      }
       const data = form.getValues();
       console.log("Publishing resume:", data);
       toast.success("Resume published successfully");
@@ -102,7 +126,7 @@ export default function ResumeBuilder() {
     <FormProvider {...form}>
       <div className="flex flex-col min-h-screen">
         {/* Main content */}
-        <div className="flex-1 grid grid-cols-12 gap-8 p-8 pb-0 bg-white rounded-lg">
+        <div className="flex-1 grid grid-cols-12 gap-8 p-8 bg-white rounded-lg mb-24">
           <div className="h-full order-2 lg:order-1 col-span-12 lg:col-span-6 flex flex-col justify-start items-stretch gap-4 overflow-y-scroll pr-4 -mr-4 rounded-md">
             <ResumeForm onSubmit={handleFormSubmit} />
           </div>
@@ -119,7 +143,7 @@ export default function ResumeBuilder() {
         {/* Sticky actions */}
         <div className="fixed bottom-4 border left-1/2 -translate-x-1/2 z-50 shadow-lg rounded-2xl p-3 w-fit min-w-64 bg-background">
             <ResumeActions
-              onSave={handleFormSubmit}
+              onSave={handleSave}
               onPublish={handlePublish}
               onDelete={handleDelete}
               isSaving={isSaving}

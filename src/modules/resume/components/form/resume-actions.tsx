@@ -24,12 +24,14 @@ export default function ResumeActions({
   const form = useFormContext<ResumeFormValues>();
 
   const handleSave = async () => {
+    console.log('Saving');
     const isValid = await form.trigger();
     if (!isValid) {
       toast.error("Please fill in all required fields");
       return;
     }
     const data = form.getValues();
+    console.log('Data', data);
     onSave(data);
   };
 
