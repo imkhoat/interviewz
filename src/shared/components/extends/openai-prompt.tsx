@@ -27,6 +27,7 @@ export default function OpenAIPrompt({
           variant="secondary"
           className="h-7"
           onClick={handleAIGenerate}
+          type="button"
         >
           <WandSparkles className="text-sm" />
           AI Generate

@@ -1,59 +1,64 @@
 import { z } from "zod";
 
-export const profileFormSchema = z.object({
+const profileSchema = z.object({
   fullName: z.string().min(1, "Full name is required"),
-  email: z.string().email("Invalid email").min(1, "Email is required"),
-  phone: z.string().min(1, "Phone is required"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(1, "Phone number is required"),
   location: z.string().min(1, "Location is required"),
   objective: z.string().min(1, "Objective is required"),
-  website: z.string().url("Invalid URL").optional().or(z.literal("")),
+  website: z.string().optional(),
 });
 
-export const experienceFormSchema = z.object({
-  company: z.string().min(1, "Company is required"),
+const experienceSchema = z.object({
+  company: z.string().min(1, "Company name is required"),
   jobTitle: z.string().min(1, "Job title is required"),
-  date: z.string().min(1, "Date is required"),
+  startDate: z.string().min(1, "Start date is required"),
+  endDate: z.string().optional(),
   description: z.string().min(1, "Description is required"),
 });
 
-export const educationFormSchema = z.object({
-  school: z.string().min(1, "School is required"),
+const educationSchema = z.object({
+  school: z.string().min(1, "School name is required"),
   degree: z.string().min(1, "Degree is required"),
-  date: z.string().min(1, "Date is required"),
+  startDate: z.string().min(1, "Start date is required"),
+  endDate: z.string().optional(),
   description: z.string().min(1, "Description is required"),
 });
 
-export const projectFormSchema = z.object({
+const projectSchema = z.object({
   name: z.string().min(1, "Project name is required"),
   role: z.string().min(1, "Role is required"),
-  date: z.string().min(1, "Date is required"),
+  startDate: z.string().min(1, "Start date is required"),
+  endDate: z.string().optional(),
   description: z.string().min(1, "Description is required"),
-  technologies: z.string().min(1, "Technologies is required"),
-  url: z.string().url("Invalid URL").optional().or(z.literal("")),
+  technologies: z.string().optional(),
+  url: z.string().optional(),
 });
 
-export const skillsFormSchema = z.object({
+const skillsSchema = z.object({
   technical: z.string().min(1, "Technical skills are required"),
   soft: z.string().min(1, "Soft skills are required"),
-  languages: z.string().min(1, "Languages are required"),
+  languages: z.string().optional(),
   certifications: z.string().optional(),
 });
 
-export const customFieldsFormSchema = z.object({
-  fields: z.array(z.object({
-    id: z.string(),
-    name: z.string().min(1, "Field name is required"),
-    value: z.string().min(1, "Field value is required"),
-  })).default([]),
+const customFieldSchema = z.object({
+  id: z.string(),
+  label: z.string().min(1, "Label is required"),
+  value: z.string().min(1, "Value is required"),
+});
+
+const customFieldsSchema = z.object({
+  fields: z.array(customFieldSchema),
 });
 
 export const resumeFormSchema = z.object({
-  profile: profileFormSchema,
-  experience: experienceFormSchema,
-  education: educationFormSchema,
-  project: projectFormSchema,
-  skills: skillsFormSchema,
-  customFields: customFieldsFormSchema,
+  profile: profileSchema,
+  experiences: z.array(experienceSchema),
+  educations: z.array(educationSchema),
+  projects: z.array(projectSchema),
+  skills: skillsSchema,
+  customFields: customFieldsSchema,
 });
 
 export type ResumeFormValues = z.infer<typeof resumeFormSchema>; 
