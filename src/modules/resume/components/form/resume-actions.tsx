@@ -1,12 +1,13 @@
 import { useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import { Button } from "@shared/components/ui/button";
+import { Save, Send, Trash2 } from "lucide-react";
 import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 interface ResumeActionsProps {
-  onSave: (data: ResumeFormValues) => void;
-  onPublish: () => void;
-  onDelete: () => void;
+  onSave: (data: ResumeFormValues) => Promise<void>;
+  onPublish: () => Promise<void>;
+  onDelete: () => Promise<void>;
   isSaving: boolean;
   isPublishing: boolean;
   isDeleting: boolean;
@@ -42,35 +43,34 @@ export default function ResumeActions({
   };
 
   return (
-    <div className="border-t bg-background">
-      <div className="container py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button
-            type="submit"
-            form="resume-form"
-            onClick={handleSave}
-            disabled={isSaving}
-          >
-            {isSaving ? "Saving..." : "Save"}
-          </Button>
-          <Button
-            type="submit"
-            form="resume-form"
-            onClick={handlePublish}
-            disabled={isPublishing}
-            variant="secondary"
-          >
-            {isPublishing ? "Publishing..." : "Publish"}
-          </Button>
-        </div>
-        <Button
-          onClick={onDelete}
-          disabled={isDeleting}
-          variant="destructive"
-        >
-          {isDeleting ? "Deleting..." : "Delete"}
-        </Button>
-      </div>
+    <div className="flex items-center justify-center gap-2">
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={handleSave}
+        disabled={isSaving}
+      >
+        <Save className="w-4 h-4 mr-2" />
+        Save
+      </Button>
+      <Button
+        variant="default"
+        size="sm"
+        onClick={handlePublish}
+        disabled={isPublishing}
+      >
+        <Send className="w-4 h-4 mr-2" />
+        Publish
+      </Button>
+      <Button
+        variant="destructive"
+        size="sm"
+        onClick={onDelete}
+        disabled={isDeleting}
+      >
+        <Trash2 className="w-4 h-4 mr-2" />
+        Delete
+      </Button>
     </div>
   );
-} 
+}

@@ -114,8 +114,7 @@ export default function ResumeBuilder() {
         </div>
 
         {/* Sticky actions */}
-        <div className="sticky bottom-0 z-50 bg-background/80 backdrop-blur-sm">
-          <div className="container py-4">
+        <div className="fixed bottom-4 border left-1/2 -translate-x-1/2 z-50 shadow-lg rounded-2xl p-3 w-fit min-w-64 bg-background">
             <ResumeActions
               onSave={handleFormSubmit}
               onPublish={handlePublish}
@@ -124,7 +123,6 @@ export default function ResumeBuilder() {
               isPublishing={isPublishing}
               isDeleting={isDeleting}
             />
-          </div>
         </div>
       </div>
     </FormProvider>
