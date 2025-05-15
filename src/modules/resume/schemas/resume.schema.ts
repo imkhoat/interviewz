@@ -10,42 +10,42 @@ const profileSchema = z.object({
 });
 
 const experienceSchema = z.object({
-  company: z.string().min(1, "Company name is required"),
-  jobTitle: z.string().min(1, "Job title is required"),
-  startDate: z.string().min(1, "Start date is required"),
+  company: z.string().optional(),
+  jobTitle: z.string().optional(),
+  startDate: z.string().optional(),
   endDate: z.string().optional(),
-  description: z.string().min(1, "Description is required"),
+  description: z.string().optional(),
 });
 
 const educationSchema = z.object({
-  school: z.string().min(1, "School name is required"),
-  degree: z.string().min(1, "Degree is required"),
-  startDate: z.string().min(1, "Start date is required"),
+  school: z.string().optional(),
+  degree: z.string().optional(),
+  startDate: z.string().optional(),
   endDate: z.string().optional(),
-  description: z.string().min(1, "Description is required"),
+  description: z.string().optional(),
 });
 
 const projectSchema = z.object({
-  name: z.string().min(1, "Project name is required"),
-  role: z.string().min(1, "Role is required"),
-  startDate: z.string().min(1, "Start date is required"),
+  name: z.string().optional(),
+  role: z.string().optional(),
+  startDate: z.string().optional(),
   endDate: z.string().optional(),
-  description: z.string().min(1, "Description is required"),
+  description: z.string().optional(),
   technologies: z.string().optional(),
   url: z.string().optional(),
 });
 
 const skillsSchema = z.object({
-  technical: z.string().min(1, "Technical skills are required"),
-  soft: z.string().min(1, "Soft skills are required"),
+  technical: z.string().optional(),
+  soft: z.string().optional(),
   languages: z.string().optional(),
   certifications: z.string().optional(),
 });
 
 const customFieldSchema = z.object({
   id: z.string(),
-  label: z.string().min(1, "Label is required"),
-  value: z.string().min(1, "Value is required"),
+  label: z.string().optional(),
+  value: z.string().optional(),
 });
 
 const customFieldsSchema = z.object({
@@ -54,10 +54,15 @@ const customFieldsSchema = z.object({
 
 export const resumeFormSchema = z.object({
   profile: profileSchema,
-  experiences: z.array(experienceSchema),
-  educations: z.array(educationSchema),
-  projects: z.array(projectSchema),
-  skills: skillsSchema,
+  experiences: z.array(experienceSchema).optional().default([]),
+  educations: z.array(educationSchema).optional().default([]),
+  projects: z.array(projectSchema).optional().default([]),
+  skills: skillsSchema.optional().default({
+    technical: "",
+    soft: "",
+    languages: "",
+    certifications: "",
+  }),
   customFields: customFieldsSchema.optional().default({ fields: [] }),
 });
 
