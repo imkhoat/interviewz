@@ -23,26 +23,29 @@ export default function ResumeBuilder() {
         objective: "",
         website: "",
       },
-      experience: {
+      experiences: [{
         company: "",
         jobTitle: "",
-        date: "",
+        startDate: "",
+        endDate: "",
         description: "",
-      },
-      education: {
+      }],
+      educations: [{
         school: "",
         degree: "",
-        date: "",
+        startDate: "",
+        endDate: "",
         description: "",
-      },
-      project: {
+      }],
+      projects: [{
         name: "",
         role: "",
-        date: "",
+        startDate: "",
+        endDate: "",
         description: "",
         technologies: "",
         url: "",
-      },
+      }],
       skills: {
         technical: "",
         soft: "",

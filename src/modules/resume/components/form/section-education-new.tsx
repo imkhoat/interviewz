@@ -4,7 +4,7 @@ import { Button } from "@shared/components/ui/button";
 import { Input } from "@shared/components/ui/input";
 import { Calendar } from "@shared/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@shared/components/ui/popover";
-import { Plus, Trash2, Calendar as CalendarIcon, Briefcase, ChevronDown } from "lucide-react";
+import { Calendar as CalendarIcon, GraduationCap, ChevronDown, Plus, Trash2 } from "lucide-react";
 import OpenAIPrompt from "@shared/components/extends/openai-prompt";
 import { format } from "date-fns";
 import { cn } from "@shared/lib/utils";
@@ -13,34 +13,9 @@ import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shared/components/ui/collapsible";
 import { useState } from "react";
 
-export default function SectionExperience() {
+export default function SectionEducation() {
   const form = useFormContext<ResumeFormValues>();
-  const experiences = form.watch("experiences");
-  const [openStates, setOpenStates] = useState<boolean[]>(experiences.map(() => true));
-
-  const addExperience = () => {
-    const currentExperiences = form.getValues("experiences");
-    form.setValue("experiences", [
-      ...currentExperiences,
-      {
-        company: "",
-        jobTitle: "",
-        startDate: "",
-        endDate: "",
-        description: "",
-      },
-    ]);
-    setOpenStates([...openStates, true]);
-  };
-
-  const removeExperience = (index: number) => {
-    const currentExperiences = form.getValues("experiences");
-    form.setValue(
-      "experiences",
-      currentExperiences.filter((_, i) => i !== index)
-    );
-    setOpenStates(openStates.filter((_, i) => i !== index));
-  };
+  const [openStates, setOpenStates] = useState<boolean[]>([]);
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "";
@@ -51,39 +26,66 @@ export default function SectionExperience() {
     }
   };
 
-  const getWorkPeriod = (startDate: string | undefined, endDate: string | undefined) => {
-    const start = startDate ? formatDate(startDate) : "";
+  const getEducationPeriod = (startDate: string | undefined, endDate: string | undefined) => {
+    if (!startDate) return "";
+    const start = formatDate(startDate);
     const end = endDate ? formatDate(endDate) : "Present";
-    if (!start) return "";
     return `${start} - ${end}`;
   };
 
-  const toggleExperience = (index: number) => {
+  const addEducation = () => {
+    const currentEducations = form.getValues("educations") || [];
+    form.setValue("educations", [
+      ...currentEducations,
+      {
+        school: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+        description: "",
+      },
+    ]);
+    setOpenStates([...openStates, true]);
+  };
+
+  const removeEducation = (index: number) => {
+    const currentEducations = form.getValues("educations");
+    form.setValue(
+      "educations",
+      currentEducations.filter((_, i) => i !== index)
+    );
+    const newOpenStates = [...openStates];
+    newOpenStates.splice(index, 1);
+    setOpenStates(newOpenStates);
+  };
+
+  const toggleEducation = (index: number) => {
     const newOpenStates = [...openStates];
     newOpenStates[index] = !newOpenStates[index];
     setOpenStates(newOpenStates);
   };
 
   return (
-    <SectionWrapper header="Experience" icon={<Briefcase />}>
+    <SectionWrapper header="Education" icon={<GraduationCap />}>
       <div className="space-y-4">
-        <div className="flex items-center justify-end">
+        <div className="flex justify-end">
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={addExperience}
+            onClick={addEducation}
+            className="flex items-center gap-2"
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Add Experience
+            <Plus className="h-4 w-4" />
+            Add Education
           </Button>
         </div>
 
-        {experiences.map((_, index) => (
+        {form.watch("educations")?.map((education, index) => (
           <Collapsible
             key={index}
             open={openStates[index]}
-            onOpenChange={() => toggleExperience(index)}
+            onOpenChange={() => toggleEducation(index)}
             className="border rounded-lg"
           >
             <div className="flex items-center justify-between p-4">
@@ -96,42 +98,40 @@ export default function SectionExperience() {
                     )} />
                   </Button>
                 </CollapsibleTrigger>
-                <div className="flex flex-col">
+                <div>
                   <h4 className="text-sm font-medium">
-                    {form.watch(`experiences.${index}.company`) || `Experience ${index + 1}`}
+                    {education.school || `Education ${index + 1}`}
                   </h4>
-                  <span className="text-xs text-muted-foreground">
-                    {getWorkPeriod(
-                      form.watch(`experiences.${index}.startDate`),
-                      form.watch(`experiences.${index}.endDate`)
-                    )}
-                  </span>
+                  <p className="text-sm text-muted-foreground">
+                    {getEducationPeriod(education.startDate, education.endDate)}
+                  </p>
                 </div>
               </div>
               <Button
                 type="button"
                 variant="ghost"
                 size="sm"
-                onClick={() => removeExperience(index)}
+                onClick={() => removeEducation(index)}
+                className="h-8 w-8 p-0"
               >
-                <Trash2 className="w-4 h-4 text-destructive" />
+                <Trash2 className="h-4 w-4" />
               </Button>
             </div>
             <CollapsibleContent className="px-4 pb-4">
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Company</label>
+                    <label className="text-sm font-medium">School</label>
                     <Input
-                      {...form.register(`experiences.${index}.company`)}
-                      placeholder="Enter company name"
+                      {...form.register(`educations.${index}.school`)}
+                      placeholder="Enter school name"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Job Title</label>
+                    <label className="text-sm font-medium">Degree</label>
                     <Input
-                      {...form.register(`experiences.${index}.jobTitle`)}
-                      placeholder="Enter job title"
+                      {...form.register(`educations.${index}.degree`)}
+                      placeholder="Enter degree"
                     />
                   </div>
                 </div>
@@ -145,12 +145,12 @@ export default function SectionExperience() {
                           variant="outline"
                           className={cn(
                             "w-full justify-start text-left font-normal",
-                            !form.watch(`experiences.${index}.startDate`) && "text-muted-foreground"
+                            !form.watch(`educations.${index}.startDate`) && "text-muted-foreground"
                           )}
                         >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {form.watch(`experiences.${index}.startDate`) ? (
-                            formatDate(form.watch(`experiences.${index}.startDate`))
+                          {form.watch(`educations.${index}.startDate`) ? (
+                            formatDate(form.watch(`educations.${index}.startDate`))
                           ) : (
                             <span>Pick a date</span>
                           )}
@@ -159,8 +159,8 @@ export default function SectionExperience() {
                       <PopoverContent className="w-auto p-0">
                         <Calendar
                           mode="single"
-                          selected={form.watch(`experiences.${index}.startDate`) ? new Date(form.watch(`experiences.${index}.startDate`) || "") : undefined}
-                          onSelect={(date) => form.setValue(`experiences.${index}.startDate`, date?.toISOString() || "")}
+                          selected={form.watch(`educations.${index}.startDate`) ? new Date(form.watch(`educations.${index}.startDate`) || "") : undefined}
+                          onSelect={(date) => form.setValue(`educations.${index}.startDate`, date?.toISOString() || "")}
                           initialFocus
                         />
                       </PopoverContent>
@@ -174,12 +174,12 @@ export default function SectionExperience() {
                           variant="outline"
                           className={cn(
                             "w-full justify-start text-left font-normal",
-                            !form.watch(`experiences.${index}.endDate`) && "text-muted-foreground"
+                            !form.watch(`educations.${index}.endDate`) && "text-muted-foreground"
                           )}
                         >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {form.watch(`experiences.${index}.endDate`) ? (
-                            formatDate(form.watch(`experiences.${index}.endDate`))
+                          {form.watch(`educations.${index}.endDate`) ? (
+                            formatDate(form.watch(`educations.${index}.endDate`))
                           ) : (
                             <span>Pick a date</span>
                           )}
@@ -188,8 +188,8 @@ export default function SectionExperience() {
                       <PopoverContent className="w-auto p-0">
                         <Calendar
                           mode="single"
-                          selected={form.watch(`experiences.${index}.endDate`) ? new Date(form.watch(`experiences.${index}.endDate`) || "") : undefined}
-                          onSelect={(date) => form.setValue(`experiences.${index}.endDate`, date?.toISOString() || "")}
+                          selected={form.watch(`educations.${index}.endDate`) ? new Date(form.watch(`educations.${index}.endDate`) || "") : undefined}
+                          onSelect={(date) => form.setValue(`educations.${index}.endDate`, date?.toISOString() || "")}
                           initialFocus
                         />
                       </PopoverContent>
@@ -201,8 +201,8 @@ export default function SectionExperience() {
                   <label className="text-sm font-medium">Description</label>
                   <OpenAIPrompt>
                     <Textarea
-                      {...form.register(`experiences.${index}.description`)}
-                      placeholder="Describe your responsibilities and achievements"
+                      {...form.register(`educations.${index}.description`)}
+                      placeholder="Describe your education and achievements"
                     />
                   </OpenAIPrompt>
                 </div>
@@ -213,4 +213,4 @@ export default function SectionExperience() {
       </div>
     </SectionWrapper>
   );
-}
+} 
