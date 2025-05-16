@@ -1,10 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { httpClient } from "@shared/lib/http-client";
-
-interface OpenAIPromptResponse {
-  suggestions: string[];
-}
+import { useGeneratePrompt } from "@shared/queries/openai.queries";
 
 interface UseOpenAIPromptProps {
   onSelect: (suggestion: string) => void;
@@ -12,28 +7,10 @@ interface UseOpenAIPromptProps {
 
 export const useOpenAIPrompt = ({ onSelect }: UseOpenAIPromptProps) => {
   const [keywords, setKeywords] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-
-  const generatePrompt = useMutation({
-    mutationFn: async (keywords: string) => {
-      const response = await httpClient("/openai/chat", {
-        method: "POST",
-        body: JSON.stringify({ keywords }),
-      });
-      return response as OpenAIPromptResponse;
-    },
-    onSuccess: (data) => {
-      setIsGenerating(false);
-    },
-    onError: (error) => {
-      console.error("Error generating prompt:", error);
-      setIsGenerating(false);
-    },
-  });
+  const generatePrompt = useGeneratePrompt();
 
   const handleGenerate = async () => {
     if (!keywords.trim()) return;
-    setIsGenerating(true);
     generatePrompt.mutate(keywords);
   };
 
@@ -45,7 +22,7 @@ export const useOpenAIPrompt = ({ onSelect }: UseOpenAIPromptProps) => {
   return {
     keywords,
     setKeywords,
-    isGenerating,
+    isGenerating: generatePrompt.isPending,
     suggestions: generatePrompt.data?.suggestions || [],
     handleGenerate,
     handleSelect,

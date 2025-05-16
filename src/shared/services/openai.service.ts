@@ -1,13 +1,18 @@
-import { httpClient } from "@shared/lib/http-client";
+import { openaiRepository, OpenAIPromptResponse } from "@shared/repositories/openai.repository";
 
-export const openAIService = {
+export const openaiService = {
+  generatePrompt: async (keywords: string): Promise<OpenAIPromptResponse> => {
+    try {
+      return await openaiRepository.generatePrompt(keywords);
+    } catch (error) {
+      console.error("Error generating prompt:", error);
+      throw error;
+    }
+  },
+
   async chatCompletion(messages: any[]) {
     try {
-      const response = await httpClient("/openai/chat", {
-        method: "POST",
-        body: JSON.stringify({ messages }),
-      });
-      return response;
+      return await openaiRepository.chatCompletion(messages);
     } catch (error) {
       console.error("Error in OpenAI chat completion:", error);
       throw error;
@@ -16,18 +21,7 @@ export const openAIService = {
 
   async generateResumeFeedback(resume: string) {
     try {
-      const messages = [
-        {
-          role: "system",
-          content: "You are a professional resume reviewer. Analyze the resume and provide constructive feedback.",
-        },
-        {
-          role: "user",
-          content: resume,
-        },
-      ];
-
-      return await this.chatCompletion(messages);
+      return await openaiRepository.generateResumeFeedback(resume);
     } catch (error) {
       console.error("Error generating resume feedback:", error);
       throw error;
@@ -36,18 +30,7 @@ export const openAIService = {
 
   async generateInterviewQuestions(jobDescription: string, candidateProfile: string) {
     try {
-      const messages = [
-        {
-          role: "system",
-          content: "You are an experienced interviewer. Generate relevant interview questions based on the job description and candidate profile.",
-        },
-        {
-          role: "user",
-          content: `Job Description: ${jobDescription}\n\nCandidate Profile: ${candidateProfile}`,
-        },
-      ];
-
-      return await this.chatCompletion(messages);
+      return await openaiRepository.generateInterviewQuestions(jobDescription, candidateProfile);
     } catch (error) {
       console.error("Error generating interview questions:", error);
       throw error;
@@ -56,18 +39,7 @@ export const openAIService = {
 
   async evaluateInterviewAnswer(question: string, answer: string) {
     try {
-      const messages = [
-        {
-          role: "system",
-          content: "You are an experienced interviewer. Evaluate the candidate's answer and provide constructive feedback.",
-        },
-        {
-          role: "user",
-          content: `Question: ${question}\n\nAnswer: ${answer}`,
-        },
-      ];
-
-      return await this.chatCompletion(messages);
+      return await openaiRepository.evaluateInterviewAnswer(question, answer);
     } catch (error) {
       console.error("Error evaluating interview answer:", error);
       throw error;
