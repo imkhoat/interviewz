@@ -1,5 +1,5 @@
 import { Button } from "@shared/components/ui/button";
-import { Save, Trash2, Upload } from "lucide-react";
+import { Save, Trash2, Upload, Loader2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -35,18 +35,26 @@ export default function ResumeActions({
         variant="outline"
         size="sm"
         onClick={onSave}
-        disabled={isSaving}
+        disabled={isSaving || isPublishing || isDeleting}
       >
-        <Save className="w-4 h-4 mr-2" />
+        {isSaving ? (
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        ) : (
+          <Save className="w-4 h-4 mr-2" />
+        )}
         {isSaving ? "Saving..." : "Save"}
       </Button>
       <Button
         variant="outline"
         size="sm"
         onClick={onPublish}
-        disabled={isPublishing}
+        disabled={isSaving || isPublishing || isDeleting}
       >
-        <Upload className="w-4 h-4 mr-2" />
+        {isPublishing ? (
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        ) : (
+          <Upload className="w-4 h-4 mr-2" />
+        )}
         {isPublishing ? "Publishing..." : "Publish"}
       </Button>
       <AlertDialog>
@@ -55,9 +63,13 @@ export default function ResumeActions({
             type="button"
             variant="outline"
             size="sm"
-            disabled={isDeleting}
+            disabled={isSaving || isPublishing || isDeleting}
           >
-            <Trash2 className="w-4 h-4 mr-2" />
+            {isDeleting ? (
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            ) : (
+              <Trash2 className="w-4 h-4 mr-2" />
+            )}
             {isDeleting ? "Deleting..." : "Delete"}
           </Button>
         </AlertDialogTrigger>

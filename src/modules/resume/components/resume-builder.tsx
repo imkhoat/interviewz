@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@shared/hooks/use-toast";
@@ -6,11 +5,10 @@ import { toast } from "@shared/hooks/use-toast";
 import ResumeForm from "@resume/components/form/resume-form";
 import ResumeActions from "@resume/components/form/resume-actions";
 import { resumeFormSchema, ResumeFormValues } from "@resume/schemas/resume.schema";
+import { useResume } from "@resume/hooks/use-resume";
 
 export default function ResumeBuilder() {
-  const [isSaving, setIsSaving] = useState(false);
-  const [isPublishing, setIsPublishing] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const { handleCreateResume, handleUpdateResume, handleDeleteResume, isCreating, isUpdating, isDeleting } = useResume();
 
   const form = useForm<ResumeFormValues>({
     resolver: zodResolver(resumeFormSchema),
@@ -60,12 +58,16 @@ export default function ResumeBuilder() {
 
   const handleFormSubmit = async (data: ResumeFormValues) => {
     try {
-      setIsSaving(true);
-      console.log("Saving resume:", data);
+      const result = await handleCreateResume({
+        ...data,
+        title: data.profile.fullName,
+        status: "draft",
+      });
       toast({
         title: "Success",
         description: "Resume saved successfully",
       });
+      return result;
     } catch (error) {
       console.error("Error saving resume:", error);
       toast({
@@ -73,8 +75,7 @@ export default function ResumeBuilder() {
         description: "Failed to save resume",
         variant: "destructive",
       });
-    } finally {
-      setIsSaving(false);
+      throw error;
     }
   };
 
@@ -90,7 +91,6 @@ export default function ResumeBuilder() {
     }
 
     try {
-      setIsSaving(true);
       const data = form.getValues();
       await handleFormSubmit(data);
     } catch (error) {
@@ -100,8 +100,6 @@ export default function ResumeBuilder() {
         description: "Failed to save resume",
         variant: "destructive",
       });
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -117,9 +115,20 @@ export default function ResumeBuilder() {
     }
 
     try {
-      setIsPublishing(true);
       const data = form.getValues();
-      console.log("Publishing resume:", data);
+      const resumeId = (data as any).id; // TODO: Add id to ResumeFormValues type
+      if (!resumeId) {
+        toast({
+          title: "Error",
+          description: "Resume ID not found",
+          variant: "destructive",
+        });
+        return;
+      }
+      await handleUpdateResume(resumeId, {
+        ...data,
+        status: "published",
+      });
       toast({
         title: "Success",
         description: "Resume published successfully",
@@ -131,15 +140,22 @@ export default function ResumeBuilder() {
         description: "Failed to publish resume",
         variant: "destructive",
       });
-    } finally {
-      setIsPublishing(false);
     }
   };
 
   const handleDelete = async () => {
     try {
-      setIsDeleting(true);
-      console.log("Deleting resume");
+      const data = form.getValues();
+      const resumeId = (data as any).id; // TODO: Add id to ResumeFormValues type
+      if (!resumeId) {
+        toast({
+          title: "Error",
+          description: "Resume ID not found",
+          variant: "destructive",
+        });
+        return;
+      }
+      await handleDeleteResume(resumeId);
       toast({
         title: "Success",
         description: "Resume deleted successfully",
@@ -151,8 +167,6 @@ export default function ResumeBuilder() {
         description: "Failed to delete resume",
         variant: "destructive",
       });
-    } finally {
-      setIsDeleting(false);
     }
   };
 
@@ -180,8 +194,8 @@ export default function ResumeBuilder() {
               onSave={handleSave}
               onPublish={handlePublish}
               onDelete={handleDelete}
-              isSaving={isSaving}
-              isPublishing={isPublishing}
+              isSaving={isCreating || isUpdating}
+              isPublishing={isUpdating}
               isDeleting={isDeleting}
             />
         </div>
