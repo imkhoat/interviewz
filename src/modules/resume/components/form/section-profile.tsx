@@ -19,7 +19,7 @@ export default function SectionProfile() {
           name="profile.fullName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full name</FormLabel>
+              <FormLabel>Full name *</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -34,7 +34,7 @@ export default function SectionProfile() {
             name="profile.email"
             render={({ field }) => (
               <FormItem className="w-1/2">
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Email *</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
@@ -47,7 +47,7 @@ export default function SectionProfile() {
             name="profile.phone"
             render={({ field }) => (
               <FormItem className="w-1/2">
-                <FormLabel>Phone</FormLabel>
+                <FormLabel>Phone *</FormLabel>
                 <FormControl>
                   <Input {...field} type="tel" />
                 </FormControl>
@@ -62,7 +62,7 @@ export default function SectionProfile() {
           name="profile.location"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Location</FormLabel>
+              <FormLabel>Location *</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -91,7 +91,7 @@ export default function SectionProfile() {
             name="profile.objective"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Objective</FormLabel>
+                <FormLabel>Objective *</FormLabel>
                 <FormControl>
                   <Textarea {...field} />
                 </FormControl>
