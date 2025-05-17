@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 import ResumeForm from "@resume/components/form/resume-form";
 import ResumeActions from "@resume/components/form/resume-actions";
-import { resumeFormSchema, ResumeFormValues } from "@resume/schemas/resume.schema";
+import { createResumeFormSchema, ResumeFormValues } from "@resume/schemas/resume.schema";
 import { useResume } from "@resume/hooks/use-resume";
 
 export default function ResumeBuilder() {
@@ -13,7 +13,7 @@ export default function ResumeBuilder() {
   const t = useTranslations("resume");
 
   const form = useForm<ResumeFormValues>({
-    resolver: zodResolver(resumeFormSchema),
+    resolver: zodResolver(createResumeFormSchema(t)),
     defaultValues: {
       profile: {
         fullName: "",

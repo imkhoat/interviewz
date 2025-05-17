@@ -1,12 +1,16 @@
 {
   "profile": {
-    "title": "Hồ sơ",
+    "title": "Thông tin cá nhân",
     "full-name": "Họ và tên",
-    "location": "Địa điểm",
-    "phone": "Điện thoại",
+    "location": "Địa chỉ",
+    "phone": "Số điện thoại",
     "email": "Email",
     "website": "Website",
-    "objective": "Mục tiêu"
+    "objective": "Mục tiêu",
+    "validation": {
+      "required": "{field} là bắt buộc",
+      "invalid-email": "Email không hợp lệ"
+    }
   },
   "experience": {
     "title": "Kinh nghiệm",

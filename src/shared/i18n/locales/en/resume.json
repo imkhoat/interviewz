@@ -6,7 +6,11 @@
     "phone": "Phone",
     "email": "Email",
     "website": "Website",
-    "objective": "Objective"
+    "objective": "Objective",
+    "validation": {
+      "required": "{field} is required",
+      "invalid-email": "Invalid email address"
+    }
   },
   "experience": {
     "title": "Experience",
