@@ -12,8 +12,10 @@ import { Textarea } from "@shared/components/ui/textarea";
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shared/components/ui/collapsible";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function SectionExperience() {
+  const t = useTranslations("resume");
   const form = useFormContext<ResumeFormValues>();
   const experiences = form.watch("experiences");
   const [openStates, setOpenStates] = useState<boolean[]>(experiences.map(() => true));
@@ -53,7 +55,7 @@ export default function SectionExperience() {
 
   const getWorkPeriod = (startDate: string | undefined, endDate: string | undefined) => {
     const start = startDate ? formatDate(startDate) : "";
-    const end = endDate ? formatDate(endDate) : "Present";
+    const end = endDate ? formatDate(endDate) : t("experience.current.label");
     if (!start) return "";
     return `${start} - ${end}`;
   };
@@ -65,7 +67,7 @@ export default function SectionExperience() {
   };
 
   return (
-    <SectionWrapper header="Experience" icon={<Briefcase />}>
+    <SectionWrapper header={t("experience.title")} icon={<Briefcase />}>
       <div className="space-y-4">
         <div className="flex items-center justify-end">
           <Button
@@ -75,7 +77,7 @@ export default function SectionExperience() {
             onClick={addExperience}
           >
             <Plus className="w-4 h-4 mr-2" />
-            Add Experience
+            {t("experience.actions.add")}
           </Button>
         </div>
 
@@ -98,7 +100,7 @@ export default function SectionExperience() {
                 </CollapsibleTrigger>
                 <div className="flex flex-col">
                   <h4 className="text-sm font-medium">
-                    {form.watch(`experiences.${index}.company`) || `Experience ${index + 1}`}
+                    {form.watch(`experiences.${index}.company`) || t("experience.item", { number: index + 1 })}
                   </h4>
                   <span className="text-xs text-muted-foreground">
                     {getWorkPeriod(
@@ -121,24 +123,24 @@ export default function SectionExperience() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Company</label>
+                    <label className="text-sm font-medium">{t("experience.company.label")}</label>
                     <Input
                       {...form.register(`experiences.${index}.company`)}
-                      placeholder="Enter company name"
+                      placeholder={t("experience.company.placeholder")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Job Title</label>
+                    <label className="text-sm font-medium">{t("experience.job-title.label")}</label>
                     <Input
                       {...form.register(`experiences.${index}.jobTitle`)}
-                      placeholder="Enter job title"
+                      placeholder={t("experience.job-title.placeholder")}
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Start Date</label>
+                    <label className="text-sm font-medium">{t("experience.start-date.label")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -152,7 +154,7 @@ export default function SectionExperience() {
                           {form.watch(`experiences.${index}.startDate`) ? (
                             formatDate(form.watch(`experiences.${index}.startDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("experience.start-date.label")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -167,7 +169,7 @@ export default function SectionExperience() {
                     </Popover>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">End Date</label>
+                    <label className="text-sm font-medium">{t("experience.end-date.label")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -181,7 +183,7 @@ export default function SectionExperience() {
                           {form.watch(`experiences.${index}.endDate`) ? (
                             formatDate(form.watch(`experiences.${index}.endDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("experience.end-date.label")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -198,11 +200,11 @@ export default function SectionExperience() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Description</label>
+                  <label className="text-sm font-medium">{t("experience.description.label")}</label>
                   <OpenAIPrompt>
                     <Textarea
                       {...form.register(`experiences.${index}.description`)}
-                      placeholder="Describe your responsibilities and achievements"
+                      placeholder={t("experience.description.placeholder")}
                     />
                   </OpenAIPrompt>
                 </div>

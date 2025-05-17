@@ -1,30 +1,78 @@
 {
-  "general": {
-    "title": "General Settings",
-    "language": "Language",
-    "theme": "Theme",
-    "notifications": "Notifications",
-    "privacy": "Privacy"
+  "title": "Settings",
+  "description": "Manage your account settings",
+  "profile": {
+    "title": "Profile",
+    "description": "Update your profile information",
+    "form": {
+      "first-name": "First Name",
+      "first-name-placeholder": "Enter your first name",
+      "last-name": "Last Name",
+      "last-name-placeholder": "Enter your last name",
+      "email": "Email",
+      "email-placeholder": "Enter your email",
+      "phone": "Phone",
+      "phone-placeholder": "Enter your phone number",
+      "address": "Address",
+      "address-placeholder": "Enter your address",
+      "bio": "Bio",
+      "bio-placeholder": "Enter your bio",
+      "submit": "Save Profile",
+      "submit-loading": "Saving...",
+      "success": "Profile updated successfully",
+      "error": "Failed to update profile"
+    }
   },
   "security": {
-    "title": "Security Settings",
-    "password": "Password",
-    "two-factor": "Two-Factor Authentication",
-    "sessions": "Active Sessions",
-    "devices": "Trusted Devices"
+    "title": "Security",
+    "description": "Manage your security settings",
+    "form": {
+      "current-password": "Current Password",
+      "current-password-placeholder": "Enter your current password",
+      "new-password": "New Password",
+      "new-password-placeholder": "Enter your new password",
+      "confirm-password": "Confirm Password",
+      "confirm-password-placeholder": "Confirm your new password",
+      "submit": "Change Password",
+      "submit-loading": "Changing...",
+      "success": "Password changed successfully",
+      "error": "Failed to change password"
+    }
   },
   "notifications": {
-    "title": "Notification Settings",
-    "email": "Email Notifications",
-    "push": "Push Notifications",
-    "sms": "SMS Notifications",
-    "frequency": "Notification Frequency"
+    "title": "Notifications",
+    "description": "Manage your notification settings",
+    "form": {
+      "email-notifications": "Email Notifications",
+      "email-notifications-description": "Receive email notifications",
+      "push-notifications": "Push Notifications",
+      "push-notifications-description": "Receive push notifications",
+      "sms-notifications": "SMS Notifications",
+      "sms-notifications-description": "Receive SMS notifications",
+      "submit": "Save Settings",
+      "submit-loading": "Saving...",
+      "success": "Settings saved successfully",
+      "error": "Failed to save settings"
+    }
   },
-  "profile": {
-    "title": "Profile Settings",
-    "personal": "Personal Information",
-    "contact": "Contact Information",
-    "social": "Social Media",
-    "preferences": "Preferences"
+  "preferences": {
+    "title": "Preferences",
+    "description": "Manage your preferences",
+    "form": {
+      "language": "Language",
+      "language-description": "Select your preferred language",
+      "theme": "Theme",
+      "theme-description": "Select your preferred theme",
+      "timezone": "Timezone",
+      "timezone-description": "Select your timezone",
+      "date-format": "Date Format",
+      "date-format-description": "Select your preferred date format",
+      "time-format": "Time Format",
+      "time-format-description": "Select your preferred time format",
+      "submit": "Save Preferences",
+      "submit-loading": "Saving...",
+      "success": "Preferences saved successfully",
+      "error": "Failed to save preferences"
+    }
   }
 } 

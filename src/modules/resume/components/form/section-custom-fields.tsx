@@ -1,20 +1,25 @@
-import { Plus, Trash2 } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-
-import SectionWrapper from "@resume/components/form/section-wrapper";
-import { Button } from "@shared/components/ui/button";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@shared/components/ui/form";
-import { Input } from "@shared/components/ui/input";
 import { ResumeFormValues } from "@resume/schemas/resume.schema";
+import { Button } from "@shared/components/ui/button";
+import { Input } from "@shared/components/ui/input";
+import { Plus, Trash2, ListPlus } from "lucide-react";
+import SectionWrapper from "@resume/components/form/section-wrapper";
+import { useTranslations } from "next-intl";
 
 export default function SectionCustomFields() {
+  const t = useTranslations("resume");
   const form = useFormContext<ResumeFormValues>();
+  const fields = form.watch("customFields.fields");
 
   const addField = () => {
     const currentFields = form.getValues("customFields.fields");
     form.setValue("customFields.fields", [
       ...currentFields,
-      { id: crypto.randomUUID(), label: "", value: "" }
+      {
+        id: Math.random().toString(36).substr(2, 9),
+        label: "",
+        value: "",
+      },
     ]);
   };
 
@@ -26,60 +31,42 @@ export default function SectionCustomFields() {
     );
   };
 
-  const fields = form.watch("customFields.fields");
-
   return (
-    <SectionWrapper header="Custom Fields" icon={<Plus />}>
+    <SectionWrapper header={t("form.custom-fields")} icon={<ListPlus />}>
       <div className="space-y-4">
-        <div className="flex justify-end">
+        <div className="flex items-center justify-end">
           <Button
             type="button"
             variant="outline"
             size="sm"
             onClick={addField}
-            className="flex items-center gap-2"
           >
-            <Plus className="h-4 w-4" />
-            Add Custom Field
+            <Plus className="w-4 h-4 mr-2" />
+            {t("form.add-field")}
           </Button>
         </div>
 
         {fields.map((field, index) => (
-          <div key={field.id} className="flex flex-row justify-between items-start gap-4">
-            <FormField
-              control={form.control}
-              name={`customFields.fields.${index}.label`}
-              render={({ field }) => (
-                <FormItem className="w-1/2">
-                  <FormLabel>Field name</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name={`customFields.fields.${index}.value`}
-              render={({ field }) => (
-                <FormItem className="w-1/2">
-                  <FormLabel>Field value</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <div key={field.id} className="flex items-center gap-4">
+            <div className="flex-1 space-y-2">
+              <Input
+                {...form.register(`customFields.fields.${index}.label`)}
+                placeholder={t("form.field-label")}
+              />
+            </div>
+            <div className="flex-1 space-y-2">
+              <Input
+                {...form.register(`customFields.fields.${index}.value`)}
+                placeholder={t("form.field-value")}
+              />
+            </div>
             <Button
               type="button"
               variant="ghost"
               size="sm"
               onClick={() => removeField(index)}
-              className="h-8 w-8 mt-9"
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="w-4 h-4" />
             </Button>
           </div>
         ))}

@@ -11,6 +11,7 @@ import {
 } from "@shared/components/ui/popover";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export type ViewMode = "card" | "table";
 
@@ -27,6 +28,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
     published: false,
     archived: false,
   });
+  const t = useTranslations("resume");
 
   const handleFilterChange = (filter: keyof typeof filters) => {
     setFilters(prev => ({
@@ -45,7 +47,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search resumes..."
+            placeholder={t("form.search")}
             className="pl-8"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -106,7 +108,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
             </PopoverContent>
           </Popover>
           <Button 
-            variant="outline" 
+            variant={viewMode === "card" ? "default" : "outline"}
             size="icon"
             onClick={toggleViewMode}
             title={viewMode === "card" ? "Switch to table view" : "Switch to card view"}

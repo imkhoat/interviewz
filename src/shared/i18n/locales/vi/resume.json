@@ -1,39 +1,240 @@
 {
+  "title": "Sơ yếu lý lịch",
+  "description": "Quản lý sơ yếu lý lịch của bạn",
+  "create": "Tạo sơ yếu lý lịch",
+  "edit": "Chỉnh sửa sơ yếu lý lịch",
+  "delete": "Xóa sơ yếu lý lịch",
+  "view": "Xem",
+  "download": "Tải xuống sơ yếu lý lịch",
+  "share": "Chia sẻ sơ yếu lý lịch",
+  "status": {
+    "draft": "Bản nháp",
+    "published": "Đã xuất bản",
+    "archived": "Đã lưu trữ"
+  },
+  "form": {
+    "title": "Thông tin sơ yếu lý lịch",
+    "title-placeholder": "Nhập tiêu đề sơ yếu lý lịch",
+    "description": "Mô tả",
+    "description-placeholder": "Nhập mô tả sơ yếu lý lịch",
+    "skills": "Kỹ năng",
+    "skills-placeholder": "Nhập kỹ năng của bạn",
+    "experience": "Kinh nghiệm",
+    "experience-placeholder": "Nhập kinh nghiệm của bạn",
+    "education": "Học vấn",
+    "education-placeholder": "Nhập học vấn của bạn",
+    "projects": "Dự án",
+    "projects-placeholder": "Nhập dự án của bạn",
+    "languages": "Ngôn ngữ",
+    "languages-placeholder": "Nhập ngôn ngữ của bạn",
+    "certificates": "Chứng chỉ",
+    "certificates-placeholder": "Nhập chứng chỉ của bạn",
+    "interests": "Sở thích",
+    "interests-placeholder": "Nhập sở thích của bạn",
+    "references": "Tham chiếu",
+    "references-placeholder": "Nhập tham chiếu của bạn",
+    "submit": "Lưu",
+    "submit-loading": "Đang lưu...",
+    "publish": "Xuất bản",
+    "publish-loading": "Đang xuất bản...",
+    "delete": "Xóa",
+    "delete-loading": "Đang xóa...",
+    "delete-confirm-title": "Xóa sơ yếu lý lịch",
+    "delete-confirm": "Bạn có chắc chắn muốn xóa sơ yếu lý lịch này? Hành động này không thể hoàn tác.",
+    "cancel": "Hủy",
+    "search": "Tìm kiếm sơ yếu lý lịch...",
+    "add-field": "Thêm trường",
+    "field-label": "Nhãn trường",
+    "field-value": "Giá trị trường",
+    "custom-fields": "Trường tùy chỉnh"
+  },
+  "errors": {
+    "title-required": "Tiêu đề là bắt buộc",
+    "description-required": "Mô tả là bắt buộc",
+    "skills-required": "Kỹ năng là bắt buộc",
+    "experience-required": "Kinh nghiệm là bắt buộc",
+    "education-required": "Học vấn là bắt buộc",
+    "projects-required": "Dự án là bắt buộc",
+    "languages-required": "Ngôn ngữ là bắt buộc",
+    "certificates-required": "Chứng chỉ là bắt buộc",
+    "interests-required": "Sở thích là bắt buộc",
+    "references-required": "Tham chiếu là bắt buộc"
+  },
   "profile": {
-    "title": "Hồ sơ",
-    "full-name": "Họ và tên",
-    "location": "Địa điểm",
-    "phone": "Điện thoại",
-    "email": "Email",
-    "website": "Website",
-    "objective": "Mục tiêu"
+    "title": "Thông tin cá nhân",
+    "full-name": {
+      "label": "Họ và tên",
+      "placeholder": "Nhập họ và tên của bạn"
+    },
+    "location": {
+      "label": "Địa chỉ",
+      "placeholder": "Nhập địa chỉ của bạn"
+    },
+    "phone": {
+      "label": "Số điện thoại",
+      "placeholder": "Nhập số điện thoại của bạn"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Nhập email của bạn"
+    },
+    "website": {
+      "label": "Trang web",
+      "placeholder": "Nhập URL trang web của bạn"
+    },
+    "objective": {
+      "label": "Mục tiêu nghề nghiệp",
+      "placeholder": "Nhập mục tiêu nghề nghiệp của bạn"
+    }
   },
   "experience": {
-    "title": "Kinh nghiệm",
-    "company": "Công ty",
-    "position": "Vị trí",
-    "start-date": "Ngày bắt đầu",
-    "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
+    "title": "Kinh nghiệm làm việc",
+    "item": "Kinh nghiệm {number}",
+    "company": {
+      "label": "Công ty",
+      "placeholder": "Nhập tên công ty"
+    },
+    "job-title": {
+      "label": "Chức danh",
+      "placeholder": "Nhập chức danh của bạn"
+    },
+    "position": {
+      "label": "Vị trí",
+      "placeholder": "Nhập vị trí của bạn"
+    },
+    "start-date": {
+      "label": "Ngày bắt đầu",
+      "placeholder": "Chọn ngày bắt đầu"
+    },
+    "end-date": {
+      "label": "Ngày kết thúc",
+      "placeholder": "Chọn ngày kết thúc"
+    },
+    "current": {
+      "label": "Vị trí hiện tại"
+    },
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả công việc của bạn"
+    },
+    "actions": {
+      "add": "Thêm kinh nghiệm",
+      "remove": "Xóa kinh nghiệm"
+    }
   },
   "education": {
     "title": "Học vấn",
-    "school": "Trường học",
-    "degree": "Bằng cấp",
-    "start-date": "Ngày bắt đầu",
-    "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
-  },
-  "skills": {
-    "title": "Kỹ năng",
-    "name": "Tên kỹ năng",
-    "level": "Trình độ"
+    "school": {
+      "label": "Trường học",
+      "placeholder": "Nhập tên trường"
+    },
+    "degree": {
+      "label": "Bằng cấp",
+      "placeholder": "Nhập bằng cấp của bạn"
+    },
+    "start-date": {
+      "label": "Ngày bắt đầu",
+      "placeholder": "Chọn ngày bắt đầu"
+    },
+    "end-date": {
+      "label": "Ngày kết thúc",
+      "placeholder": "Chọn ngày kết thúc"
+    },
+    "current": {
+      "label": "Đang học"
+    },
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả học vấn của bạn"
+    },
+    "actions": {
+      "add": "Thêm học vấn",
+      "remove": "Xóa học vấn"
+    }
   },
   "projects": {
     "title": "Dự án",
-    "name": "Tên dự án",
-    "start-date": "Ngày bắt đầu",
-    "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
+    "name": {
+      "label": "Tên dự án",
+      "placeholder": "Nhập tên dự án"
+    },
+    "role": {
+      "label": "Vai trò",
+      "placeholder": "Nhập vai trò của bạn"
+    },
+    "start-date": {
+      "label": "Ngày bắt đầu",
+      "placeholder": "Chọn ngày bắt đầu"
+    },
+    "end-date": {
+      "label": "Ngày kết thúc",
+      "placeholder": "Chọn ngày kết thúc"
+    },
+    "current": {
+      "label": "Dự án hiện tại"
+    },
+    "description": {
+      "label": "Mô tả",
+      "placeholder": "Nhập mô tả dự án"
+    },
+    "technologies": {
+      "label": "Công nghệ",
+      "placeholder": "Nhập các công nghệ đã sử dụng"
+    },
+    "url": {
+      "label": "URL dự án",
+      "placeholder": "Nhập URL dự án"
+    },
+    "actions": {
+      "add": "Thêm dự án",
+      "remove": "Xóa dự án"
+    }
+  },
+  "skills": {
+    "title": "Kỹ năng",
+    "technical": {
+      "label": "Kỹ năng chuyên môn",
+      "placeholder": "Nhập kỹ năng chuyên môn của bạn"
+    },
+    "soft": {
+      "label": "Kỹ năng mềm",
+      "placeholder": "Nhập kỹ năng mềm của bạn"
+    },
+    "languages": {
+      "label": "Ngôn ngữ",
+      "placeholder": "Nhập ngôn ngữ của bạn"
+    },
+    "certifications": {
+      "label": "Chứng chỉ",
+      "placeholder": "Nhập chứng chỉ của bạn"
+    }
+  },
+  "sections": {
+    "profile": "Thông tin cá nhân",
+    "experience": "Kinh nghiệm làm việc",
+    "education": "Học vấn",
+    "projects": "Dự án",
+    "skills": "Kỹ năng",
+    "custom-fields": "Thông tin bổ sung"
+  },
+  "table": {
+    "title": "Tiêu đề",
+    "status": "Trạng thái",
+    "created-at": "Ngày tạo",
+    "updated-at": "Ngày cập nhật",
+    "actions": "Thao tác"
+  },
+  "card": {
+    "created-at": "Ngày tạo",
+    "updated-at": "Ngày cập nhật"
+  },
+  "actions": {
+    "create": "Tạo sơ yếu lý lịch",
+    "edit": "Chỉnh sửa",
+    "delete": "Xóa",
+    "view": "Xem"
+  },
+  "search": {
+    "placeholder": "Tìm kiếm sơ yếu lý lịch..."
   }
 } 

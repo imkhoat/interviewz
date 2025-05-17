@@ -1,39 +1,251 @@
 {
+  "title": "Resumes",
+  "description": "Manage your resume",
+  "create": "Create Resume",
+  "edit": "Edit Resume",
+  "delete": "Delete Resume",
+  "view": "View",
+  "download": "Download Resume",
+  "share": "Share Resume",
+  "status": {
+    "draft": "Draft",
+    "published": "Published",
+    "archived": "Archived"
+  },
+  "form": {
+    "title": "Resume Information",
+    "title-placeholder": "Enter resume title",
+    "description": "Description",
+    "description-placeholder": "Enter resume description",
+    "skills": "Skills",
+    "skills-placeholder": "Enter your skills",
+    "experience": "Experience",
+    "experience-placeholder": "Enter your experience",
+    "education": "Education",
+    "education-placeholder": "Enter your education",
+    "projects": "Projects",
+    "projects-placeholder": "Enter your projects",
+    "languages": "Languages",
+    "languages-placeholder": "Enter your languages",
+    "certificates": "Certificates",
+    "certificates-placeholder": "Enter your certificates",
+    "interests": "Interests",
+    "interests-placeholder": "Enter your interests",
+    "references": "References",
+    "references-placeholder": "Enter your references",
+    "submit": "Save",
+    "submit-loading": "Saving...",
+    "publish": "Publish",
+    "publish-loading": "Publishing...",
+    "delete": "Delete",
+    "delete-loading": "Deleting...",
+    "delete-confirm-title": "Delete Resume",
+    "delete-confirm": "Are you sure you want to delete this resume? This action cannot be undone.",
+    "cancel": "Cancel",
+    "search": "Search resumes...",
+    "add-field": "Add Field",
+    "field-label": "Field Label",
+    "field-value": "Field Value",
+    "custom-fields": "Custom Fields"
+  },
+  "errors": {
+    "title-required": "Title is required",
+    "description-required": "Description is required",
+    "skills-required": "Skills are required",
+    "experience-required": "Experience is required",
+    "education-required": "Education is required",
+    "projects-required": "Projects are required",
+    "languages-required": "Languages are required",
+    "certificates-required": "Certificates are required",
+    "interests-required": "Interests are required",
+    "references-required": "References are required"
+  },
   "profile": {
     "title": "Profile",
-    "full-name": "Full Name",
-    "location": "Location",
-    "phone": "Phone",
-    "email": "Email",
-    "website": "Website",
-    "objective": "Objective"
+    "full-name": {
+      "label": "Full Name",
+      "placeholder": "Enter your full name"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Enter your location"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Enter your phone number"
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "Enter your email"
+    },
+    "website": {
+      "label": "Website",
+      "placeholder": "Enter your website URL"
+    },
+    "objective": {
+      "label": "Career Objective",
+      "placeholder": "Enter your career objective"
+    }
   },
   "experience": {
-    "title": "Experience",
-    "company": "Company",
-    "position": "Position",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description"
+    "title": "Work Experience",
+    "item": "Experience {number}",
+    "company": {
+      "label": "Company",
+      "placeholder": "Enter company name"
+    },
+    "job-title": {
+      "label": "Job Title",
+      "placeholder": "Enter your job title"
+    },
+    "position": {
+      "label": "Position",
+      "placeholder": "Enter your position"
+    },
+    "start-date": {
+      "label": "Start Date",
+      "placeholder": "Select start date"
+    },
+    "end-date": {
+      "label": "End Date",
+      "placeholder": "Select end date"
+    },
+    "current": {
+      "label": "Current Position"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Enter your job description"
+    },
+    "actions": {
+      "add": "Add Experience",
+      "remove": "Remove Experience"
+    }
   },
   "education": {
     "title": "Education",
-    "school": "School",
-    "degree": "Degree",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description"
-  },
-  "skills": {
-    "title": "Skills",
-    "name": "Skill Name",
-    "level": "Level"
+    "school": {
+      "label": "School",
+      "placeholder": "Enter school name"
+    },
+    "degree": {
+      "label": "Degree",
+      "placeholder": "Enter your degree"
+    },
+    "start-date": {
+      "label": "Start Date",
+      "placeholder": "Select start date"
+    },
+    "end-date": {
+      "label": "End Date",
+      "placeholder": "Select end date"
+    },
+    "current": {
+      "label": "Currently Studying"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Describe your education"
+    },
+    "actions": {
+      "add": "Add Education",
+      "remove": "Remove Education"
+    }
   },
   "projects": {
     "title": "Projects",
-    "name": "Project Name",
-    "start-date": "Start Date",
-    "end-date": "End Date",
-    "description": "Description"
+    "name": {
+      "label": "Project Name",
+      "placeholder": "Enter project name"
+    },
+    "role": {
+      "label": "Role",
+      "placeholder": "Enter your role"
+    },
+    "start-date": {
+      "label": "Start Date",
+      "placeholder": "Select start date"
+    },
+    "end-date": {
+      "label": "End Date",
+      "placeholder": "Select end date"
+    },
+    "current": {
+      "label": "Current Project"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Describe the project"
+    },
+    "technologies": {
+      "label": "Technologies",
+      "placeholder": "Enter technologies used"
+    },
+    "url": {
+      "label": "Project URL",
+      "placeholder": "Enter project URL"
+    },
+    "actions": {
+      "add": "Add Project",
+      "remove": "Remove Project"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "technical": {
+      "label": "Technical Skills",
+      "placeholder": "Enter your technical skills"
+    },
+    "soft": {
+      "label": "Soft Skills",
+      "placeholder": "Enter your soft skills"
+    },
+    "languages": {
+      "label": "Languages",
+      "placeholder": "Enter languages you know"
+    },
+    "certifications": {
+      "label": "Certifications",
+      "placeholder": "Enter your certifications"
+    }
+  },
+  "custom-fields": {
+    "title": "Additional Information",
+    "fields": {
+      "label": "Label",
+      "value": "Value"
+    },
+    "actions": {
+      "add": "Add Field",
+      "remove": "Remove Field"
+    }
+  },
+  "sections": {
+    "profile": "Profile",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "skills": "Skills",
+    "custom-fields": "Additional Information"
+  },
+  "table": {
+    "title": "Title",
+    "status": "Status",
+    "created-at": "Created At",
+    "updated-at": "Updated At",
+    "actions": "Actions"
+  },
+  "card": {
+    "created-at": "Created",
+    "updated-at": "Updated"
+  },
+  "actions": {
+    "create": "Create Resume",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View"
+  },
+  "search": {
+    "placeholder": "Search resumes..."
   }
 } 
