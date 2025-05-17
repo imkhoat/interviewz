@@ -10,30 +10,187 @@
   },
   "experience": {
     "title": "Kinh nghiệm",
+    "add": "Thêm kinh nghiệm",
     "company": "Công ty",
+    "company-placeholder": "Nhập tên công ty",
     "position": "Vị trí",
+    "position-placeholder": "Nhập chức danh",
     "start-date": "Ngày bắt đầu",
     "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
+    "description": "Mô tả",
+    "description-placeholder": "Mô tả trách nhiệm và thành tích của bạn",
+    "present": "Hiện tại",
+    "pick-date": "Chọn ngày"
   },
   "education": {
     "title": "Học vấn",
+    "add": "Thêm học vấn",
     "school": "Trường học",
+    "school-placeholder": "Nhập tên trường",
     "degree": "Bằng cấp",
+    "degree-placeholder": "Nhập bằng cấp",
     "start-date": "Ngày bắt đầu",
     "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
+    "description": "Mô tả",
+    "description-placeholder": "Mô tả học vấn và thành tích của bạn",
+    "present": "Hiện tại",
+    "pick-date": "Chọn ngày"
   },
   "skills": {
     "title": "Kỹ năng",
     "name": "Tên kỹ năng",
-    "level": "Trình độ"
+    "level": "Cấp độ",
+    "categories": {
+      "technical": {
+        "title": "Kỹ năng kỹ thuật",
+        "placeholder": "Ví dụ: JavaScript, React, Node.js, Python"
+      },
+      "soft": {
+        "title": "Kỹ năng mềm",
+        "placeholder": "Ví dụ: Giao tiếp, Lãnh đạo, Giải quyết vấn đề"
+      },
+      "languages": {
+        "title": "Ngôn ngữ",
+        "placeholder": "Ví dụ: Tiếng Anh (Thành thạo), Tiếng Tây Ban Nha (Trung cấp)"
+      },
+      "certifications": {
+        "title": "Chứng chỉ",
+        "placeholder": "Ví dụ: AWS Certified Developer, Google Cloud Professional"
+      }
+    }
   },
   "projects": {
     "title": "Dự án",
+    "add": "Thêm dự án",
     "name": "Tên dự án",
+    "name-placeholder": "Nhập tên dự án",
+    "role": "Vai trò",
+    "role-placeholder": "Nhập vai trò của bạn",
     "start-date": "Ngày bắt đầu",
     "end-date": "Ngày kết thúc",
-    "description": "Mô tả"
+    "description": "Mô tả",
+    "description-placeholder": "Mô tả dự án và thành tích của bạn",
+    "technologies": "Công nghệ",
+    "technologies-placeholder": "Ví dụ: React, Node.js, MongoDB",
+    "url": "URL dự án",
+    "url-placeholder": "https://",
+    "present": "Hiện tại",
+    "pick-date": "Chọn ngày"
+  },
+  "custom-fields": {
+    "title": "Trường tùy chỉnh",
+    "add": "Thêm trường tùy chỉnh",
+    "label": "Tên trường",
+    "label-placeholder": "Nhập tên trường",
+    "value": "Giá trị",
+    "value-placeholder": "Nhập giá trị trường"
+  },
+  "action-bar": {
+    "search-placeholder": "Tìm kiếm sơ yếu lý lịch...",
+    "filters": {
+      "title": "Bộ lọc",
+      "draft": "Bản nháp",
+      "published": "Đã xuất bản",
+      "archived": "Đã lưu trữ"
+    },
+    "view-mode": {
+      "card": "Chuyển sang chế độ bảng",
+      "table": "Chuyển sang chế độ thẻ"
+    },
+    "create": "Tạo sơ yếu lý lịch"
+  },
+  "card-grid": {
+    "last-updated": "Cập nhật lần cuối: {date}",
+    "actions": {
+      "view": "Xem",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    },
+    "status": {
+      "draft": "Bản nháp",
+      "published": "Đã xuất bản",
+      "archived": "Đã lưu trữ"
+    }
+  },
+  "table": {
+    "columns": {
+      "title": "Tiêu đề",
+      "status": "Trạng thái",
+      "last-updated": "Cập nhật lần cuối",
+      "actions": "Thao tác"
+    },
+    "actions": {
+      "view": "Xem",
+      "edit": "Chỉnh sửa",
+      "delete": "Xóa"
+    },
+    "status": {
+      "draft": "Bản nháp",
+      "published": "Đã xuất bản",
+      "archived": "Đã lưu trữ"
+    }
+  },
+  "builder": {
+    "preview": {
+      "title": "Xem trước sẽ có sẵn ở đây"
+    },
+    "toast": {
+      "success": {
+        "save": {
+          "title": "Thành công",
+          "description": "Đã lưu sơ yếu lý lịch thành công"
+        },
+        "publish": {
+          "title": "Thành công",
+          "description": "Đã xuất bản sơ yếu lý lịch thành công"
+        },
+        "delete": {
+          "title": "Thành công",
+          "description": "Đã xóa sơ yếu lý lịch thành công"
+        }
+      },
+      "error": {
+        "save": {
+          "title": "Lỗi",
+          "description": "Không thể lưu sơ yếu lý lịch"
+        },
+        "publish": {
+          "title": "Lỗi",
+          "description": "Không thể xuất bản sơ yếu lý lịch"
+        },
+        "delete": {
+          "title": "Lỗi",
+          "description": "Không thể xóa sơ yếu lý lịch"
+        },
+        "validation": {
+          "title": "Lỗi",
+          "description": "Vui lòng điền đầy đủ các trường bắt buộc"
+        },
+        "not-found": {
+          "title": "Lỗi",
+          "description": "Không tìm thấy ID sơ yếu lý lịch"
+        }
+      }
+    },
+    "actions": {
+      "save": {
+        "label": "Lưu",
+        "loading": "Đang lưu..."
+      },
+      "publish": {
+        "label": "Xuất bản",
+        "loading": "Đang xuất bản..."
+      },
+      "delete": {
+        "label": "Xóa",
+        "loading": "Đang xóa...",
+        "confirm": {
+          "title": "Bạn có chắc chắn?",
+          "description": "Hành động này không thể hoàn tác. Điều này sẽ xóa vĩnh viễn sơ yếu lý lịch của bạn.",
+          "cancel": "Hủy",
+          "confirm": "Xóa"
+        }
+      }
+    }
   }
 } 

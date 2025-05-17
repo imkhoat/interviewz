@@ -11,6 +11,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@shared/components/ui/alert-dialog";
+import { useTranslations } from "next-intl";
 
 interface ResumeActionsProps {
   onSave: () => Promise<void>;
@@ -29,6 +30,8 @@ export default function ResumeActions({
   isPublishing,
   isDeleting,
 }: ResumeActionsProps) {
+  const t = useTranslations("resume");
+
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
@@ -42,7 +45,7 @@ export default function ResumeActions({
         ) : (
           <Save className="w-4 h-4 mr-2" />
         )}
-        {isSaving ? "Saving..." : "Save"}
+        {isSaving ? t("builder.actions.save.loading") : t("builder.actions.save.label")}
       </Button>
       <Button
         variant="outline"
@@ -55,7 +58,7 @@ export default function ResumeActions({
         ) : (
           <Upload className="w-4 h-4 mr-2" />
         )}
-        {isPublishing ? "Publishing..." : "Publish"}
+        {isPublishing ? t("builder.actions.publish.loading") : t("builder.actions.publish.label")}
       </Button>
       <AlertDialog>
         <AlertDialogTrigger asChild>
@@ -70,19 +73,19 @@ export default function ResumeActions({
             ) : (
               <Trash2 className="w-4 h-4 mr-2" />
             )}
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? t("builder.actions.delete.loading") : t("builder.actions.delete.label")}
           </Button>
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogTitle>{t("builder.actions.delete.confirm.title")}</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your resume.
+              {t("builder.actions.delete.confirm.description")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={onDelete}>Delete</AlertDialogAction>
+            <AlertDialogCancel>{t("builder.actions.delete.confirm.cancel")}</AlertDialogCancel>
+            <AlertDialogAction onClick={onDelete}>{t("builder.actions.delete.confirm.confirm")}</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

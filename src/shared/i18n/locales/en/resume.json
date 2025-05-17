@@ -10,30 +10,187 @@
   },
   "experience": {
     "title": "Experience",
+    "add": "Add Experience",
     "company": "Company",
+    "company-placeholder": "Enter company name",
     "position": "Position",
+    "position-placeholder": "Enter job title",
     "start-date": "Start Date",
     "end-date": "End Date",
-    "description": "Description"
+    "description": "Description",
+    "description-placeholder": "Describe your responsibilities and achievements",
+    "present": "Present",
+    "pick-date": "Pick a date"
   },
   "education": {
     "title": "Education",
+    "add": "Add Education",
     "school": "School",
+    "school-placeholder": "Enter school name",
     "degree": "Degree",
+    "degree-placeholder": "Enter degree",
     "start-date": "Start Date",
     "end-date": "End Date",
-    "description": "Description"
+    "description": "Description",
+    "description-placeholder": "Describe your education and achievements",
+    "present": "Present",
+    "pick-date": "Pick a date"
   },
   "skills": {
     "title": "Skills",
     "name": "Skill Name",
-    "level": "Level"
+    "level": "Level",
+    "categories": {
+      "technical": {
+        "title": "Technical Skills",
+        "placeholder": "E.g., JavaScript, React, Node.js, Python"
+      },
+      "soft": {
+        "title": "Soft Skills",
+        "placeholder": "E.g., Communication, Leadership, Problem Solving"
+      },
+      "languages": {
+        "title": "Languages",
+        "placeholder": "E.g., English (Fluent), Spanish (Intermediate)"
+      },
+      "certifications": {
+        "title": "Certifications",
+        "placeholder": "E.g., AWS Certified Developer, Google Cloud Professional"
+      }
+    }
   },
   "projects": {
     "title": "Projects",
+    "add": "Add Project",
     "name": "Project Name",
+    "name-placeholder": "Enter project name",
+    "role": "Role",
+    "role-placeholder": "Enter your role",
     "start-date": "Start Date",
     "end-date": "End Date",
-    "description": "Description"
+    "description": "Description",
+    "description-placeholder": "Describe your project and achievements",
+    "technologies": "Technologies",
+    "technologies-placeholder": "E.g., React, Node.js, MongoDB",
+    "url": "Project URL",
+    "url-placeholder": "https://",
+    "present": "Present",
+    "pick-date": "Pick a date"
+  },
+  "custom-fields": {
+    "title": "Custom Fields",
+    "add": "Add Custom Field",
+    "label": "Field Name",
+    "label-placeholder": "Enter field name",
+    "value": "Value",
+    "value-placeholder": "Enter field value"
+  },
+  "action-bar": {
+    "search-placeholder": "Search resumes...",
+    "filters": {
+      "title": "Filters",
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived"
+    },
+    "view-mode": {
+      "card": "Switch to table view",
+      "table": "Switch to card view"
+    },
+    "create": "Create Resume"
+  },
+  "card-grid": {
+    "last-updated": "Last updated: {date}",
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived"
+    }
+  },
+  "table": {
+    "columns": {
+      "title": "Title",
+      "status": "Status",
+      "last-updated": "Last Updated",
+      "actions": "Actions"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "archived": "Archived"
+    }
+  },
+  "builder": {
+    "preview": {
+      "title": "Preview will be available here"
+    },
+    "toast": {
+      "success": {
+        "save": {
+          "title": "Success",
+          "description": "Resume saved successfully"
+        },
+        "publish": {
+          "title": "Success",
+          "description": "Resume published successfully"
+        },
+        "delete": {
+          "title": "Success",
+          "description": "Resume deleted successfully"
+        }
+      },
+      "error": {
+        "save": {
+          "title": "Error",
+          "description": "Failed to save resume"
+        },
+        "publish": {
+          "title": "Error",
+          "description": "Failed to publish resume"
+        },
+        "delete": {
+          "title": "Error",
+          "description": "Failed to delete resume"
+        },
+        "validation": {
+          "title": "Error",
+          "description": "Please fill in all required fields"
+        },
+        "not-found": {
+          "title": "Error",
+          "description": "Resume ID not found"
+        }
+      }
+    },
+    "actions": {
+      "save": {
+        "label": "Save",
+        "loading": "Saving..."
+      },
+      "publish": {
+        "label": "Publish",
+        "loading": "Publishing..."
+      },
+      "delete": {
+        "label": "Delete",
+        "loading": "Deleting...",
+        "confirm": {
+          "title": "Are you sure?",
+          "description": "This action cannot be undone. This will permanently delete your resume.",
+          "cancel": "Cancel",
+          "confirm": "Delete"
+        }
+      }
+    }
   }
 } 

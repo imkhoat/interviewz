@@ -10,9 +10,11 @@ import { format } from "date-fns";
 import { cn } from "@shared/lib/utils";
 import { Textarea } from "@shared/components/ui/textarea";
 import SectionWrapper from "@resume/components/form/section-wrapper";
+import { useTranslations } from "next-intl";
 
 export default function SectionProject() {
   const form = useFormContext<ResumeFormValues>();
+  const t = useTranslations("resume");
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "";
@@ -24,79 +26,79 @@ export default function SectionProject() {
   };
 
   return (
-    <SectionWrapper header="Project" icon={<Code2 />}>
+    <SectionWrapper header={t("projects.title")} icon={<Code2 />}>
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Project Name</label>
+            <label className="text-sm font-medium">{t("projects.name")}</label>
             <Input
-              {...form.register("project.name")}
-              placeholder="Enter project name"
+              {...form.register("projects.0.name")}
+              placeholder={t("projects.name-placeholder")}
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Role</label>
+            <label className="text-sm font-medium">{t("projects.role")}</label>
             <Input
-              {...form.register("project.role")}
-              placeholder="Enter your role"
+              {...form.register("projects.0.role")}
+              placeholder={t("projects.role-placeholder")}
             />
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Start Date</label>
+            <label className="text-sm font-medium">{t("projects.start-date")}</label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
                   className={cn(
                     "w-full justify-start text-left font-normal",
-                    !form.watch("project.startDate") && "text-muted-foreground"
+                    !form.watch("projects.0.startDate") && "text-muted-foreground"
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {form.watch("project.startDate") ? (
-                    formatDate(form.watch("project.startDate"))
+                  {form.watch("projects.0.startDate") ? (
+                    formatDate(form.watch("projects.0.startDate"))
                   ) : (
-                    <span>Pick a date</span>
+                    <span>{t("projects.pick-date")}</span>
                   )}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
                   mode="single"
-                  selected={form.watch("project.startDate") ? new Date(form.watch("project.startDate") || "") : undefined}
-                  onSelect={(date) => form.setValue("project.startDate", date?.toISOString() || "")}
+                  selected={form.watch("projects.0.startDate") ? new Date(form.watch("projects.0.startDate") || "") : undefined}
+                  onSelect={(date) => form.setValue("projects.0.startDate", date?.toISOString() || "")}
                   initialFocus
                 />
               </PopoverContent>
             </Popover>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">End Date</label>
+            <label className="text-sm font-medium">{t("projects.end-date")}</label>
             <Popover>
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
                   className={cn(
                     "w-full justify-start text-left font-normal",
-                    !form.watch("project.endDate") && "text-muted-foreground"
+                    !form.watch("projects.0.endDate") && "text-muted-foreground"
                   )}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
-                  {form.watch("project.endDate") ? (
-                    formatDate(form.watch("project.endDate"))
+                  {form.watch("projects.0.endDate") ? (
+                    formatDate(form.watch("projects.0.endDate"))
                   ) : (
-                    <span>Pick a date</span>
+                    <span>{t("projects.pick-date")}</span>
                   )}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
                   mode="single"
-                  selected={form.watch("project.endDate") ? new Date(form.watch("project.endDate") || "") : undefined}
-                  onSelect={(date) => form.setValue("project.endDate", date?.toISOString() || "")}
+                  selected={form.watch("projects.0.endDate") ? new Date(form.watch("projects.0.endDate") || "") : undefined}
+                  onSelect={(date) => form.setValue("projects.0.endDate", date?.toISOString() || "")}
                   initialFocus
                 />
               </PopoverContent>
@@ -106,28 +108,28 @@ export default function SectionProject() {
 
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Technologies</label>
+            <label className="text-sm font-medium">{t("projects.technologies")}</label>
             <Input
-              {...form.register("project.technologies")}
-              placeholder="e.g. React, Node.js, MongoDB"
+              {...form.register("projects.0.technologies")}
+              placeholder={t("projects.technologies-placeholder")}
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium">Project URL</label>
+            <label className="text-sm font-medium">{t("projects.url")}</label>
             <Input
-              {...form.register("project.url")}
+              {...form.register("projects.0.url")}
               type="url"
-              placeholder="https://"
+              placeholder={t("projects.url-placeholder")}
             />
           </div>
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">Description</label>
+          <label className="text-sm font-medium">{t("projects.description")}</label>
           <OpenAIPrompt>
             <Textarea
-              {...form.register("project.description")}
-              placeholder="Describe your project and achievements"
+              {...form.register("projects.0.description")}
+              placeholder={t("projects.description-placeholder")}
             />
           </OpenAIPrompt>
         </div>
