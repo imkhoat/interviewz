@@ -12,10 +12,12 @@ import { Textarea } from "@shared/components/ui/textarea";
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shared/components/ui/collapsible";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function SectionProject() {
   const form = useFormContext<ResumeFormValues>();
   const [openStates, setOpenStates] = useState<boolean[]>([]);
+  const t = useTranslations("resume");
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "";
@@ -29,7 +31,7 @@ export default function SectionProject() {
   const getProjectPeriod = (startDate: string | undefined, endDate: string | undefined) => {
     if (!startDate) return "";
     const start = formatDate(startDate);
-    const end = endDate ? formatDate(endDate) : "Present";
+    const end = endDate ? formatDate(endDate) : t("projects.present");
     return `${start} - ${end}`;
   };
 
@@ -68,7 +70,7 @@ export default function SectionProject() {
   };
 
   return (
-    <SectionWrapper header="Projects" icon={<Code2 />}>
+    <SectionWrapper header={t("projects.title")} icon={<Code2 />}>
       <div className="space-y-4">
         <div className="flex justify-end">
           <Button
@@ -79,7 +81,7 @@ export default function SectionProject() {
             className="flex items-center gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Project
+            {t("projects.add")}
           </Button>
         </div>
 
@@ -102,7 +104,7 @@ export default function SectionProject() {
                 </CollapsibleTrigger>
                 <div>
                   <h4 className="text-sm font-medium">
-                    {project.name || `Project ${index + 1}`}
+                    {project.name || `${t("projects.title")} ${index + 1}`}
                   </h4>
                   <p className="text-sm text-muted-foreground">
                     {getProjectPeriod(project.startDate, project.endDate)}
@@ -123,24 +125,24 @@ export default function SectionProject() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Project Name</label>
+                    <label className="text-sm font-medium">{t("projects.name")}</label>
                     <Input
                       {...form.register(`projects.${index}.name`)}
-                      placeholder="Enter project name"
+                      placeholder={t("projects.name-placeholder")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Role</label>
+                    <label className="text-sm font-medium">{t("projects.role")}</label>
                     <Input
                       {...form.register(`projects.${index}.role`)}
-                      placeholder="Enter your role"
+                      placeholder={t("projects.role-placeholder")}
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Start Date</label>
+                    <label className="text-sm font-medium">{t("projects.start-date")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -154,7 +156,7 @@ export default function SectionProject() {
                           {form.watch(`projects.${index}.startDate`) ? (
                             formatDate(form.watch(`projects.${index}.startDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("projects.pick-date")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -169,7 +171,7 @@ export default function SectionProject() {
                     </Popover>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">End Date</label>
+                    <label className="text-sm font-medium">{t("projects.end-date")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -183,7 +185,7 @@ export default function SectionProject() {
                           {form.watch(`projects.${index}.endDate`) ? (
                             formatDate(form.watch(`projects.${index}.endDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("projects.pick-date")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -201,28 +203,28 @@ export default function SectionProject() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Technologies</label>
+                    <label className="text-sm font-medium">{t("projects.technologies")}</label>
                     <Input
                       {...form.register(`projects.${index}.technologies`)}
-                      placeholder="e.g. React, Node.js, MongoDB"
+                      placeholder={t("projects.technologies-placeholder")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Project URL</label>
+                    <label className="text-sm font-medium">{t("projects.url")}</label>
                     <Input
                       {...form.register(`projects.${index}.url`)}
                       type="url"
-                      placeholder="https://"
+                      placeholder={t("projects.url-placeholder")}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Description</label>
+                  <label className="text-sm font-medium">{t("projects.description")}</label>
                   <OpenAIPrompt>
                     <Textarea
                       {...form.register(`projects.${index}.description`)}
-                      placeholder="Describe your project and achievements"
+                      placeholder={t("projects.description-placeholder")}
                     />
                   </OpenAIPrompt>
                 </div>

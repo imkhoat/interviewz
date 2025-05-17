@@ -1,5 +1,6 @@
 import { Plus, Trash2 } from "lucide-react";
 import { useFormContext } from "react-hook-form";
+import { useTranslations } from "next-intl";
 
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Button } from "@shared/components/ui/button";
@@ -9,6 +10,7 @@ import { ResumeFormValues } from "@resume/schemas/resume.schema";
 
 export default function SectionCustomFields() {
   const form = useFormContext<ResumeFormValues>();
+  const t = useTranslations("resume");
 
   const addField = () => {
     const currentFields = form.getValues("customFields.fields");
@@ -29,7 +31,7 @@ export default function SectionCustomFields() {
   const fields = form.watch("customFields.fields");
 
   return (
-    <SectionWrapper header="Custom Fields" icon={<Plus />}>
+    <SectionWrapper header={t("custom-fields.title")} icon={<Plus />}>
       <div className="space-y-4">
         <div className="flex justify-end">
           <Button
@@ -40,7 +42,7 @@ export default function SectionCustomFields() {
             className="flex items-center gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Custom Field
+            {t("custom-fields.add")}
           </Button>
         </div>
 
@@ -51,9 +53,9 @@ export default function SectionCustomFields() {
               name={`customFields.fields.${index}.label`}
               render={({ field }) => (
                 <FormItem className="w-1/2">
-                  <FormLabel>Field name</FormLabel>
+                  <FormLabel>{t("custom-fields.label")}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder={t("custom-fields.label-placeholder")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -64,9 +66,9 @@ export default function SectionCustomFields() {
               name={`customFields.fields.${index}.value`}
               render={({ field }) => (
                 <FormItem className="w-1/2">
-                  <FormLabel>Field value</FormLabel>
+                  <FormLabel>{t("custom-fields.value")}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} placeholder={t("custom-fields.value-placeholder")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

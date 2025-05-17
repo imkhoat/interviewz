@@ -1,17 +1,19 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "@shared/hooks/use-toast";
+import { useTranslations } from "next-intl";
 
 import ResumeForm from "@resume/components/form/resume-form";
 import ResumeActions from "@resume/components/form/resume-actions";
-import { resumeFormSchema, ResumeFormValues } from "@resume/schemas/resume.schema";
+import { createResumeFormSchema, ResumeFormValues } from "@resume/schemas/resume.schema";
 import { useResume } from "@resume/hooks/use-resume";
 
 export default function ResumeBuilder() {
   const { handleCreateResume, handleUpdateResume, handleDeleteResume, isCreating, isUpdating, isDeleting } = useResume();
+  const t = useTranslations("resume");
 
   const form = useForm<ResumeFormValues>({
-    resolver: zodResolver(resumeFormSchema),
+    resolver: zodResolver(createResumeFormSchema(t)),
     defaultValues: {
       profile: {
         fullName: "",
@@ -64,15 +66,15 @@ export default function ResumeBuilder() {
         status: "draft",
       });
       toast({
-        title: "Success",
-        description: "Resume saved successfully",
+        title: t("builder.toast.success.save.title"),
+        description: t("builder.toast.success.save.description"),
       });
       return result;
     } catch (error) {
       console.error("Error saving resume:", error);
       toast({
-        title: "Error",
-        description: "Failed to save resume",
+        title: t("builder.toast.error.save.title"),
+        description: t("builder.toast.error.save.description"),
         variant: "destructive",
       });
       throw error;
@@ -83,8 +85,8 @@ export default function ResumeBuilder() {
     const isValid = await form.trigger();
     if (!isValid) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields",
+        title: t("builder.toast.error.validation.title"),
+        description: t("builder.toast.error.validation.description"),
         variant: "destructive",
       });
       return;
@@ -96,8 +98,8 @@ export default function ResumeBuilder() {
     } catch (error) {
       console.error("Error saving resume:", error);
       toast({
-        title: "Error",
-        description: "Failed to save resume",
+        title: t("builder.toast.error.save.title"),
+        description: t("builder.toast.error.save.description"),
         variant: "destructive",
       });
     }
@@ -107,8 +109,8 @@ export default function ResumeBuilder() {
     const isValid = await form.trigger();
     if (!isValid) {
       toast({
-        title: "Error",
-        description: "Please fill in all required fields",
+        title: t("builder.toast.error.validation.title"),
+        description: t("builder.toast.error.validation.description"),
         variant: "destructive",
       });
       return;
@@ -119,8 +121,8 @@ export default function ResumeBuilder() {
       const resumeId = (data as any).id; // TODO: Add id to ResumeFormValues type
       if (!resumeId) {
         toast({
-          title: "Error",
-          description: "Resume ID not found",
+          title: t("builder.toast.error.not-found.title"),
+          description: t("builder.toast.error.not-found.description"),
           variant: "destructive",
         });
         return;
@@ -130,14 +132,14 @@ export default function ResumeBuilder() {
         status: "published",
       });
       toast({
-        title: "Success",
-        description: "Resume published successfully",
+        title: t("builder.toast.success.publish.title"),
+        description: t("builder.toast.success.publish.description"),
       });
     } catch (error) {
       console.error("Error publishing resume:", error);
       toast({
-        title: "Error",
-        description: "Failed to publish resume",
+        title: t("builder.toast.error.publish.title"),
+        description: t("builder.toast.error.publish.description"),
         variant: "destructive",
       });
     }
@@ -149,22 +151,22 @@ export default function ResumeBuilder() {
       const resumeId = (data as any).id; // TODO: Add id to ResumeFormValues type
       if (!resumeId) {
         toast({
-          title: "Error",
-          description: "Resume ID not found",
+          title: t("builder.toast.error.not-found.title"),
+          description: t("builder.toast.error.not-found.description"),
           variant: "destructive",
         });
         return;
       }
       await handleDeleteResume(resumeId);
       toast({
-        title: "Success",
-        description: "Resume deleted successfully",
+        title: t("builder.toast.success.delete.title"),
+        description: t("builder.toast.success.delete.description"),
       });
     } catch (error) {
       console.error("Error deleting resume:", error);
       toast({
-        title: "Error",
-        description: "Failed to delete resume",
+        title: t("builder.toast.error.delete.title"),
+        description: t("builder.toast.error.delete.description"),
         variant: "destructive",
       });
     }
@@ -182,7 +184,7 @@ export default function ResumeBuilder() {
             <div className="w-full h-full">
               {/* TODO: Add ResumePreview component */}
               <div className="text-center text-muted-foreground">
-                Preview will be available here
+                {t("builder.preview.title")}
               </div>
             </div>
           </div>

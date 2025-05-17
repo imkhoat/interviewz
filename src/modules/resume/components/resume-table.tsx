@@ -11,6 +11,7 @@ import { Button } from "@shared/components/ui/button";
 import { Badge } from "@shared/components/ui/badge";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface Resume {
   id: string;
@@ -32,6 +33,7 @@ const statusColors = {
 
 export default function ResumeTable({ resumes, onDelete }: ResumeTableProps) {
   const router = useRouter();
+  const t = useTranslations("resume");
 
   const handleView = (id: string) => {
     router.push(`/resume/${id}`);
@@ -47,16 +49,16 @@ export default function ResumeTable({ resumes, onDelete }: ResumeTableProps) {
         <thead className="bg-gray-50">
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Title
+              {t("table.columns.title")}
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Status
+              {t("table.columns.status")}
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Last Updated
+              {t("table.columns.last-updated")}
             </th>
             <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Actions
+              {t("table.columns.actions")}
             </th>
           </tr>
         </thead>
@@ -71,7 +73,7 @@ export default function ResumeTable({ resumes, onDelete }: ResumeTableProps) {
                   variant="secondary"
                   className={`${statusColors[resume.status]} capitalize`}
                 >
-                  {resume.status}
+                  {t(`table.status.${resume.status}`)}
                 </Badge>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
@@ -89,18 +91,18 @@ export default function ResumeTable({ resumes, onDelete }: ResumeTableProps) {
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => handleView(resume.id)}>
                       <Eye className="h-4 w-4 mr-2" />
-                      View
+                      {t("table.actions.view")}
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleEdit(resume.id)}>
                       <Pencil className="h-4 w-4 mr-2" />
-                      Edit
+                      {t("table.actions.edit")}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       className="text-red-600"
                       onClick={() => onDelete?.(resume.id)}
                     >
                       <Trash2 className="h-4 w-4 mr-2" />
-                      Delete
+                      {t("table.actions.delete")}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

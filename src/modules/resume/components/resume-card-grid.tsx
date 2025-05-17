@@ -11,6 +11,7 @@ import { Button } from "@shared/components/ui/button";
 import { Badge } from "@shared/components/ui/badge";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface Resume {
   id: string;
@@ -32,6 +33,7 @@ const statusColors = {
 
 export default function ResumeCardGrid({ resumes, onDelete }: ResumeCardGridProps) {
   const router = useRouter();
+  const t = useTranslations("resume");
 
   const handleView = (id: string) => {
     router.push(`/resume/${id}`);
@@ -58,10 +60,12 @@ export default function ResumeCardGrid({ resumes, onDelete }: ResumeCardGridProp
                   variant="secondary"
                   className={`${statusColors[resume.status]} capitalize mb-4`}
                 >
-                  {resume.status}
+                  {t(`card-grid.status.${resume.status}`)}
                 </Badge>
                 <p className="text-sm text-gray-500">
-                  Last updated: {format(new Date(resume.updatedAt), "MMM d, yyyy")}
+                  {t("card-grid.last-updated", {
+                    date: format(new Date(resume.updatedAt), "MMM d, yyyy")
+                  })}
                 </p>
               </div>
               <DropdownMenu>
@@ -73,18 +77,18 @@ export default function ResumeCardGrid({ resumes, onDelete }: ResumeCardGridProp
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem onClick={() => handleView(resume.id)}>
                     <Eye className="h-4 w-4 mr-2" />
-                    View
+                    {t("card-grid.actions.view")}
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => handleEdit(resume.id)}>
                     <Pencil className="h-4 w-4 mr-2" />
-                    Edit
+                    {t("card-grid.actions.edit")}
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600"
                     onClick={() => onDelete?.(resume.id)}
                   >
                     <Trash2 className="h-4 w-4 mr-2" />
-                    Delete
+                    {t("card-grid.actions.delete")}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

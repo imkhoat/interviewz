@@ -11,6 +11,7 @@ import {
 } from "@shared/components/ui/popover";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export type ViewMode = "card" | "table";
 
@@ -21,6 +22,7 @@ interface ResumeActionBarProps {
 
 export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeActionBarProps) {
   const router = useRouter();
+  const t = useTranslations("resume");
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
     draft: false,
@@ -45,7 +47,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search resumes..."
+            placeholder={t("action-bar.search-placeholder")}
             className="pl-8"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -60,7 +62,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
             </PopoverTrigger>
             <PopoverContent className="w-80">
               <div className="space-y-4">
-                <h4 className="font-medium leading-none">Filters</h4>
+                <h4 className="font-medium leading-none">{t("action-bar.filters.title")}</h4>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox 
@@ -72,7 +74,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
                       htmlFor="draft"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                      Draft
+                      {t("action-bar.filters.draft")}
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -85,7 +87,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
                       htmlFor="published"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                      Published
+                      {t("action-bar.filters.published")}
                     </label>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -98,7 +100,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
                       htmlFor="archived"
                       className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                     >
-                      Archived
+                      {t("action-bar.filters.archived")}
                     </label>
                   </div>
                 </div>
@@ -109,7 +111,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
             variant="outline" 
             size="icon"
             onClick={toggleViewMode}
-            title={viewMode === "card" ? "Switch to table view" : "Switch to card view"}
+            title={viewMode === "card" ? t("action-bar.view-mode.card") : t("action-bar.view-mode.table")}
           >
             {viewMode === "card" ? (
               <Table className="h-4 w-4" />
@@ -121,7 +123,7 @@ export default function ResumeActionBar({ viewMode, onViewModeChange }: ResumeAc
       </div>
       <Button onClick={() => router.push("/resume/create")}>
         <Plus className="h-4 w-4 mr-2" />
-        Create Resume
+        {t("action-bar.create")}
       </Button>
     </div>
   );

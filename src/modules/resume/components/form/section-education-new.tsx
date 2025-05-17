@@ -12,10 +12,12 @@ import { Textarea } from "@shared/components/ui/textarea";
 import SectionWrapper from "@resume/components/form/section-wrapper";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shared/components/ui/collapsible";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function SectionEducation() {
   const form = useFormContext<ResumeFormValues>();
   const [openStates, setOpenStates] = useState<boolean[]>([]);
+  const t = useTranslations("resume");
 
   const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "";
@@ -29,7 +31,7 @@ export default function SectionEducation() {
   const getEducationPeriod = (startDate: string | undefined, endDate: string | undefined) => {
     if (!startDate) return "";
     const start = formatDate(startDate);
-    const end = endDate ? formatDate(endDate) : "Present";
+    const end = endDate ? formatDate(endDate) : t("education.present");
     return `${start} - ${end}`;
   };
 
@@ -66,7 +68,7 @@ export default function SectionEducation() {
   };
 
   return (
-    <SectionWrapper header="Education" icon={<GraduationCap />}>
+    <SectionWrapper header={t("education.title")} icon={<GraduationCap />}>
       <div className="space-y-4">
         <div className="flex justify-end">
           <Button
@@ -77,7 +79,7 @@ export default function SectionEducation() {
             className="flex items-center gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Education
+            {t("education.add")}
           </Button>
         </div>
 
@@ -100,7 +102,7 @@ export default function SectionEducation() {
                 </CollapsibleTrigger>
                 <div>
                   <h4 className="text-sm font-medium">
-                    {education.school || `Education ${index + 1}`}
+                    {education.school || `${t("education.title")} ${index + 1}`}
                   </h4>
                   <p className="text-sm text-muted-foreground">
                     {getEducationPeriod(education.startDate, education.endDate)}
@@ -121,24 +123,24 @@ export default function SectionEducation() {
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">School</label>
+                    <label className="text-sm font-medium">{t("education.school")}</label>
                     <Input
                       {...form.register(`educations.${index}.school`)}
-                      placeholder="Enter school name"
+                      placeholder={t("education.school-placeholder")}
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Degree</label>
+                    <label className="text-sm font-medium">{t("education.degree")}</label>
                     <Input
                       {...form.register(`educations.${index}.degree`)}
-                      placeholder="Enter degree"
+                      placeholder={t("education.degree-placeholder")}
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Start Date</label>
+                    <label className="text-sm font-medium">{t("education.start-date")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -152,7 +154,7 @@ export default function SectionEducation() {
                           {form.watch(`educations.${index}.startDate`) ? (
                             formatDate(form.watch(`educations.${index}.startDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("education.pick-date")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -167,7 +169,7 @@ export default function SectionEducation() {
                     </Popover>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">End Date</label>
+                    <label className="text-sm font-medium">{t("education.end-date")}</label>
                     <Popover>
                       <PopoverTrigger asChild>
                         <Button
@@ -181,7 +183,7 @@ export default function SectionEducation() {
                           {form.watch(`educations.${index}.endDate`) ? (
                             formatDate(form.watch(`educations.${index}.endDate`))
                           ) : (
-                            <span>Pick a date</span>
+                            <span>{t("education.pick-date")}</span>
                           )}
                         </Button>
                       </PopoverTrigger>
@@ -198,11 +200,11 @@ export default function SectionEducation() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Description</label>
+                  <label className="text-sm font-medium">{t("education.description")}</label>
                   <OpenAIPrompt>
                     <Textarea
                       {...form.register(`educations.${index}.description`)}
-                      placeholder="Describe your education and achievements"
+                      placeholder={t("education.description-placeholder")}
                     />
                   </OpenAIPrompt>
                 </div>
