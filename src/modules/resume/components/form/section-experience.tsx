@@ -72,8 +72,9 @@ export default function SectionExperience() {
         <div className="flex items-center justify-end">
           <Button
             type="button"
-            variant="outline"
+            variant="secondary"
             size="sm"
+            className="h-7"
             onClick={addExperience}
           >
             <Plus className="w-4 h-4 mr-2" />

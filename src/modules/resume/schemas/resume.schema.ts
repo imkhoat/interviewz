@@ -40,6 +40,9 @@ const getValidationMessages = (t: (key: string) => string) => ({
     soft: t("skills.categories.soft.title"),
     languages: t("skills.categories.languages.title"),
     certifications: t("skills.categories.certifications.title"),
+    validation: {
+      required: (field: string) => t("skills.validation.required", { field }),
+    },
   },
   customFields: {
     label: t("custom-fields.label"),
@@ -85,11 +88,21 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
     url: z.string().optional(),
   });
 
+  const skillItemSchema = z.object({
+    id: z.string(),
+    name: z.string().min(1, messages.skills.validation.required(t("skills.name"))),
+    level: z.string().min(1, messages.skills.validation.required(t("skills.level"))),
+    experience: z.string().optional(),
+  });
+
+  const skillCategorySchema = z.object({
+    id: z.string(),
+    title: z.string().min(1, messages.skills.validation.required(t("skills.categories.title"))),
+    items: z.array(skillItemSchema).default([]),
+  });
+
   const skillsSchema = z.object({
-    technical: z.string().optional(),
-    soft: z.string().optional(),
-    languages: z.string().optional(),
-    certifications: z.string().optional(),
+    categories: z.array(skillCategorySchema).default([]),
   });
 
   const customFieldSchema = z.object({
@@ -107,12 +120,7 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
     experiences: z.array(experienceSchema).optional().default([]),
     educations: z.array(educationSchema).optional().default([]),
     projects: z.array(projectSchema).optional().default([]),
-    skills: skillsSchema.optional().default({
-      technical: "",
-      soft: "",
-      languages: "",
-      certifications: "",
-    }),
+    skills: skillsSchema.optional().default({ categories: [] }),
     customFields: customFieldsSchema.optional().default({ fields: [] }),
   });
 };

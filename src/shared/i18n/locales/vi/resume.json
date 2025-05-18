@@ -44,7 +44,16 @@
     "title": "Kỹ năng",
     "name": "Tên kỹ năng",
     "level": "Cấp độ",
+    "experience": "Kinh nghiệm",
+    "validation": {
+      "required": "{field} là bắt buộc"
+    },
     "categories": {
+      "title": "Tên danh mục",
+      "add": "Thêm danh mục",
+      "delete": "Xóa danh mục",
+      "add-skill": "Thêm kỹ năng",
+      "delete-skill": "Xóa kỹ năng",
       "technical": {
         "title": "Kỹ năng kỹ thuật",
         "placeholder": "Ví dụ: JavaScript, React, Node.js, Python"
