@@ -78,7 +78,7 @@ export default function SectionEducation() {
             className="h-7"
             onClick={addEducation}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4" />
             {t("education.add")}
           </Button>
         </div>

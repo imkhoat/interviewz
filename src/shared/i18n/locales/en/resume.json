@@ -100,11 +100,15 @@
   },
   "custom-fields": {
     "title": "Custom Fields",
-    "add": "Add Custom Field",
+    "add": "Add More Section",
     "label": "Field Name",
     "label-placeholder": "Enter field name",
     "value": "Value",
-    "value-placeholder": "Enter field value"
+    "value-placeholder": "Enter field value",
+    "category-title": "Category Title",
+    "name": "Field Name",
+    "add-category": "Add Category",
+    "add-item": "Add Item"
   },
   "action-bar": {
     "search-placeholder": "Search resumes...",

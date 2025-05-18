@@ -243,7 +243,7 @@ export default function SectionSkills() {
                     className="h-7"
                     onClick={() => addSkill(categoryIndex)}
                   >
-                    <Plus className="w-4 h-4 mr-2" />
+                    <Plus className="w-4 h-4" />
                     {t("skills.categories.add-skill")}
                   </Button>
                 </div>
@@ -260,7 +260,7 @@ export default function SectionSkills() {
             className="h-7"
             onClick={addCategory}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4" />
             {t("skills.categories.add")}
           </Button>
         </div>

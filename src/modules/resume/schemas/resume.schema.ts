@@ -56,8 +56,8 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
   const profileSchema = z.object({
     fullName: z.string().min(1, messages.profile.validation.required(messages.profile.fullName)),
     email: z.string().email(messages.profile.validation.invalidEmail),
-    phone: z.string().min(1, messages.profile.validation.required(messages.profile.phone)),
-    location: z.string().min(1, messages.profile.validation.required(messages.profile.location)),
+    phone: z.string().optional(),
+    location: z.string().optional(),
     objective: z.string().min(1, messages.profile.validation.required(messages.profile.objective)),
     website: z.string().optional(),
   });
@@ -90,14 +90,14 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
 
   const skillItemSchema = z.object({
     id: z.string(),
-    name: z.string().min(1, messages.skills.validation.required(t("skills.name"))),
-    level: z.string().min(1, messages.skills.validation.required(t("skills.level"))),
+    name: z.string().optional(),
+    level: z.string().optional(),
     experience: z.string().optional(),
   });
 
   const skillCategorySchema = z.object({
     id: z.string(),
-    title: z.string().min(1, messages.skills.validation.required(t("skills.categories.title"))),
+    title: z.string().optional(),
     items: z.array(skillItemSchema).default([]),
   });
 
@@ -105,14 +105,26 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
     categories: z.array(skillCategorySchema).default([]),
   });
 
-  const customFieldSchema = z.object({
+  const customFieldItemSchema = z.object({
     id: z.string(),
-    label: z.string().optional(),
+    name: z.string().optional(),
     value: z.string().optional(),
   });
 
+  const customFieldCategorySchema = z.object({
+    id: z.string(),
+    title: z.string().optional(),
+    items: z.array(customFieldItemSchema).default([]),
+  });
+
+  const customFieldSectionSchema = z.object({
+    id: z.string(),
+    title: z.string().optional(),
+    categories: z.array(customFieldCategorySchema).default([]),
+  });
+
   const customFieldsSchema = z.object({
-    fields: z.array(customFieldSchema).optional().default([]),
+    sections: z.array(customFieldSectionSchema).default([]),
   });
 
   return z.object({
@@ -121,7 +133,7 @@ export const createResumeFormSchema = (t: (key: string) => string) => {
     educations: z.array(educationSchema).optional().default([]),
     projects: z.array(projectSchema).optional().default([]),
     skills: skillsSchema.optional().default({ categories: [] }),
-    customFields: customFieldsSchema.optional().default({ fields: [] }),
+    customFields: customFieldsSchema.optional().default({ sections: [] }),
   });
 };
 

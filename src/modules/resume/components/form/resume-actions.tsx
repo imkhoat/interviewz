@@ -35,28 +35,28 @@ export default function ResumeActions({
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
-        variant="outline"
+        variant="default"
         size="sm"
         onClick={onSave}
         disabled={isSaving || isPublishing || isDeleting}
       >
         {isSaving ? (
-          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          <Loader2 className="w-4 h-4 animate-spin" />
         ) : (
-          <Save className="w-4 h-4 mr-2" />
+          <Save className="w-4 h-4" />
         )}
         {isSaving ? t("builder.actions.save.loading") : t("builder.actions.save.label")}
       </Button>
       <Button
-        variant="outline"
+        variant="default"
         size="sm"
         onClick={onPublish}
         disabled={isSaving || isPublishing || isDeleting}
       >
         {isPublishing ? (
-          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          <Loader2 className="w-4 h-4 animate-spin" />
         ) : (
-          <Upload className="w-4 h-4 mr-2" />
+          <Upload className="w-4 h-4" />
         )}
         {isPublishing ? t("builder.actions.publish.loading") : t("builder.actions.publish.label")}
       </Button>
@@ -64,14 +64,14 @@ export default function ResumeActions({
         <AlertDialogTrigger asChild>
           <Button
             type="button"
-            variant="outline"
+            variant="default"
             size="sm"
             disabled={isSaving || isPublishing || isDeleting}
           >
             {isDeleting ? (
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin" />
             ) : (
-              <Trash2 className="w-4 h-4 mr-2" />
+              <Trash2 className="w-4 h-4" />
             )}
             {isDeleting ? t("builder.actions.delete.loading") : t("builder.actions.delete.label")}
           </Button>

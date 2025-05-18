@@ -92,11 +92,15 @@
   },
   "custom-fields": {
     "title": "Trường tùy chỉnh",
-    "add": "Thêm trường tùy chỉnh",
+    "add": "Thêm phần mới",
     "label": "Tên trường",
     "label-placeholder": "Nhập tên trường",
     "value": "Giá trị",
-    "value-placeholder": "Nhập giá trị trường"
+    "value-placeholder": "Nhập giá trị trường",
+    "category-title": "Tên danh mục",
+    "name": "Tên trường",
+    "add-category": "Thêm danh mục",
+    "add-item": "Thêm mục"
   },
   "action-bar": {
     "search-placeholder": "Tìm kiếm sơ yếu lý lịch...",
