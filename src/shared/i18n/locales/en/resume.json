@@ -43,17 +43,25 @@
   "skills": {
     "title": "Skills",
     "name": "Skill Name",
+    "name-placeholder": "Enter skill name",
     "level": "Level",
+    "level-placeholder": "Enter skill level",
     "experience": "Experience",
     "validation": {
-      "required": "{field} is required"
+      "required": "{field} is required",
+      "name-required": "Skill name is required",
+      "level-required": "Skill level is required"
     },
     "categories": {
       "title": "Category Title",
+      "title-placeholder": "Enter category title",
       "add": "Add Category",
       "delete": "Delete Category",
       "add-skill": "Add Skill",
       "delete-skill": "Delete Skill",
+      "validation": {
+        "title-required": "Category title is required"
+      },
       "technical": {
         "title": "Technical Skills",
         "placeholder": "E.g., JavaScript, React, Node.js, Python"
@@ -92,11 +100,15 @@
   },
   "custom-fields": {
     "title": "Custom Fields",
-    "add": "Add Custom Field",
+    "add": "Add More Section",
     "label": "Field Name",
     "label-placeholder": "Enter field name",
     "value": "Value",
-    "value-placeholder": "Enter field value"
+    "value-placeholder": "Enter field value",
+    "category-title": "Category Title",
+    "name": "Field Name",
+    "add-category": "Add Category",
+    "add-item": "Add Item"
   },
   "action-bar": {
     "search-placeholder": "Search resumes...",

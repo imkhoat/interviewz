@@ -77,7 +77,7 @@ export default function SectionExperience() {
             className="h-7"
             onClick={addExperience}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4" />
             {t("experience.add")}
           </Button>
         </div>

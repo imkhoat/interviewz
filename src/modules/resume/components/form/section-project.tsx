@@ -80,7 +80,7 @@ export default function SectionProject() {
             className="h-7"
             onClick={addProject}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4" />
             {t("projects.add")}
           </Button>
         </div>

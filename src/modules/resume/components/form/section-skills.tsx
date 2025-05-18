@@ -1,7 +1,7 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { Plus, Trash2, Wrench, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Button } from "@shared/components/ui/button";
 import { Input } from "@shared/components/ui/input";
@@ -17,12 +17,35 @@ export default function SectionSkills() {
   const form = useFormContext<ResumeFormValues>();
   const [editingCategory, setEditingCategory] = useState<string | null>(null);
   const [editingSkill, setEditingSkill] = useState<string | null>(null);
-  const [openStates, setOpenStates] = useState<boolean[]>(form.watch("skills.categories").map(() => true));
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const categoriesMap = form.watch("skills.categories") || [];
+  const [openStates, setOpenStates] = useState<boolean[]>(() => categoriesMap.map(() => true));
 
   const { fields: categories, append: appendCategory, remove: removeCategory } = useFieldArray({
     control: form.control,
     name: "skills.categories",
   });
+
+  // Initialize default categories only when creating a new form
+  useEffect(() => {
+    if (categories.length === 0) {
+      appendCategory({
+        id: crypto.randomUUID(),
+        title: t("skills.categories.technical.title"),
+        items: [],
+      });
+      appendCategory({
+        id: crypto.randomUUID(),
+        title: t("skills.categories.soft.title"),
+        items: [],
+      });
+      appendCategory({
+        id: crypto.randomUUID(),
+        title: t("skills.categories.languages.title"),
+        items: [],
+      });
+    }
+  }, []);
 
   const addCategory = () => {
     appendCategory({
@@ -126,10 +149,11 @@ export default function SectionSkills() {
               </Button>
             </div>
             <CollapsibleContent className="px-4 pb-4">
-              <div className="space-y-4">
+              <div className="space-y-1">
                 {form.watch(`skills.categories.${categoryIndex}.items`).map((skill, skillIndex) => (
-                  <div key={skill.id} className="pl-4 border-l-2 border-muted">
-                    <div className="flex items-center gap-4">
+                  <div key={skill.id} className="pl-4">
+                    <div className="flex items-center gap-4 p-2 rounded-md bg-muted/50 font-normal">
+                      <div className="w-3 h-3 rounded-full border border-primary" />
                       {editingSkill === skill.id ? (
                         <FormField
                           control={form.control}
@@ -158,7 +182,7 @@ export default function SectionSkills() {
                           className="flex-1 cursor-pointer hover:text-primary"
                           onClick={() => setEditingSkill(skill.id)}
                         >
-                          <h4 className="text-sm font-medium">
+                          <h4 className="text-sm font-normal">
                             {form.watch(`skills.categories.${categoryIndex}.items.${skillIndex}.name`) || t("skills.name")}
                           </h4>
                         </div>
@@ -192,7 +216,7 @@ export default function SectionSkills() {
                           className="w-1/3 cursor-pointer hover:text-primary"
                           onClick={() => setEditingSkill(`${skill.id}-level`)}
                         >
-                          <h4 className="text-sm font-medium">
+                          <h4 className="text-sm font-normal">
                             {form.watch(`skills.categories.${categoryIndex}.items.${skillIndex}.level`) || t("skills.level")}
                           </h4>
                         </div>
@@ -219,7 +243,7 @@ export default function SectionSkills() {
                     className="h-7"
                     onClick={() => addSkill(categoryIndex)}
                   >
-                    <Plus className="w-4 h-4 mr-2" />
+                    <Plus className="w-4 h-4" />
                     {t("skills.categories.add-skill")}
                   </Button>
                 </div>
@@ -236,7 +260,7 @@ export default function SectionSkills() {
             className="h-7"
             onClick={addCategory}
           >
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="w-4 h-4" />
             {t("skills.categories.add")}
           </Button>
         </div>
