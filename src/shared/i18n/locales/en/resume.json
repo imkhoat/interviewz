@@ -44,7 +44,16 @@
     "title": "Skills",
     "name": "Skill Name",
     "level": "Level",
+    "experience": "Experience",
+    "validation": {
+      "required": "{field} is required"
+    },
     "categories": {
+      "title": "Category Title",
+      "add": "Add Category",
+      "delete": "Delete Category",
+      "add-skill": "Add Skill",
+      "delete-skill": "Delete Skill",
       "technical": {
         "title": "Technical Skills",
         "placeholder": "E.g., JavaScript, React, Node.js, Python"

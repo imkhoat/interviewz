@@ -36,12 +36,12 @@ export default function SectionCustomFields() {
         <div className="flex justify-end">
           <Button
             type="button"
-            variant="outline"
+            variant="secondary"
             size="sm"
+            className="h-7"
             onClick={addField}
-            className="flex items-center gap-2"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="w-4 h-4 mr-2" />
             {t("custom-fields.add")}
           </Button>
         </div>
@@ -79,7 +79,7 @@ export default function SectionCustomFields() {
               variant="ghost"
               size="sm"
               onClick={() => removeField(index)}
-              className="h-8 w-8 mt-9"
+              className="h-8 w-8 p-0"
             >
               <Trash2 className="h-4 w-4" />
             </Button>
